@@ -1,0 +1,189 @@
+body {
+  background-color: black;
+  color: white;
+}
+section {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+a {
+  text-decoration: none;
+}
+
+/* home-page banner */
+.main-banner {
+  color: black;
+  background-image: linear-gradient(rgb(25, 14, 27), rgba(0, 0, 0, 0.5)),
+    url("./image-2.jpg");
+  width: 100%;
+  height: 600px;
+  object-fit: fill;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+}
+
+/* current contest on homepage */
+.current-cont {
+  background-image: linear-gradient(
+      to right,
+      rgb(56, 12, 58),
+      rgba(132, 60, 143, 0.5)
+    ),
+    url("./image-2.jpg");
+  width: 100%;
+  height: max-content;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.sponsor {
+  width: 100%;
+  height: max-content;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* media queries for large screen */
+
+@media screen and (min-width: 810px) {
+  .nav-img {
+    width: 10vw !important;
+    margin: auto 110px auto auto;
+  }
+  .footer-img {
+    width: 16vw !important;
+    /* margin: 5px auto !important; */
+    margin-bottom: 20px !important;
+    margin-left: 15px !important ;
+  }
+  .activated {
+    text-decoration-line: underline !important;
+    text-decoration-thickness: 1px !important;
+    text-decoration-skip-ink: all;
+    text-underline-offset: 30px;
+    color: #bda55d;
+    text-decoration-color: #bda55d;
+    -moz-text-decoration-color: #bda55d;
+  }
+}
+
+/* media queries for small screen */
+
+@media screen and (max-width: 500px) {
+  .main-banner {
+    background-size: 760px 568px;
+  }
+
+  .activated {
+    text-decoration-line: none !important;
+    text-decoration-thickness: 1px !important;
+    text-decoration-skip-ink: all;
+    text-underline-offset: 10px !important;
+    color: #bda55d;
+    text-decoration-color: #bda55d;
+    -moz-text-decoration-color: #bda55d;
+    -moz-text-decoration-line: none !important;
+}
+}
+
+footer {
+  width: 100% !important;
+  left: 0;
+  bottom: -2;
+  position: absolute;
+}
+
+.nav-links {
+  color: white !important;
+  margin: auto 10px;
+  font-size: 16px;
+}
+.footer-link {
+  color: bisque !important;
+}
+
+/* just ignore this for now */
+@media (min-width: 800px) and (max-width: 1250px) {
+  .navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+  }
+}
+.view,
+body,
+html {
+  height: 100%;
+}
+.navbar {
+  background-color: transparent;
+  border-bottom: 0.1px solid rgb(33, 28, 34);
+  border-width: 0.1px !important;
+}
+.page-footer,
+.top-nav-collapse {
+  background-color: transparent;
+}
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: transparent;
+  }
+}
+
+/* you can continue looking for now */
+
+
+
+/* carousel */
+
+.slick-current {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  /* margin: 0 !important;
+   padding: 0 !important;
+   border-radius: 50%; */
+
+  transition-delay: 0s !important;
+  /* -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   -ms-border-radius: 50%;
+   -o-border-radius: 50%;
+ */
+}
+.slick-active {
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  padding: 0;
+}
+
+/*for carousel buttons */
+
+.prev {
+  border-radius: 50px;
+}
+
+.next {
+  border-radius: 50px;
+}
+
+.carousel-nav {
+  position: absolute;
+  right: 50;
+}
+
+.carousel {
+  max-height: 450px !important;
+}
+
+/* carousel end */
