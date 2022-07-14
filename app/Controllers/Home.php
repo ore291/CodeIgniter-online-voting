@@ -13,4 +13,18 @@ class Home extends BaseController
             . view('home_page')
             .view('templates/footer');
     }
+    public function login()
+    {
+         $data['title'] = ucfirst('login');
+
+
+        return view('login',$data);
+    }
+    public function signUp()
+    {
+        $data['title'] = ucfirst('Sign-up');
+
+
+        return view('sign_up', $data);
+    }
 }

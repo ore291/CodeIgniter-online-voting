@@ -29,7 +29,7 @@
         <div class="container my-lg-2">
 
             <!-- Brand -->
-            <a class="navbar-brand h-25" href="home" target="">
+            <a class="navbar-brand h-25" href="/" target="">
                 <!-- <img src="https://picsum.photos/id/684/600/400" class="nav-img " alt=""> -->
                 <strong style="color: orange;">online voting</strong>
             </a>

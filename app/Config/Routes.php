@@ -19,13 +19,13 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
 $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
-$routes->setTranslateURIDashes(false);
+$routes->setTranslateURIDashes(true);
 $routes->set404Override();
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-//$routes->setAutoRoute(false);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -48,6 +48,8 @@ $routes->group('contests', static function ($routes) {
 
 $routes->get('home', 'Home::index');
 $routes->add('contests/(:any)', 'Contests::contest/$1');
+$routes->add('login', 'Home::login');
+$routes->add('sign-up', 'Home::signUp');
 $routes->get('contestant/(:any)', 'Contests::contestant/$1');
 /*
  * --------------------------------------------------------------------

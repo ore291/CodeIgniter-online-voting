@@ -23,10 +23,10 @@ class Feature extends BaseConfig
      *
      * @var bool
      */
-    public $multipleFilters = false;
+    public $multipleFilters = true;
 
     /**
      * Use improved new auto routing instead of the default legacy version.
      */
-    public bool $autoRoutesImproved = false;
+    public bool $autoRoutesImproved = true;
 }

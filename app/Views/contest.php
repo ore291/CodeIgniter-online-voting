@@ -8,7 +8,7 @@
 
     <script>
         // Set the date we're counting down to
-        var countDownDate = new Date("July 13, 2022 21:45:25").getTime();
+        var countDownDate = new Date("July 17, 2022 21:45:25").getTime();
 
         // Update the count down every 1 second
         var x = setInterval(function() {
@@ -92,7 +92,7 @@
                     </p>
 
 
-                    <h4>price : $50 per vote</h4>
+                    <h4>price : &#8358; 50 per vote</h4>
                     <h4>Current Stage :Bronze</h4>
                     <h4></h4>
 
@@ -108,7 +108,7 @@
 
         <form class="d-flex col-lg-5 col-10 mx-auto mb-3 my-lg-5 ms-lg-3">
             <input class="form-control me-2" type="search" placeholder="Search for contestants" aria-label="Search">
-            <button class="btn btn-warning btn-outline-dark" type="submit">Search Contestant</button>
+            <button class="btn btn-warning btn-outline-dark " type="submit">Search</button>
         </form>
         <?php $posts = ['title 1', 'title 2', 'title 3', 'title 4', 'title 5', 'title 6', 'title7']; ?>
 

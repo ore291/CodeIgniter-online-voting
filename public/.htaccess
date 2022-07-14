@@ -20,6 +20,9 @@ Options All -Indexes
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteCond %{REQUEST_URI} (.+)/$
 	RewriteRule ^ %1 [L,R=301]
+	RewriteRule ^([^\s%20]*)(?:\s|%20)+(.*)$ $1-$2 [L,R]
+
+	
 
 	# Rewrite "www.example.com -> example.com"
 	RewriteCond %{HTTPS} !=on
