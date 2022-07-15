@@ -161,3 +161,9 @@ html {
     -moz-text-decoration-color: #bda55d;
   }
 }
+
+
+.tab-list > li > a{
+  text-transform: capitalize;
+
+}

@@ -9,7 +9,7 @@
 
     </section>
     <section class="h-100 h-custom bg-dark mb-lg-1 mb-2">
-        <div class="container pt-2 h-100">
+        <div class="container pt- h-100">
             <div class="row justify-content-center  align-items-center h-100">
                 <div class="col-12 col-lg-9 col-xl-7 bg-dark mb-3">
                     <div class="card shadow-2-strong bg-black card-registration" style="border-radius: 15px;">
@@ -21,7 +21,7 @@
                                     <div class="col-md-6 mb-4">
 
                                         <div class="form-outline">
-                                            <input type="text" id="firstName" class="form-control form-control-lg" />
+                                            <input type="text" id="firstName" required class="form-control form-control-lg" />
                                             <label class="form-label" for="firstName">First Name</label>
                                         </div>
 
@@ -29,7 +29,7 @@
                                     <div class="col-md-6 mb-4">
 
                                         <div class="form-outline">
-                                            <input type="text" id="lastName" class="form-control form-control-lg" />
+                                            <input type="text" id="lastName" required class="form-control form-control-lg" />
                                             <label class="form-label" for="lastName">Last Name</label>
                                         </div>
 
@@ -71,7 +71,7 @@
                                     <div class="col-md-12 mb-2 pb-2">
 
                                         <div class="form-outline">
-                                            <input type="email" id="emailAddress" class="form-control form-control-lg" />
+                                            <input type="email" required id="emailAddress" class="form-control form-control-lg" value="" />
                                             <label class="form-label" for="emailAddress">Email</label>
                                         </div>
 
@@ -86,8 +86,41 @@
                                     </div> -->
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-12 mb-2 pb-2">
+                                        <script>
+                                            function togglePassword() {
+                                                var x = document.getElementById("passWord");
+                                                if (x.type === "password") {
+                                                    x.type = "text";
+                                                } else {
+                                                    x.type = "password";
+                                                }
+                                            }
+                                        </script>
+
+                                        <div class="form-outline">
+                                            <input type="password" required id="passWord" class="form-control form-control-lg" />
+                                            <label class="form-label" for="emailAddress">password</label>
+                                            <br>
+                                            <input type="checkbox" onclick="togglePassword()">Show Password
+                                        </div>
+                                        <!-- <script>
+                                            function togglePassword() {
+                                                var x = document.getElementById("passWord");
+                                                if (x.type === "password") {
+                                                    x.type = "text";
+                                                } else {
+                                                    x.type = "password";
+                                                }
+                                            }
+                                        </script> -->
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
                                     <div class="col-12 my-2 pb-2">
-                                        <input class="form-control form-control-lg"   id="formImg" type="file" />
+                                        <input class="form-control form-control-lg" accept="image/png, image/gif, image/jpeg" id="formImg" type="file" />
                                         <div class="small text-white mt-2">Upload your picture</div>
                                     </div>
                                 </div>
@@ -110,7 +143,7 @@
                                 </div>
 
                                 <div class="mt-4 pt-">
-                                    <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                                    <input class="btn btn-warning btn-lg" type="submit" value="Submit" />
                                 </div>
 
                             </form>

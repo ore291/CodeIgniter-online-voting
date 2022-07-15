@@ -49,7 +49,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-links contest" href="contests" target="">Contests</a>
+              <a class="nav-links contest" href="<?php echo base_url('contests') ?>" target="">Contests</a>
             </li>
             <li class="nav-item">
               <a class="nav-links" href="about" target="">About</a>
@@ -64,7 +64,7 @@
 
             <li class="nav-item  pt-2">
 
-              <a class="nav-links " href="login">Login</a>
+              <a class="nav-links " href="<?php echo base_url('login') ?>">Login</a>
 
 
             </li>

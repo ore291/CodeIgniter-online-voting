@@ -56,6 +56,13 @@
             <img src="<?php echo base_url('assets/images/image-3.jpg') ?>" alt="" class="w-100">
         </div>
     </section>
+
+    <section>
+
+    </section>
+
+
+
     <section class="border-1 border border-dark w-75 py-3 mx-auto">
         <h2 class="text-warning text-center mx-auto text-capitalize "> vote for <?= esc($name) ?></h2>
 
@@ -80,7 +87,9 @@
                 <input type="text" id="name" class="form-control bg-transparent text-white  " placeholder="" />
                 <label class="form-label" for="name">Enter your name</label> -->
             </div>
-            <button class="btn btn-warning mx-lg-auto px-4  justify self-center" type="submit">Vote now </button>
+            <button class="btn btn-warning mx-lg-auto px-4  justify self-center" type="submit" id='vote'>Vote now </button>
+
+
 
         </div>
 

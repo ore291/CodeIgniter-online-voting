@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-links contest" href="contests" target="">Contests</a>
+                        <a class="nav-links contest" href="<?php echo base_url('contests') ?>" target="">Contests</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-links" href="about" target="">About</a>
@@ -70,7 +70,7 @@
                         </div>
                     </li>
                     <li class="nav-item me-5">
-                        <a href="/sign-up" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="_blank">
+                        <a href="/sign-up" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
                             Sign Up
                         </a>
                     </li>
@@ -96,7 +96,7 @@
 
 
 
-    <script>
+    <!-- <script>
         $(document).ready(function() {
 
             jQuery(function($) {
@@ -108,7 +108,7 @@
                 });
             });
         });
-    </script>
+    </script> -->
     <script>
         $(document).ready(function() {
 
@@ -128,10 +128,8 @@
             });
             jQuery(function($) {
                 var path = window.location.href;
-                $('.nav-links').each(function() {
-                    if (this.href === path) {
-                        $(this).addClass('activated');
-                    }
+                $('.login').each(function() {
+
                     if (path.includes('login')) {
                         $(this).addClass('activated');
 

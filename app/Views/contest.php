@@ -121,15 +121,46 @@
                             <h5 class="card-title"><?= $post ?></h5>
                             <p class="card-text">vote result : 14.28%</p>
                             <p class="my-2">Contest no : 1</p>
-                            <a href="contest/" style="white-space: nowrap; "> <button class="btn btn-warning btn-outline-success mx-4 px-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Click vote for <?= $post ?>">Vote</button> </a>
+                            <!-- <a href="" style="white-space: nowrap; ">  -->
+
+                            <button class="btn btn-warning btn-outline-success mx-4 px-4 vote-btn" data-bs-toggle="tooltip" data-bs-placement="top" id='vote-btn' title="Click vote for <?= $post ?>">
+                                Vote
+                            </button>
+
+                            <!-- </a> -->
                             <a href="<?= $post ?>/contestant/<?= $post ?>" class="btn btn-warning btn-outline- mx-4">View profile</a>
+
+
                         </div>
                     </div>
                 </div>
 
 
             <?php endforeach; ?>
+
         </div>
 
     </section>
+
+    <div id="Modal" class="modal fad bg-secondary modal-lg " role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content bg-black">
+                <div class="modal-header">
+                  
+                    <h2 class="modal-title col-12 text-center">Contestant name</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Is this the contestant you will like to  vote for ?</p>
+                    <button class="btn-warning text-capitalize btn">vote now</button>
+                    <h2></h2>
+                </div>
+                <div class="modal-footer">
+                  <a href=""> <button type="button" id='dismiss' class="btn btn-danger" data-dismiss="modal">Close</button></a> 
+                </div>
+            </div>
+
+        </div>
+    </div>
 </main>
