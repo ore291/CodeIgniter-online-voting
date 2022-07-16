@@ -53,7 +53,7 @@
                         <a class="nav-links contest" href="<?php echo base_url('contests') ?>" target="">Contests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-links" href="about" target="">About</a>
+                        <a class="nav-links" href="/about" target="">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-links" href="/contact" target="">Contact Us</a>

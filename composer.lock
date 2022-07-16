@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d648ee3b65e8d352e12e15817702e7cd",
+    "content-hash": "e5756430e5a3157923c418853c375168",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -57,6 +57,11 @@
             ],
             "description": "The CodeIgniter framework v4",
             "homepage": "https://codeigniter.com",
+            "support": {
+                "forum": "http://forum.codeigniter.com/",
+                "slack": "https://codeigniterchat.slack.com",
+                "source": "https://github.com/codeigniter4/CodeIgniter4"
+            },
             "time": "2022-06-16T13:53:25+00:00"
         },
         {
@@ -2338,5 +2343,5 @@
         "php": "^7.4 || ^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.3.0"
 }
