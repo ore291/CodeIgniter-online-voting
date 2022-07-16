@@ -5,8 +5,8 @@
 
   <section class="container-fluid">
     <div class="ms-2 text-lg-start ">
-      <h2 class="ms-2">Contests</h2>
-      <h1 class="text-warning">Our current Contests</h1>
+     
+      <h1 class="text-warning text-capitalize">Our current Contests</h1>
     </div>
 
 
@@ -19,8 +19,8 @@
                 <h3 class="my-3 px-2">Competition Event</h3>
                 <h1 class="my-3 px-2">Most Hansome 2022</h1>
                 <p class="my-4 px-2" style='max-width:fit-content;'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste facere, adipisci omnis doloribus blanditiis sed alias laudantium quidem dolores tenetur ab iure dicta voluptatibus quo repellendus ex ducimus. Magni, veniam.</p>
-                <span class="nav-item w-50">
-                  <a href="/sign-up" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-link border border-light b px-1 py-2 btn-warning btn btn-outline-light w-50 btn-lg text-black rounded " target="_blank">
+                <span class="nav-item ms-2 ps-2 w-50">
+                  <a href="/sign-up" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-link  border border-light b px- ms-2 py-2 btn-warning btn btn-outline-light w-50 btn-lg text-black rounded " target="_blank">
                     Apply Now
                   </a>
                 </span>

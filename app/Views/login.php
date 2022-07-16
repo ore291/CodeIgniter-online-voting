@@ -19,7 +19,7 @@
                                     <form>
 
                                         <div class="d-flex align-items-center mb-3 pb-1">
-                                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                           
                                             <span class="h1 fw-bold mb-0 text-warning">Online Voting</span>
                                         </div>
 
@@ -51,10 +51,10 @@
                                             <button class="btn btn-warning btn-lg btn-block" type="button">Login</button>
                                         </div>
 
-                                        <a class="small text-muted" href="#!">Forgot password?</a>
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="sign-up" style="color: #393f81;">Register here</a></p>
-                                        <a href="#!" class="small text-muted">Terms of use.</a>
-                                        <a href="#!" class="small text-muted">Privacy policy</a>
+                                        <a class="small text-white mb-lg-2 " href="">Forgot password?</a>
+                                        <p class="mb-5 pb-lg-2" style="color: #fff;">Don't have an account? <a href="sign-up" style="color: #393f81;">Register here</a></p>
+                                        <a href="" class="small text-secondary">Terms of use.</a>
+                                        <a href="" class="small text-secondary">Privacy policy</a>
                                     </form>
 
                                 </div>

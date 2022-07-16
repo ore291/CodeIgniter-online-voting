@@ -116,3 +116,10 @@ footer {
 }
 
 
+
+input::placeholder {
+    font-size: 15px;
+    line-height: 4;
+}
+
+

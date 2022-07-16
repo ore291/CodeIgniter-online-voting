@@ -142,11 +142,11 @@
 
     </section>
 
-    <div id="Modal" class="modal fad bg-secondary modal-lg " role="dialog">
+    <div id="Modal" class="modal  bg-gradient   overflow-hidden col-10" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
-            <div class="modal-content bg-black">
+            <div class="modal-content bg-black w-100 overflow-hidden">
                 <div class="modal-header">
                   
                     <h2 class="modal-title col-12 text-center">Contestant name</h2>

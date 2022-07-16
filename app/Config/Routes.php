@@ -52,6 +52,8 @@ $routes->add('login', 'Home::login');
 $routes->add('sign-up', 'Home::signUp');
 $routes->add('about', 'Home::about');
 $routes->add('contact', 'Home::contact');
+$routes->add('user/(:any)', 'User::index/$1');
+
 $routes->get('contestant/(:any)', 'Contests::contestant/$1');
 /*
  * --------------------------------------------------------------------
