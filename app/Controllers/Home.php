@@ -9,9 +9,9 @@ class Home extends BaseController
          $data['title'] = ucfirst('Voting');
 
 
-        return view('templates/main_header',$data)
-            . view('home_page')
-            .view('templates/footer');
+            return view('templates/main_header',$data)
+                . view('home_page')
+                .view('templates/footer');
     }
     public function login()
     {
@@ -26,5 +26,19 @@ class Home extends BaseController
 
 
         return view('sign_up', $data);
+    }
+    public function contact()
+    {
+        $data['title'] = ucfirst('contact');
+
+
+        return view('contact', $data);
+    }
+    public function about()
+    {
+        $data['title'] = ucfirst('about');
+
+
+        return view('about', $data);
     }
 }

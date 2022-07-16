@@ -68,7 +68,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12 mb-2 pb-2">
+                                    <div class="col-md-12  mb-2 pb-2">
 
                                         <div class="form-outline">
                                             <input type="email" required id="emailAddress" class="form-control form-control-lg" value="" />
@@ -85,6 +85,17 @@
 
                                     </div> -->
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12 mb-2 pb-2">
+
+                                        <div class="form-outline">
+                                            <input type="text" required id="phone" class="form-control form-control-lg" value="" />
+                                            <label class="form-label" for="phone">Phone No.</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-12 mb-2 pb-2">
                                         <script>
