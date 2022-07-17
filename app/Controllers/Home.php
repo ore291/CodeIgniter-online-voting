@@ -39,6 +39,13 @@ class Home extends BaseController
         $data['title'] = ucfirst('about');
 
 
-        return view('about', $data);
+        return view('about', $data);}
+    public function faqs()
+    {
+        $data['title'] = ucfirst('FAQS');
+
+
+        return view('faqs', $data);
     }
+    
 }
