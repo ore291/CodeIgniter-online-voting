@@ -232,9 +232,7 @@
                                             foreach ($females_cats
                                                 as $category) : ?>
 
-                                                <option value="<?= $category['id'] ?>"><?= esc(
-                                                                                            $category['title']
-                                                                                        ) ?></option>
+                                                <option value="<?= $category['id'] ?>"><?= esc($category['title'] ) ?></option>
 
 
                                             <?php endforeach; ?>

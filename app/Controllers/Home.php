@@ -38,7 +38,6 @@ class Home extends BaseController
     {
         $data['title'] = ucfirst('about');
 
-<<<<<<< HEAD
 
         return view('about', $data);}
     public function faqs()
@@ -47,9 +46,7 @@ class Home extends BaseController
 
 
         return view('faqs', $data);
-=======
         return view('about', $data);
->>>>>>> cd2853da6b61da06f8ed07b62661549e9cf32259
     }
     
 }

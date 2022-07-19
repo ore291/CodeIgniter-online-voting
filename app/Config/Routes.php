@@ -46,6 +46,20 @@ $routes->group('contests', static function ($routes) {
     // $routes->add('(:any)/(:any)', 'Contests::contestant/$1/$2');
 });
 
+
+$routes->group('admin', static function ($routes) {
+    $routes->get('', 'Admin::getindex');
+    $routes->get('view-contests','Admin::viewContest');
+    $routes->get('add-contests', 'Admin::addContest');
+
+
+
+
+
+});
+
+//$routes->add('view-contests', 'Admin::viewContest');
+
 $routes->get('home', 'Home::index');
 $routes->add('contests/(:any)', 'Contests::contest/$1');
 $routes->add('login', 'Home::login');
@@ -53,11 +67,8 @@ $routes->add('sign-up', 'Home::signUp');
 $routes->add('about', 'Home::about');
 $routes->add('contact', 'Home::contact');
 $routes->add('user/(:any)', 'User::index/$1');
-<<<<<<< HEAD
 $routes->add('about/faqs', 'Home::faqs');
 
-=======
->>>>>>> cd2853da6b61da06f8ed07b62661549e9cf32259
 $routes->get('contestant/(:any)', 'Contests::contestant/$1');
 $routes->post('auth/register', 'Auth::registerUser');
 /*
