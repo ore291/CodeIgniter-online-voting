@@ -1,3 +1,14 @@
+<?= $this->extend('Layout/main') ?>
+
+
+<?= $this->section('content') ?>
+
+
+
+
+
+
+
 <main class="main-banner">
 
     <section>
@@ -168,3 +179,7 @@
         </div>
     </div>
 </section>
+
+
+
+<?= $this->endSection() ?>

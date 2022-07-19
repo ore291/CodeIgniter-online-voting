@@ -1,101 +1,3 @@
-<script>
-  $(document).ready(function() {
-
-    jQuery(function($) {
-      var path = window.location.href;
-      $('.nav-links').each(function() {
-        if (this.href === path) {
-          $(this).addClass('activated');
-        }
-      });
-    });
-  });
-</script>
-<script>
-  $(document).ready(function() {
-
-    jQuery(function($) {
-      var path = window.location.href;
-      $('.contest').each(function() {
-        if (this.href === path) {
-          $(this).addClass('activated');
-        }
-        if (path.includes('contests')) {
-          $(this).addClass('activated');
-
-        } else {
-          return null
-        }
-      });
-    });
-  });
-</script>
-
-<script>
-  $(document).ready(function() {
-
-    jQuery(function($) {
-      $('.vote-btn').click(function() {
-        $('#Modal').css({
-          'display': 'block',
-          'color': 'white'
-        })
-      })
-
-
-
-
-
-      $('#dismiss').click(function() {
-        $('#Modal').css({
-          'display': 'none',
-          'color': 'transparent'
-        })
-
-      })
-    })
-  });
-</script>
-
-<script>
-  $(document).ready(function() {
-    $('.carousel').slick({
-      centerMode: true,
-      centerPadding: '10px',
-      // appendArrows:$('.app'),
-      adaptiveHeight: true,
-      focusOnSelect: true,
-      slidesToShow: 3,
-      prevArrow: $('.prev'),
-      nextArrow: $('.next'),
-      appendArrows: $('.carousel'),
-      // prevArrow: $('#but'),
-      responsive: [{
-          breakpoint: 768,
-          settings: {
-            arrows: true,
-            centerMode: true,
-            centerPadding: '10px',
-            slidesToShow: 3
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            arrows: false,
-            centerMode: true,
-            centerPadding: '40px',
-            slidesToShow: 1
-          }
-        }
-      ]
-    });
-  });
-</script>
-
-
-
-</body>
 <footer class="row bg-black  mt-5 mx-auto pt-5  w-100" style="left:0 ;right:0;">
 
   <div class="row bg-black text-white font-weight-bolder text-left">
@@ -200,6 +102,14 @@
   </div>
 
 </footer>
+
+<script type="text/javascript" src="<?php echo base_url('bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/main.js') ?>"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</body>
+
 
 
 
