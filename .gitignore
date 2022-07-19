@@ -28,7 +28,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # Linux
-*~
+*~contest.sql
 
 # KDE directory preferences
 .directory
@@ -125,3 +125,4 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+/config/Database.php

@@ -178,36 +178,37 @@
 
 
 
-            <div class="col-lg-2 col-6 my-5 my-lg-1  text-capitalize ">
-                <h5>Quick Links</h5>
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-secondary">Home</a></li>
-                    <li class="nav-item mb-2"><a href="/contests" class="nav-link p-0 text-secondary">Contests</a></li>
-                    <li class="nav-item mb-2"><a href="/contact" class="nav-link p-0 text-secondary">Contact Us</a></li>
-                    <li class="nav-item mb-2"><a href="about/faqs" class="nav-link p-0 text-secondary">FAQs</a></li>
-                    <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-secondary">About</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2 col-6 my-5 my-lg-1">
-                <h5>Sponsors</h5>
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-                </ul>
-            </div>
+        <div class="col-lg-2 col-6 my-5 my-lg-1  text-capitalize ">
+            <h5>Quick Links</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-secondary">Home</a></li>
+                <li class="nav-item mb-2"><a href="/contests" class="nav-link p-0 text-secondary">Contests</a></li>
+                <li class="nav-item mb-2"><a href="/contact" class="nav-link p-0 text-secondary">Contact Us</a></li>
+                <li class="nav-item mb-2"><a href="about/faqs" class="nav-link p-0 text-secondary">FAQs</a></li>
+                <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-secondary">About</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-2 col-6 my-5 my-lg-1">
+            <h5>Sponsors</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+            </ul>
+        </div>
 
-            <div class="col-lg-2 col-6 text- my-lg-1 ">
-                <h5 class="offset-1">Legal</h5>
-                <ul class="nav flex-column text-left">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Privacy Policy </a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Terms & Conditions</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Pricing</a></li>
+        <div class="col-lg-2 col-6 text- my-lg-1 ">
+            <h5 class="offset-1">Legal</h5>
+            <ul class="nav flex-column text-left">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Privacy Policy </a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Terms & Conditions</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Pricing</a></li>
 
-                </ul>
-            </div>
+           
+           
+
 
 
 

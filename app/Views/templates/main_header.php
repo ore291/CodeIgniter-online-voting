@@ -125,6 +125,14 @@
 
 
 
+            </li>
+            <li class="nav-item me-">
+              <a href="/sign-up" style='border-radius:50px !important;padding:auto auto !important;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
+                Sign Up
+              </a>
+            </li>
+
+
 
         </div>
 

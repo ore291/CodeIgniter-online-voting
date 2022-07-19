@@ -1,0 +1,26 @@
+body {
+  background-color: white;
+  color: white;
+}
+section {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+footer {
+  width: 100% !important;
+  color: white !important;
+  left: 0;
+  bottom: -2;
+  position: absolute;
+}
+
+.nav-links {
+  color: white !important;
+  margin: auto 10px;
+  font-size: 16px;
+}
