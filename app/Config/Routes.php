@@ -48,16 +48,17 @@ $routes->group('contests', static function ($routes) {
 
 
 
-$routes->group('admin', static function ($routes) {
-    $routes->get('', 'Admin::getindex');
-    $routes->get('view-contests','Admin::viewContest');
-    $routes->get('add-contests', 'Admin::addContest');
+// $routes->group('admin', static function ($routes) {
+//     $routes->get('', 'Admin::getindex');
+//     $routes->get('view-contests','Admin::viewContest');
+//     $routes->get('add-contests', 'Admin::addContest');
+//     $routes->get('add-sponsors', 'Admin::addSponsors');
 
 
 
 
 
-});
+// });
 
 //$routes->add('view-contests', 'Admin::viewContest');
 

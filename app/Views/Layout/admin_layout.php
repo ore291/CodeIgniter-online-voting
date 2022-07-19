@@ -58,22 +58,21 @@
                 <div class="nav-item dropdown text-capitalize">
                     <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>contests</a>
                     <div class="dropdown-menu bg-transparent border-0 flex-column mx-auto ">
-                        <a href="/admin/add-contests" class="dropdown-item">add contest</a>
-                        <a href="/admin/view-contests" class="dropdown-item">view contest</a>
+                        <a href="/admin/add-contest" class="dropdown-item">add contest</a>
+                        <a href="/admin/view-contest" class="dropdown-item">view contest</a>
                         <!-- <a href="element.html" class="dropdown-item">Other Elements</a> -->
                     </div>
                 </div>
-                <a href="" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
+                <a href="" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Users</a>
                 <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                 <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
                 <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
-                    <div class="dropdown-menu bg-transparent border-0">
-                        <a href="signin.html" class="dropdown-item">Sign In</a>
-                        <a href="signup.html" class="dropdown-item">Sign Up</a>
-                        <a href="404.html" class="dropdown-item">404 Error</a>
-                        <a href="blank.html" class="dropdown-item">Blank Page</a>
+                    <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Sponsors</a>
+                    <div class="dropdown-menu bg-transparent border-0 text-sm">
+                        <a href="/admin/add-sponsors" class="dropdown-item">Register Sponsor</a>
+                        <a href="/admin/sponsors" class="dropdown-item">Sponsors</a>
+                     
                     </div>
                 </div>
             </div>
@@ -85,9 +84,7 @@
     <div class="content">
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand bg-black navbar-ligh text-white sticky-top px-4 py-0">
-            <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
-            </a>
+           
             <a href="#" class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
             </a>

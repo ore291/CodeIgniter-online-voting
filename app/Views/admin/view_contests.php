@@ -2,7 +2,72 @@
 
 <?= $this->section('content') ?>
 
-<h1>he</h1>
+<section class="mt-lg-2">
+
+
+    <div class="container shadow shadow-lg p-4 col-lg-12">
+
+        <h2 class="mb-5">Contests</h2>
+
+        <div class="table-responsive">
+            <table class=" table table-striped table-bordered align-middle">
+                <thead class=" table-light ">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th>Title</th>
+                        <th scope="col" class="col-1">Category</th>
+                        <th>Price per Vote</th>
+                        <th>Total votes</th>
+                       
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+
+                    </tr>
+                </thead>
+                <tbody class="table-striped">
+
+                    <?php foreach ($contests as $contest) : ?>
+
+
+
+                        <tr>
+                            <th scope="row"><?= $contest['id'] ?></th>
+                            <td class="text-capitalize"><?= $contest['title'] ?></td>
+                            <td><?= $contest['category'] ?></td>
+                            <td><?= $contest['price_per_vote'] ?></td>
+                            <td><?= $contest['total_votes'] ?></td>
+                            <td><?= $contest['start_date'] ?></td>
+                            <td><?= $contest['end_date'] ?></td>
+                            
+                            <!-- <td>Otto</td> -->
+
+                        </tr>
+
+
+                    <?php endforeach; ?>
+
+
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</section>
 
 
 
