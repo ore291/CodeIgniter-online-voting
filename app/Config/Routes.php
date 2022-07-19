@@ -25,7 +25,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-$routes->setAutoRoute(false);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -53,9 +53,13 @@ $routes->add('sign-up', 'Home::signUp');
 $routes->add('about', 'Home::about');
 $routes->add('contact', 'Home::contact');
 $routes->add('user/(:any)', 'User::index/$1');
+<<<<<<< HEAD
 $routes->add('about/faqs', 'Home::faqs');
 
+=======
+>>>>>>> cd2853da6b61da06f8ed07b62661549e9cf32259
 $routes->get('contestant/(:any)', 'Contests::contestant/$1');
+$routes->post('auth/register', 'Auth::registerUser');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
