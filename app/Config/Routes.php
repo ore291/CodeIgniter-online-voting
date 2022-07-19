@@ -46,6 +46,10 @@ $routes->group('contests', static function ($routes) {
     // $routes->add('(:any)/(:any)', 'Contests::contestant/$1/$2');
 });
 
+$routes->group('', ['filter' => 'AuthCheck'], function ($routes){
+    $routes->get('/dashboard', 'Dashboard::getindex');
+});
+
 $routes->get('home', 'Home::index');
 $routes->add('contests/(:any)', 'Contests::contest/$1');
 $routes->add('login', 'Home::login');
@@ -54,7 +58,8 @@ $routes->add('about', 'Home::about');
 $routes->add('contact', 'Home::contact');
 $routes->add('user/(:any)', 'User::index/$1');
 $routes->get('contestant/(:any)', 'Contests::contestant/$1');
-$routes->post('auth/register', 'Auth::registerUser');
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

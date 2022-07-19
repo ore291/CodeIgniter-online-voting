@@ -3,22 +3,6 @@
 <?= $this->section('content') ?>
 
 
-
-<script>
-    $(document).ready(function() {
-        $('input[type="radio"]').click(function() {
-            var inputValue = $(this).attr("value");
-            if (inputValue === 'female') {
-                $('#male-category').hide();
-                $('#female-category').show();
-            } else {
-                $('#male-category').show();
-                $('#female-category').hide();
-            }
-        });
-    });
-</script>
-
 <main class="">
     <section class="main-banner mt-lg-2 bg-dark  ">
         <h1 class="text-capitalize text-warning mb-5">Register Now!</h1>
@@ -32,9 +16,32 @@
                     <div class="card shadow-2-strong bg-black card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-4">
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-                            <form action="<?= base_url(
-                                                'auth/register'
-                                            ) ?>" method="post">
+                            <?php
+                            if (!empty(session()->getFlashdata("success"))) {
+                            ?>
+
+                                <div class="alert alert-success">
+                                    <?= session()->getFlashdata("success") ?>
+                                </div>
+                            <?php
+                            }
+
+                            ?>
+
+                            <?php
+                            if (!empty(session()->getFlashdata("fail"))) {
+                            ?>
+
+                                <div class="alert alert-danger">
+                                    <?= session()->getFlashdata("fail") ?>
+                                </div>
+                            <?php
+                            }
+
+                            ?>
+                            <form enctype="multipart/form-data" action="<?= base_url(
+                                                                            'auth/register'
+                                                                        ) ?>" method="post">
                                 <?= csrf_field() ?>
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
@@ -262,14 +269,7 @@
             </div>
         </div>
     </section>
-    <!-- <script type="text/javascript">
-   
-   $("gender").click(function(){
-       var val = $("input[type='radio']:checked").val();
-       alert(val);
-   });
-  
-</script> -->
+
 </main>
 
 <?= $this->endSection() ?>

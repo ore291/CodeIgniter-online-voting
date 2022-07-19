@@ -1,12 +1,25 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\UserModel;
+
 
 class Home extends BaseController
 {
     public function index()
     {
         $data['title'] = ucfirst('Voting');
+
+        
+        $userModel = new UserModel();
+
+
+        $loggedInUser = session()->get("loggedInUser");
+
+        $user = $userModel->find($loggedInUser);
+
+        $data['user'] = $user;
+
 
         return view('templates/main_header', $data) .
             view('home_page') .
@@ -36,6 +49,8 @@ class Home extends BaseController
     }
     public function about()
     {
+   
+
         $data['title'] = ucfirst('about');
 
         return view('about', $data);

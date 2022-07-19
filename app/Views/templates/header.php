@@ -9,14 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo base_url('bootstrap/css/bootstrap.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/contests.css') ?>" type="text/css">
-    <script type="text/javascript" src="<?php echo base_url('bootstrap/js/bootstrap.js') ?>"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
@@ -61,23 +54,54 @@
                 </ul>
 
                 <!-- Right -->
-                <ul class="navbar-nav nav-flex-icons">
-
-                    <li class="nav-item">
-                        <div class="navbar-nav pl-5">
-                            <a class="nav-links pt-1 " href="<?php echo base_url('login') ?>">Login</a>
-
-                        </div>
-                    </li>
-                    <li class="nav-item me-5">
-                        <a href="/sign-up" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="_blank">
-                            Sign Up
+                <?php
+                if (isset($user)) {
+                ?>
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="mdo" width="40" height="40" class="rounded-circle">
                         </a>
-                    </li>
-                    <li class="nav-item">
+                        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                            <li><a class="dropdown-item" href="#">New project...</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
 
-                    </li>
-                </ul>
+                <?php
+                } else {
+
+                ?>
+
+                    <ul class="navbar-nav nav-flex-icons">
+
+
+                        <li class="nav-item">
+                            <div class="navbar-nav pl-5">
+                                <a class="nav-links pt-1 " href="<?php echo base_url('login') ?>">Login</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a href="/sign-up" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="_blank">
+                                Sign Up
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                        </li>
+                    </ul>
+                <?php
+                }
+
+
+
+                ?>
+
 
             </div>
 

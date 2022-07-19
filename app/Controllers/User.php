@@ -5,7 +5,7 @@ namespace App\Controllers;
 
 class User extends BaseController
 {
-public function index()
+public function getindex()
 {
 
 $data['title'] = ucfirst('user');

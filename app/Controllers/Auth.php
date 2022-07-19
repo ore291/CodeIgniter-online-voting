@@ -14,13 +14,51 @@ class Auth extends BaseController
         helper(['url', 'form']);
     }
 
-    public function index()
+    public function getindex()
     {
         echo 'login page';
     }
 
+    public function postlogin()
+    {
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        $userModel = new \App\Models\UserModel();
+
+        $user = $userModel->where('email', $email)
+            ->first();
+
+        $checkPassword = Hash::check($password, $user['password']);
+
+        if (!$checkPassword) {
+            session()->setFlashdata("fail", "incorrect password");
+            return redirect()->back();
+        } else {
+            $userId = $user['id'];
+            session()->set('loggedInUser', $userId);
+            return redirect()->to("dashboard");
+        }
+    }
+
+    public function uploadImage($image)
+    {
+        $config['upload_path'] = getcwd() . '/images';
+        $image_name = $image->getName();
+
+        if (!is_dir($config['upload_path'])) {
+            mkdir($config['upload_path'], 077);
+        }
+
+        if (!$image->hasMoved()) {
+            $image->move($config['upload_path'], $image_name);
+        }
+
+        return $image_name;
+    }
+
     // add new user
-    public function registerUser()
+    public function postRegister()
     {
         $firstName = $this->request->getPost('firstName');
         $lastName = $this->request->getPost('lastName');
@@ -32,9 +70,9 @@ class Auth extends BaseController
         $password = $this->request->getPost('password');
         $phone = $this->request->getPost('phone');
         $category = $this->request->getPost('category');
-        $picture = 'https://via.placeholder.com/150';
-        
-        
+        $picture = $this -> uploadImage($this->request->getFile('picture'));
+
+
         $data = [
             'first_name' => $firstName,
             'last_name' => $lastName,
@@ -50,15 +88,25 @@ class Auth extends BaseController
         ];
 
         $userModel = new \App\Models\UserModel();
-        $query = $userModel->insert($data);
 
-        if (!$query) 
-        {
-            return redirect()->back()->with('fail', 'Registration Failed');
+        $check_email =  $userModel->where('email', $email)
+            ->first();
+
+        if ($check_email) {
+            return redirect()->back()->with('fail', 'Email is already Registered');
+        } {
+            $query = $userModel->insert($data);
+
+            if (!$query) {
+                return redirect()->back()->with('fail', 'Registration Failed');
+            } else {
+                return redirect()->to('/login')->with('success', 'Registration Successful');
+            }
         }
-        else
-        {
-            return redirect()->back()->with('success', 'Registration Successful');
-        }
+    }
+    public function getlogout()
+    {
+        session()->destroy();
+        return redirect()->to("/");
     }
 }

@@ -10,9 +10,8 @@ class Contests extends BaseController
         $data['title'] = ucfirst('Contests');
 
 
-        return view('templates/header', $data)
-            . view('contests')
-            . view('templates/footer');
+        return view('contests',  $data);
+            
     }
 
     public function contest($title)
