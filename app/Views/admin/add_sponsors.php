@@ -61,7 +61,7 @@
 
 
 
-<button type="submit" class="btn btn-warning col-md-6 col-12 mx-auto ">submit</button>
+            <button type="submit" class="btn btn-warning col-md-6 col-12 mx-auto ">submit</button>
 
 
         </form>
@@ -79,7 +79,7 @@
 
 
 
-<script src="<?php echo base_url('assets/js/main.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/admin.js') ?>"></script>
 
 
 

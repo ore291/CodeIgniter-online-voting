@@ -64,15 +64,22 @@
                     </div>
                 </div>
                 <a href="" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Users</a>
-                <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
+                <div class="nav-item dropdown">
+                    <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Categories</a>
+                    <div class="dropdown-menu bg-transparent border-0 text-sm">
+                        <a href="/admin/add-category" class="dropdown-item">Add Category</a>
+                        <!-- <a href="/admin/sponsors" class="dropdown-item">Sponsors</a> -->
+
+                    </div>
+                </div>
                 <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
+                <a href="/admin/view-votes" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Votes</a>
                 <div class="nav-item dropdown">
                     <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Sponsors</a>
                     <div class="dropdown-menu bg-transparent border-0 text-sm">
                         <a href="/admin/add-sponsors" class="dropdown-item">Register Sponsor</a>
                         <a href="/admin/sponsors" class="dropdown-item">Sponsors</a>
-                     
+
                     </div>
                 </div>
             </div>
@@ -84,7 +91,7 @@
     <div class="content">
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand bg-black navbar-ligh text-white sticky-top px-4 py-0">
-           
+
             <a href="#" class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
             </a>
@@ -181,31 +188,14 @@
 
 
         <?= $this->renderSection('content') ?>
-
+       
 
         <script src="<?php echo base_url('assets/js/admin.js') ?>"></script>
 
         <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
-        <script>
-            $(document).ready(function() {
-
-                jQuery(function($) {
-                    var path = window.location.href;
-                    $('.nav-links').each(function() {
-                        if (this.href === path) {
-                            $(this).addClass('activated');
-                        }
-                    });
-                });
-            });
-
-            $('#calender').datepicker({
-                inline: true,
-                format: 'L'
-            });
-        </script>
+        <script src="<?php echo base_url('assets/js/admin.js') ?>"></script>
 </body>
 
 </html>

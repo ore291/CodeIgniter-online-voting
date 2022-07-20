@@ -9,37 +9,50 @@
 
         <h2 class="mb-5">Contests</h2>
 
+
+        <form method="get" action="view_contest" class="d-flex col-lg-6 m-4" id='searchForm'>
+            <input type="text" class='form-control me-2 text-black' name="search" value="<?= $search ?>">
+            <input type="button" name="searchBtn" class="btn btn-block btn-warning" value="search" onclick="document.getElementById('searchForm').submit();">
+
+
+        </form>
+
         <div class="table-responsive">
             <table class=" table table-striped table-bordered align-middle">
                 <thead class=" table-light ">
                     <tr>
                         <th scope="col">#</th>
+                        <th>picture</th>
                         <th>Title</th>
                         <th scope="col" class="col-1">Category</th>
                         <th>Price per Vote</th>
                         <th>Total votes</th>
-                       
+
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Status</th>
 
+
                     </tr>
                 </thead>
-                <tbody class="table-striped">
+                <tbody class="table-striped" style="white-space:nowrap;  ">
 
-                    <?php foreach ($contests as $contest) : ?>
+
+                    <?php foreach ($contest as $contest) : ?>
 
 
 
                         <tr>
                             <th scope="row"><?= $contest['id'] ?></th>
-                            <td class="text-capitalize"><?= $contest['title'] ?></td>
+                            <th scope=""> <img class=" rounded-5 mx-lg-auto p-4 contest-img " src="<?= $contest['picture'] ?>" alt=""></th>
+
+                            <td class="text-capitalize " style="white-space:nowrap;  "><?= $contest['title'] ?></td>
                             <td><?= $contest['category'] ?></td>
                             <td><?= $contest['price_per_vote'] ?></td>
-                            <td><?= $contest['total_votes'] ?></td>
+                            <td class="truncate"><?= $contest['total_votes'] ?></td>
                             <td><?= $contest['start_date'] ?></td>
                             <td><?= $contest['end_date'] ?></td>
-                            
+
                             <!-- <td>Otto</td> -->
 
                         </tr>
@@ -52,6 +65,18 @@
 
                 </tbody>
             </table>
+
+            <!-- <div>
+               
+            </div> -->
+
+
+            <div class=" d-flex justify-content-center">
+                <?= $pager->links() ?>
+
+
+
+            </div>
 
 
         </div>
