@@ -20,39 +20,63 @@
         </form>
 
         <div class="table-responsive">
-            <table class=" table table-striped table-bordered  align-middle">
+            <table class=" table table-striped table-bordered table-responsive align-middle">
                 <thead class=" table-light ">
                     <tr>
                         <th scope="col">#</th>
                         <th>Name</th>
-                        <th scope="col" class="w-25">Email</th>
+                        <th scope="col" class="col-2">Email</th>
                         <th>Reference</th>
                         <th>Cost</th>
                         <th>Vote Count </th>
                         <th>Contestant id </th>
+                        <th>Contest</th>
 
                     </tr>
                 </thead>
                 <tbody class="table-striped">
-                    
+                    <?php if ($votes) {
 
-                    <?php foreach ($votes as $vote) : ?>
+                        foreach ($votes as $vote) {
+                    ?>
 
 
 
-                        <tr class="">
-                            <th scope="row"><?= $vote['id'] ?></th>
-                            <td class="p-5"><?= $vote['name'] ?></td>
-                            <td><?= $vote['email'] ?></td>
-                            <td><?= $vote['reference'] ?></td>
-                            <td><?= $vote['cost'] ?></td>
-                            <td><?= $vote['vote_count'] ?></td>
-                            <td><?= $vote['contestant_id'] ?></td>
+                            <tr class="">
+                                <th scope="row"><?= $vote['id'] ?></th>
+                                <td class="p-5"><?= $vote['name'] ?></td>
+                                <td class="col-1"><?= $vote['email'] ?></td>
+                                <td><?= $vote['reference'] ?></td>
+                                <td><?= $vote['cost'] ?></td>
+                                <td><?= $vote['vote_count'] ?></td>
+                                <td><?= $vote['contestant_id'] ?></td>
+                                <td><?= $vote['contestant_id'] ?></td>
 
+                            </tr>
+
+                        <?php
+
+
+
+
+                        }
+                    } else {
+                        ?>
+
+                        <tr>
+                            <td colspan="9" align="center">
+                                <h1>No Results Found</h1>
+                            </td>
                         </tr>
 
+                    <?php
 
-                    <?php endforeach; ?>
+
+                    }
+                    ?>
+
+
+
 
 
 
@@ -82,9 +106,6 @@
 
 
 </section>
-
-
-
 
 
 

@@ -19,14 +19,22 @@
 #spinner {
     opacity: 0;
     visibility: hidden;
-    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    transition: opacity .5s ease-out, visibility 0s linear 1.5s;
     z-index: 99999;
+    -webkit-transition: opacity .5s ease-out, visibility 0s linear 1.5s;
+    -moz-transition: opacity .5s ease-out, visibility 0s linear 1.5s;
+    -ms-transition: opacity .5s ease-out, visibility 0s linear 1.5s;
+    -o-transition: opacity .5s ease-out, visibility 0s linear 1.5s;
 }
 
 #spinner.show {
     transition: opacity .5s ease-out, visibility 0s linear 0s;
     visibility: visible;
     opacity: 1;
+    -webkit-transition: opacity .5s ease-out, visibility 0s linear 0s;
+    -moz-transition: opacity .5s ease-out, visibility 0s linear 0s;
+    -ms-transition: opacity .5s ease-out, visibility 0s linear 0s;
+    -o-transition: opacity .5s ease-out, visibility 0s linear 0s;
 }
 
 

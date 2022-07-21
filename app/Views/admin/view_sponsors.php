@@ -19,9 +19,9 @@
         </form>
 
         <div class="table-responsive">
-            <table class=" table table-striped table-bordered  align-middle">
+            <table class=" table table-striped table-bordered table-responsive  align-middle">
                 <thead class=" table-light ">
-                    <tr >
+                    <tr>
                         <th scope="col">#</th>
                         <th>Name</th>
                         <th scope="col" class="w-25">Company name</th>
@@ -33,23 +33,56 @@
                 </thead>
                 <tbody class="table-striped">
 
-                    <?php foreach ($sponsors as $sponsor) : ?>
+                    <?php
+                    function delete($id)
+                    {
+                        $sponsorModel = new \App\Models\SponsorModel();
+
+
+                        $sponsorModel->delete($id);
+                    }
+                    ?>
 
 
 
-                        <tr class="">
-                            <th scope="row"><?= $sponsor['id'] ?></th>
-                            <td class="p-3"><?= $sponsor['name'] ?></td>
-                            <td><?= $sponsor['company_name'] ?></td>
-                            <td><?= $sponsor['brand'] ?></td>
-                            <td><?= $sponsor['email'] ?></td>
-                            <td><?= $sponsor['phone'] ?></td>
-                            <!-- <td>Otto</td> -->
+                    <?php if ($sponsors) {
 
+                        foreach ($sponsors as $sponsor) {
+                    ?>
+
+
+                            <tr class="">
+                                <th scope="row"><?= $sponsor['id'] ?></th>
+                                <td class="p-3"><?= $sponsor['name'] ?></td>
+                                <td><?= $sponsor['company_name'] ?></td>
+                                <td><?= $sponsor['brand'] ?></td>
+                                <td><?= $sponsor['email'] ?></td>
+                                <td><?= $sponsor['phone'] ?></td>
+                                <td><button class="btn btn-block btn-danger" onclick="window.location.reload()" onclick="<?= delete($sponsor['id']) ?>" value="delete">Delete</button></td>
+
+                            </tr>
+                        <?php
+
+
+
+
+                        }
+                    } else {
+                        ?>
+
+                        <tr>
+                            <td colspan="9" align="center">
+                                <h1>No Results Found</h1>
+                            </td>
                         </tr>
 
+                    <?php
 
-                    <?php endforeach; ?>
+
+                    }
+                    ?>
+
+
 
 
 
@@ -77,8 +110,6 @@
 
 
 </section>
-
-
 
 
 

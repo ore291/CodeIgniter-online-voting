@@ -37,6 +37,8 @@
 
 <body>
 
+
+
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 bg-black text-white pb-3">
         <nav class="navbar bg-black  navbar-dark">
@@ -63,7 +65,15 @@
                         <!-- <a href="element.html" class="dropdown-item">Other Elements</a> -->
                     </div>
                 </div>
-                <a href="" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Users</a>
+                <div class="nav-item dropdown">
+                    <a href="" class="nav-item nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>Users</a>
+                    <div class="dropdown-menu bg-transparent border-0 text-sm">
+                        <a href="/admin/users" class="dropdown-item">Users</a>
+                        <a href="/admin/sponsors" class="dropdown-item">Contestants</a>
+
+                    </div>
+                </div>
+
                 <div class="nav-item dropdown">
                     <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Categories</a>
                     <div class="dropdown-menu bg-transparent border-0 text-sm">
@@ -188,7 +198,7 @@
 
 
         <?= $this->renderSection('content') ?>
-       
+
 
         <script src="<?php echo base_url('assets/js/admin.js') ?>"></script>
 

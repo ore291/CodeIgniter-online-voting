@@ -10,7 +10,30 @@
     <div class="container shadow shadow-lg p-4 col-lg-10">
 
         <h2 class="mb-5">Add Sponsor</h2>
-        <form class="row gx-3 gy-2 align-items-center text-black">
+        <?php
+        if (!empty(session()->getFlashdata("success"))) {
+        ?>
+
+            <div class="alert alert-success">
+                <?= session()->getFlashdata("success") ?>
+            </div>
+        <?php
+        }
+
+        ?>
+
+        <?php
+        if (!empty(session()->getFlashdata("fail"))) {
+        ?>
+
+            <div class="alert alert-danger">
+                <?= session()->getFlashdata("fail") ?>
+            </div>
+        <?php
+        }
+
+        ?>
+        <form class="row gx-3 gy-2 align-items-center text-black" action="<?= base_url('admin/sponsor') ?>" method="post" enctype="multipart/form-data">
 
             <div class="col-12 col-md-12 form-outline mb-2 pb-2" id="category-div">
 
@@ -40,7 +63,7 @@
 
                     <input class="form-control w-50 text-black" name="phone" id="contact" required type="text" placeholder="Phone No." aria-label="name">
 
-                    <input class="form-control w-50 text-black" required id="contact" type="email" placeholder="Email" aria-label="name">
+                    <input class="form-control w-50 text-black" required name="email" id="contact" type="email" placeholder="Email" aria-label="name">
                 </div>
 
 
@@ -49,7 +72,7 @@
             <div class="col-12 col-md-12   form-outline mb-2 pb-2" id="category-div">
                 <label for="Textarea">Company Desciption or info to be displayed </label>
                 <div class="form-floating">
-                    <textarea class="form-control text-black" name="companyDescription" placeholder="Leave a comment here" id="Textarea"></textarea>
+                    <textarea class="form-control text-black text-capitalize" name="companyDescription" placeholder="Leave a comment here" id="Textarea"></textarea>
 
                 </div>
 
