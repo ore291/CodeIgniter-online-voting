@@ -4,29 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class StageModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
+    protected $table            = 'stages';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       =  \App\Entities\User::class;
+    protected $returnType       = \App\Entities\Stage::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'first_name',
-        'last_name',
-        'full_name',
-        'email',
-        'picture',
-        'category',
-        'state',
-        'phone',
-        'occupation',
-        'password',
-        'gender',
-    ];
+    protected $allowedFields    = [];
 
     // Dates
     protected $useTimestamps = false;

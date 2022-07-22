@@ -11,10 +11,13 @@ class ContestModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = 'array';
+    protected $returnType       = \App\Entities\Contest::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+
+    protected $allowedFields    = [
+        'title', 'slug', 'cover', 'price_per_vote', 'picture', 'start_date', 'end_date', 'winner', 'status', 'sponsor', 'total_votes', 'category'
+    ];
 
     // Dates
     protected $useTimestamps = false;

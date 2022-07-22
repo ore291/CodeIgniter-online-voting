@@ -3,7 +3,7 @@ body {
   color: white;
 }
 section {
-  max-width: 1400px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -18,6 +18,8 @@ footer {
   bottom: -2;
   position: absolute;
 }
+
+
 
 .nav-links {
   color: white !important;
@@ -74,16 +76,28 @@ input[type='number']::-webkit-inner-button {
 /* contests page banner */
 .main-banner {
   color: black;
-  background-image: linear-gradient(rgb(25, 14, 27), rgba(0, 0, 0, 0.5)),
-    url("./image-3.jpg");
-  width: 100%;
-  height: 400px;
+  /* background-image: linear-gradient(rgb(25, 14, 27), rgba(0, 0, 0, 0.5)),
+    url("./image-3.jpg"); */
+  max-width: 1200px;
+  margin: 0 auto;
   object-fit: fill;
   /* background-size: 100% 600px; */
   background-repeat: no-repeat;
   font-size: 15px;
   text-align: center;
   color: white;
+  padding: 10px 0;
+}
+
+.contest-card {
+  color: black !important;
+}
+
+.contest-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position:  center;
 }
 
 @media (min-width: 800px) and (max-width: 1250px) {
@@ -133,7 +147,7 @@ html {
     text-decoration-color: #bda55d;
     -moz-text-decoration-color: #bda55d;
   }
-  .grid {
+  /* .grid {
     display: grid;
     height: fit-content !important;
     width: min-content;
@@ -141,7 +155,7 @@ html {
     gap: 3rem;
     grid-template-columns: repeat(3, minmax(auto, 350px));
     grid-template-rows: repeat(autofill, minmax(240px, 1fr)) !important;
-  }
+  } */
 }
 
 /* media queries for small screen */
@@ -167,3 +181,75 @@ html {
   text-transform: capitalize;
 
 }
+
+/* ore css */
+
+.contestants-container .card {
+  position: relative;
+}
+
+ .card .card-img-top .badge {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: #c2803a;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 700;
+  font-size: .7rem;
+  z-index: 1000;
+}
+
+
+.card .card-img-top {
+  border-radius: 8px
+}
+
+.contest-card-hero {
+  object-fit: contain;
+  height: 200px;
+  width: 100%;
+  backdrop-filter: blur(8px);
+  border-radius: 8px
+}
+
+.contestants-container .card .badge {
+  background-color: #000!important;
+  cursor: pointer;
+}
+
+.contestants-container .card  {
+ color: black !important;
+}
+
+.contestants-container .card .card-body .card-title {
+  font-weight: 600;
+  color: rgba(0,0,0,.8);
+  line-height: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contestants-container .card-body .card-title {
+
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+
+.card .card-img-top .dropdown-menu {
+  left: -160px!important;
+  min-width: 150px;
+}
+
+.dropdown-menu {
+ 
+  font-size: 1.2rem;
+}
+
+.card .card-img-top .dropdown-menu img {
+  height: 20px;
+  width: 20px;
+}
+
+/* end ore css */
+
