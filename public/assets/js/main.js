@@ -78,15 +78,33 @@ $(document).ready(function () {
   });
 });
 
-$(document).ready(function() {
-  $('input[type="radio"]').click(function() {
-      var inputValue = $(this).attr("value");
-      if (inputValue === 'female') {
-          $('#male-category').hide();
-          $('#female-category').show();
-      } else {
-          $('#male-category').show();
-          $('#female-category').hide();
-      }
+$(document).ready(function () {
+  $('input[type="radio"]').click(function () {
+    var inputValue = $(this).attr("value");
+    if (inputValue === "female") {
+      $("#male-category").hide();
+      $("#female-category").show();
+    } else {
+      $("#male-category").show();
+      $("#female-category").hide();
+    }
   });
 });
+
+const findOverflows = () => {
+  const documentWidth = document.documentElement.offsetWidth;
+
+  document.querySelectorAll('*').forEach(element => {
+      const box = element.getBoundingClientRect();
+
+      if (box.left < 0 || box.right > documentWidth) {
+          console.log(element);
+          element.style.border = '1px solid red';
+      }
+  });
+};
+
+// Execute findOverflows to find overflows on the page.
+findOverflows();
+
+  

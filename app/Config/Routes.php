@@ -37,14 +37,14 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-$routes->group('contests', static function ($routes) {
-    $routes->add('', 'Contests::index');
-    $routes->get('contestant/(:any)', 'Contests::contestant/$1');
-    $routes->get('(:any)/contestant/(:any)', 'Contests::contestant/$1/$2');
+// $routes->group('contests', static function ($routes) {
+//     // $routes->add('', 'Contests::index');
+//     $routes->get('contestant/(:any)', 'Contests::contestant/$1');
+//     $routes->get('(:any)/contestant/(:any)', 'Contests::contestant/$1/$2');
    
-    $routes->add('(:any)', 'Contests::contest/$1');
-    // $routes->add('(:any)/(:any)', 'Contests::contestant/$1/$2');
-});
+//     $routes->add('(:any)', 'Contests::contest/$1');
+//     // $routes->add('(:any)/(:any)', 'Contests::contestant/$1/$2');
+// });
 
 
 
@@ -69,7 +69,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
 
 
 $routes->get('home', 'Home::index');
-$routes->add('contests/(:any)', 'Contests::contest/$1');
+// $routes->add('contests/(:any)', 'Contests::contest/$1');
 $routes->add('login', 'Home::login');
 $routes->add('sign-up', 'Home::signUp');
 $routes->add('about', 'Home::about');
@@ -77,7 +77,7 @@ $routes->add('contact', 'Home::contact');
 $routes->add('user/(:any)', 'User::index/$1');
 $routes->add('about/faqs', 'Home::faqs');
 
-$routes->get('contestant/(:any)', 'Contests::contestant/$1');
+// $routes->get('contestant/(:any)', 'Contests::contestant/$1');
 
 
 /*

@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= esc($title) ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="<?= base_url('/') ?>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Your Website Title" />
+    <meta property="og:description" content="Your description" />
+    <!-- <meta property="og:image" content="https://www.your-domain.com/path/image.jpg" /> -->
     <link rel="stylesheet" href="<?php echo base_url('bootstrap/css/bootstrap.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/contests.css') ?>" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
@@ -15,7 +19,18 @@
 </head>
 
 <body>
-
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="nrXR9ayZ"></script>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
 
     <nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
@@ -68,11 +83,11 @@
                     <div class="dropdown d-flex align-items-center">
 
                         <span class="me-1"><?= esc(
-                                                $user['first_name']
+                                                $user->first_name
                                             ) ?></span>
                         <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="<?=
-                                        base_url('images/'.$user['picture'])
+                                        base_url('images/' . $user->picture)
                                         ?>" alt="mdo" width="40" height="40" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu  text-small" aria-labelledby="dropdownUser1" style="left: -50px;">
@@ -135,14 +150,12 @@
 
 
 
-    <footer class="row bg-black  mt-5 mx-auto pt-5  w-100" style="left:0 ;right:0;">
+    <footer class="overflow-hidden  bg-black  mt-5 mx-auto pt-5  w-100" style="left:0 ;right:0;">
 
-        <div class="row bg-black text-white font-weight-bolder text-left">
-
-
+        <div class="row g-0 bg-black text-white font-weight-bolder text-left">
 
 
-            <div class="col-lg-4 col-12 offset- mx-auto">
+            <div class="col-lg-4 col-12  mx-auto">
                 <div>
                     <img src="https://picsum.photos/id/684/600/400" class="card-img-top footer-img mx-auto w-50 mx-lg-0" style='margin:15px' alt="">
                     <ul class="list-unstyled d-flex">
@@ -178,71 +191,73 @@
 
 
 
-        <div class="col-lg-2 col-6 my-5 my-lg-1  text-capitalize ">
-            <h5>Quick Links</h5>
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-secondary">Home</a></li>
-                <li class="nav-item mb-2"><a href="/contests" class="nav-link p-0 text-secondary">Contests</a></li>
-                <li class="nav-item mb-2"><a href="/contact" class="nav-link p-0 text-secondary">Contact Us</a></li>
-                <li class="nav-item mb-2"><a href="about/faqs" class="nav-link p-0 text-secondary">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-secondary">About</a></li>
-            </ul>
-        </div>
-        <div class="col-lg-2 col-6 my-5 my-lg-1">
-            <h5>Sponsors</h5>
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-            </ul>
-        </div>
-
-        <div class="col-lg-2 col-6 text- my-lg-1 ">
-            <h5 class="offset-1">Legal</h5>
-            <ul class="nav flex-column text-left">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Privacy Policy </a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Terms & Conditions</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Pricing</a></li>
-
-           
-           
-
-
-
-
-            <div class="col-lg-2 col-6 my-lg-1 footer-link">
-                <h5 class="text-white text-capitalize">contact</h5>
+            <div class="col-lg-2 col-6 my-5 my-lg-1  text-capitalize ">
+                <h5>Quick Links</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><span href="#" class="nav-link p-0 text-secondary">Voice Call: <br> +2348057880646</span></li>
-                    <li class="nav-item mb-2"><span href="#" class="nav-link p-0 text-secondary">Whatsapp Only: <br>
-                            +2348057880646</span></li>
-                    <li class="nav-item mb-2"><span href="#" class="nav-link p-0 text-secondary">Email Address: <br>
-                            onlinevoting@gmail.com</span></li>
-
+                    <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-secondary">Home</a></li>
+                    <li class="nav-item mb-2"><a href="/contests" class="nav-link p-0 text-secondary">Contests</a></li>
+                    <li class="nav-item mb-2"><a href="/contact" class="nav-link p-0 text-secondary">Contact Us</a></li>
+                    <li class="nav-item mb-2"><a href="about/faqs" class="nav-link p-0 text-secondary">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-secondary">About</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-6 my-5 my-lg-1">
+                <h5>Sponsors</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
                 </ul>
             </div>
 
+            <div class="col-lg-2 col-6 text- my-lg-1 ">
+                <h5 class="offset-1">Legal</h5>
+                <ul class="nav flex-column text-left">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Privacy Policy </a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Terms & Conditions</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Pricing</a></li>
 
 
-        </div>
 
-        <div class="d-flex justify-content-center py-1   " style="border-top: 1px solid rgb(33, 28, 34);">
-            <p class="text-muted">&copy; <?= date('Y') ?> Kight Tech, Inc. All rights reserved.</p>
-            <!-- <div class="d-flex col-6 col-lg-5  justify-content-sm-around justify-content-lg-center align-items-center">
+
+
+
+
+                    <div class="col-lg-2 col-6 my-lg-1 footer-link">
+                        <h5 class="text-white text-capitalize">contact</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><span href="#" class="nav-link p-0 text-secondary">Voice Call: <br> +2348057880646</span></li>
+                            <li class="nav-item mb-2"><span href="#" class="nav-link p-0 text-secondary">Whatsapp Only: <br>
+                                    +2348057880646</span></li>
+                            <li class="nav-item mb-2"><span href="#" class="nav-link p-0 text-secondary">Email Address: <br>
+                                    onlinevoting@gmail.com</span></li>
+
+                        </ul>
+                    </div>
+
+
+
+            </div>
+
+            <div class="d-flex justify-content-center py-1   " style="border-top: 1px solid rgb(33, 28, 34);">
+                <p class="text-muted">&copy; <?= date('Y') ?> Kight Tech, Inc. All rights reserved.</p>
+                <!-- <div class="d-flex col-6 col-lg-5  justify-content-sm-around justify-content-lg-center align-items-center">
       <a href="#" class="fa fa-facebook">
        </a>
       <a href="#" class="fa fa-twitter"></a>
       <a href="#" class="fa fa-instagram"></a>
     </div> -->
 
-        </div>
+            </div>
 
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="https://js.paystack.co/v1/inline.js"></script> -->
+    <!-- <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script> -->
     <script type="text/javascript" src="<?php echo base_url('assets/js/main.js') ?>"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </body>

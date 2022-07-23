@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Libraries\Hash;
+use App\Libraries\Utils;
 
 class Auth extends BaseController
 {
@@ -29,33 +30,34 @@ class Auth extends BaseController
         $user = $userModel->where('email', $email)
             ->first();
 
-        $checkPassword = Hash::check($password, $user['password']);
+        $checkPassword = Hash::check($password, $user->password);
 
         if (!$checkPassword) {
             session()->setFlashdata("fail", "incorrect password");
             return redirect()->back();
         } else {
-            $userId = $user['id'];
+            $userId = $user->id;
             session()->set('loggedInUser', $userId);
+            session()->set('user', $user);
             return redirect()->to("dashboard");
         }
     }
 
-    public function uploadImage($image)
-    {
-        $config['upload_path'] = getcwd() . '/images';
-        $image_name = $image->getName();
+    // public function uploadImage($image)
+    // {
+    //     $config['upload_path'] = getcwd() . '/images';
+    //     $image_name = $image->getName();
 
-        if (!is_dir($config['upload_path'])) {
-            mkdir($config['upload_path'], 077);
-        }
+    //     if (!is_dir($config['upload_path'])) {
+    //         mkdir($config['upload_path'], 077);
+    //     }
 
-        if (!$image->hasMoved()) {
-            $image->move($config['upload_path'], $image_name);
-        }
+    //     if (!$image->hasMoved()) {
+    //         $image->move($config['upload_path'], $image_name);
+    //     }
 
-        return $image_name;
-    }
+    //     return $image_name;
+    // }
 
     // add new user
     public function postRegister()
@@ -70,7 +72,7 @@ class Auth extends BaseController
         $password = $this->request->getPost('password');
         $phone = $this->request->getPost('phone');
         $category = $this->request->getPost('category');
-        $picture = $this -> uploadImage($this->request->getFile('picture'));
+        $picture =  Utils::uploadImage($this->request->getFile('picture'));
 
 
         $data = [

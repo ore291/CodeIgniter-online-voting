@@ -74,11 +74,11 @@
                     <div class="dropdown d-flex align-items-center">
 
                         <span class="me-1"><?= esc(
-                                                $user['first_name']
+                                               $user->first_name
                                             ) ?></span>
                         <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="<?=
-                                        base_url('images/'.$user['picture'])
+                                        base_url('images/'.$user->picture)
                                         ?>" alt="mdo" width="40" height="40" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu  text-small" aria-labelledby="dropdownUser1" style="left: -50px;">
@@ -126,11 +126,11 @@
 
 
             </li>
-            <li class="nav-item me-">
+            <!-- <li class="nav-item me-">
               <a href="/sign-up" style='border-radius:50px !important;padding:auto auto !important;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
                 Sign Up
               </a>
-            </li>
+            </li> -->
 
 
 
