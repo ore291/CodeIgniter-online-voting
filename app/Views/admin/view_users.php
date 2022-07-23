@@ -112,8 +112,8 @@
         </form>
 
         <div class="table-responsive">
-            <table class=" table table-striped table-responsive  align-middle">
-                <thead class=" table-light ">
+            <table class=" table table-light table-responsive  align-middle">
+                <thead class=" table-light  ">
                     <tr>
                         <th scope="col">#</th>
                         <th>Name</th>
@@ -166,7 +166,7 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1"><?= $user['created_at'] ?></p>
+                                            <p class="fw-bold mb-1"><?=  date('d-m-Y', strtotime($user['created_at'])) ?></p>
 
                                         </div>
                                     </div>
@@ -249,8 +249,6 @@
 
 
 
-<script src=" <?php echo base_url('assets/js/admin.js') ?>">
-</script>
 
 
 

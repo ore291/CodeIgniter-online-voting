@@ -16,18 +16,34 @@
 
 
         </form>
-        <form method="get" action="view_contest" class="d-flex col-lg-6 m-4" id='searchFor'>
+        <?php
+        if (!empty(session()->getFlashdata("success"))) {
+        ?>
 
-            <input type="text" class='form-control me-2 text-black' name="order" value="<?= $order ?>">
+            <div class="alert alert-success">
+                <?= session()->getFlashdata("success") ?>
+            </div>
+        <?php
+        }
 
-            <input type="submit" name="searchBtn" name="order" class="btn btn-block btn-warning">
+        ?>
 
-        </form>
+        <?php
+        if (!empty(session()->getFlashdata("fail"))) {
+        ?>
+
+            <div class="alert alert-danger">
+                <?= session()->getFlashdata("fail") ?>
+            </div>
+        <?php
+        }
+
+        ?>
 
         <div class="table-responsive">
-            <table class=" table table-striped table-bordered table-responsive align-middle">
+            <table class=" table table-stripe table-light table-bordered table-responsive align-middle">
                 <thead class=" table-light " style="white-space: nowrap;">
-                    <tr class="">
+                    <tr class="text-center">
                         <th scope="col">#</th>
                         <th>picture</th>
                         <th>Title</th>
@@ -38,15 +54,18 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Action</th>
-                        <th>Status</th>
+                        <th>Winner</th>
+                       
 
 
                     </tr>
                 </thead>
-                <tbody class="table-striped" style="white-space:nowrap;  ">
+                <tbody class="table-striped" style="white-space:nowra;  ">
 
 
                     <?php $model = new \App\Models\ContestModel();
+
+                 
 
 
 
@@ -64,16 +83,16 @@
                         foreach ($contests as $contest) {
                     ?>
 
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="row"><?= $contest['id'] ?></th>
-                                <th scope=""> <img class=" rounded-5 mx-lg-auto p-5 contest-img " src="<?= $contest['picture'] ?>" alt=""></th>
+                                <th scope=""> <img class=" rounded- mx-lg-auto p- contest-im " style="width: 135px;height:135px;" src="<?= $contest['picture'] ?>" alt=""></th>
 
                                 <td class="text-capitalize " style="white-space:nowrap;  "><?= $contest['title'] ?></td>
                                 <td><?= $contest['category'] ?></td>
-                                <td><?= $contest['price_per_vote'] ?></td>
+                                <td>&#8358;<?= $contest['price_per_vote'] ?></td>
                                 <td class="truncate"><?= $contest['total_votes'] ?></td>
-                                <td><?= $contest['start_date'] ?></td>
-                                <td><?= $contest['end_date'] ?></td>
+                                <td><?= date('d-m-Y', strtotime($contest['start_date'] ))?></td>
+                                <td><?=  date('d-m-Y', strtotime($contest['end_date'])) ?></td>
 
                                 <td class="w-50">
                                     <div class="d-flex align-items-center mx-auto col-12 justify-content-center flex-row">
@@ -91,8 +110,10 @@
                                 </td>
 
                                 <td>
-
+                                    <?= $contest['winner']?>
                                 </td>
+
+                              
 
 
 

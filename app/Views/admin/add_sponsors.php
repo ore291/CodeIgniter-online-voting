@@ -72,7 +72,7 @@
             <div class="col-12 col-md-12   form-outline mb-2 pb-2" id="category-div">
                 <label for="Textarea">Company Desciption or info to be displayed </label>
                 <div class="form-floating">
-                    <textarea class="form-control text-black text-capitalize" name="companyDescription" placeholder="Leave a comment here" id="Textarea"></textarea>
+                    <textarea class="form-control text-black text-capitalize" required name="companyDescription" placeholder="" id="Textarea"></textarea>
 
                 </div>
 

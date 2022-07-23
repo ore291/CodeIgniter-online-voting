@@ -2,12 +2,24 @@
 
 namespace App\Controllers;
 use App\Controllers\BaseController;
+use App\Models\ContestModel;
+use App\Models\SponsorModel;
+use App\Models\CategoryModel;
 use Faker\Core\Number;
 
 class Admin extends BaseController
 {
     public function getindex()
-    {$data['title']= ucfirst('admin');
+    {   $data['title']= ucfirst('admin');
+
+    $contestModel = new ContestModel();
+
+        $orderData
+        = $contestModel->select('*')->orderBy('id', 'DESC')->paginate(10);
+
+
+        $data['contests']=$orderData;
+       
         return view('admin/dashboard', $data);
        
     }
@@ -30,48 +42,22 @@ class Admin extends BaseController
     public function getview_contest()
     {
         $data['title'] = ucfirst('admin');
-        $contestModel = new \App\Models\ContestModel();
-        // $contests = $contestModel->findAll();
-        // $request=service('request');
+        $contestModel = new ContestModel();
+       
         $searchData= $this->request->getGet();
         $search="";
 
-        $order='';
-        $orderData
-        = $this->request->getGet();
        
-
-        if (isset($orderData) && isset($orderData['order'])) {
-            $order = 'ASC';
-        }
-
-        if ($order == '') {
-            $paginatedData = $contestModel->select('*')
-                ->orLike('title',$order)
-                ->orderBy('title', $order)
-                ->paginate(10);
-        } else {
-            $paginatedData = $contestModel->select('*')
-                ->orderBy('title', $order)
-                ->paginate(10);
-        }
-
-
       
         if(isset($searchData)&&isset($searchData['search'])){
             $search=$searchData['search'];
         }
 
-
-
-
         if($search==''){
-            $paginatedData=$contestModel->paginate(10);
+            $paginatedData= $contestModel->select('*')->orderBy('id', 'DESC')->paginate(10);
         }else{
             $paginatedData= $contestModel->select('*')
             ->orLike('title',$search)
-            ->orderBy('title', 'DESC')
-           
             ->paginate(10);
 
         }
@@ -79,7 +65,7 @@ class Admin extends BaseController
         $data['contests']=$paginatedData;
         $data['pager']=$contestModel->pager;
         $data['search']=$search;
-        $data['order']=$order;
+       
 
         return view('admin/view_contests', $data);
     }
@@ -90,7 +76,7 @@ class Admin extends BaseController
     public function getadd_Contest()
     {
         $data['title'] = ucfirst('admin');
-        $categoryModel = new \App\Models\CategoryModel();
+        $categoryModel = new CategoryModel();
         $categories = $categoryModel->findAll();
         $data['categories'] = $categories;
 
@@ -104,7 +90,7 @@ class Admin extends BaseController
     public function getadd_sponsors()
     {
         $data['title'] = ucfirst('admin');
-        $sponsorModel = new \App\Models\SponsorModel();
+        $sponsorModel = new SponsorModel();
         $sponsor = $sponsorModel->findAll();
         $data['sponsor'] = $sponsor;
 
@@ -123,7 +109,7 @@ class Admin extends BaseController
     {
 
         $data['title'] = ucfirst('admin');
-        $sponsorModel = new \App\Models\SponsorModel();
+        $sponsorModel = new SponsorModel();
         
 
         $searchData = $this->request->getGet();
@@ -146,7 +132,7 @@ class Admin extends BaseController
         $sponsorModel->delete;
 
         function delete($id){
-            $sponsorModel = new \App\Models\SponsorModel();
+            $sponsorModel = new SponsorModel();
 
              $sponsorModel->delete($id);
 
@@ -184,7 +170,7 @@ class Admin extends BaseController
             'email'=>$email,
             'description'=>$Description
         ];
-        $sponsorModel = new \App\Models\SponsorModel();
+        $sponsorModel = new SponsorModel();
 
         $check_title =  $sponsorModel->where('name', $name)
             ->first();
@@ -217,6 +203,26 @@ class Admin extends BaseController
         return view('admin/add_category', $data);
     }
 
+
+    public function getCategories()
+    {
+        $data['title'] = ucfirst('admin');
+        $categoryModel = new CategoryModel();
+
+        $maleCategory= $categoryModel->where('allowed_gender','male')->findAll();
+        $data['male_categories']=$maleCategory;
+
+        $femaleCategory = $categoryModel->where('allowed_gender', 'female')->findAll();
+        $data['female_categories'] = $femaleCategory;
+
+        $allCategory = $categoryModel->where('allowed_gender', 'all')->findAll();
+        $data['all_categories'] = $allCategory;
+
+
+
+
+        return view('admin/view_categories', $data);
+    }
 
 
 
@@ -344,6 +350,61 @@ class Admin extends BaseController
 
         return view('admin/edit_contest', $data);
     }
+    public function getedit_category(int $title)
+    {
+        $data['title'] = ucfirst('admin');
+        $categoryModel = new \App\Models\CategoryModel();
+        $category = $categoryModel->find($title);
+        $data['category'] = $category;
+        return view('admin/edit_category', $data);
+ 
+    }
+
+    public function postedit_category(int $title)
+    {
+        $data['title'] = ucfirst('admin');
+        $categoryModel = new \App\Models\CategoryModel();
+        $category = $categoryModel->find($title);
+        $data['category']=$category;
+
+        $categoryTitle = $this->request->getPost('category-title');
+        $gender = $this->request->getPost('gender');
+        $picture = $this->uploadImage($this->request->getFile('pictures'));
+        $categoryDescription = $this->request->getPost('categoryDescription');
+
+        $data = [
+            'title' => $categoryTitle,
+            'allowed_gender' => $gender,
+            'picture' => $picture,
+            'description' => $categoryDescription,
+            'slug' => $categoryTitle
+        ];
+
+        $check_title =  $categoryModel->where('title', $categoryTitle)
+            ->first();
+
+        if ($check_title) {
+            return redirect()->back()->with('fail', 'Category is already Registered');
+        } {
+            $query = $categoryModel->update($title,$data);
+
+            if (!$query) {
+                return redirect()->back()->with('fail', 'Registration Failed');
+            } else {
+                return redirect()->to('/admin/add-category')->with('success', 'Registration Successful');
+            }
+        }
+
+
+
+       
+
+
+
+
+    }
+
+
     public function getdelete_contest(int $id)
     {
 
@@ -363,7 +424,52 @@ class Admin extends BaseController
         }
 
         // return redirect()->route(base_url('/admin/view-contest'));
-        return redirect()->to('/admin/view-contest')->with('success', 'Registration Successful');
+        return redirect()->to('/admin/view-contest')->with('success', 'Deleted Successfuly!');
+    }
+    public function getdelete_sponsor (int $id)
+    {
+        $sponsorModel = new SponsorModel();
+
+
+        if ($sponsorModel->find($id)) {
+
+            ## Delete record
+            $sponsorModel->delete($id);
+
+            session()->setFlashdata('message', 'Deleted Successfully!');
+            session()->setFlashdata('alert-class', 'alert-success');
+        } else {
+            session()->setFlashdata('message', 'Record not found!');
+            session()->setFlashdata('alert-class', 'alert-danger');
+        }
+
+        // return redirect()->route(base_url('/admin/view-contest'));
+        return redirect()->to(base_url('/admin/sponsors'))->with('success', 'Deleted Successfuly!');
+
+
+
+
+
+    }
+    public function getdelete_category(int $id)
+    {
+        $categoryModel = new CategoryModel();
+
+
+        if ($categoryModel->find($id)) {
+
+            ## Delete record
+            $categoryModel->delete($id);
+
+            session()->setFlashdata('message', 'Deleted Successfully!');
+            session()->setFlashdata('alert-class', 'alert-success');
+        } else {
+            session()->setFlashdata('message', 'Record not found!');
+            session()->setFlashdata('alert-class', 'alert-danger');
+        }
+
+        // return redirect()->route(base_url('/admin/view-contest'));
+        return redirect()->to(base_url('/admin/categories'))->with('success', 'Deleted Successfuly!');
     }
    
 

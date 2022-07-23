@@ -17,10 +17,33 @@
 
 
         </form>
+        <?php
+        if (!empty(session()->getFlashdata("success"))) {
+        ?>
+
+            <div class="alert alert-success">
+                <?= session()->getFlashdata("success") ?>
+            </div>
+        <?php
+        }
+
+        ?>
+
+        <?php
+        if (!empty(session()->getFlashdata("fail"))) {
+        ?>
+
+            <div class="alert alert-danger">
+                <?= session()->getFlashdata("fail") ?>
+            </div>
+        <?php
+        }
+
+        ?>
 
         <div class="table-responsive">
             <table class=" table table-striped table-bordered table-responsive  align-middle">
-                <thead class=" table-light ">
+                <thead class="text-center table-light ">
                     <tr>
                         <th scope="col">#</th>
                         <th>Name</th>
@@ -28,20 +51,12 @@
                         <th>Brand</th>
                         <th>Email</th>
                         <th>Phone No.</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
                 <tbody class="table-striped">
 
-                    <?php
-                    function delete($id)
-                    {
-                        $sponsorModel = new \App\Models\SponsorModel();
-
-
-                        $sponsorModel->delete($id);
-                    }
-                    ?>
 
 
 
@@ -53,12 +68,13 @@
 
                             <tr class="">
                                 <th scope="row"><?= $sponsor['id'] ?></th>
-                                <td class="p-3"><?= $sponsor['name'] ?></td>
+                                <td class="p-3 text-capitalize"><?= $sponsor['name'] ?></td>
                                 <td><?= $sponsor['company_name'] ?></td>
                                 <td><?= $sponsor['brand'] ?></td>
                                 <td><?= $sponsor['email'] ?></td>
                                 <td><?= $sponsor['phone'] ?></td>
-                                <td><button class="btn btn-block btn-danger" onclick="window.location.reload()" onclick="<?= delete($sponsor['id']) ?>" value="delete">Delete</button></td>
+                                <td><a href="<?= base_url('/admin/delete-sponsor/' . $sponsor['id']) ?>"> <button class="btn btn-block btn-danger" onclick="window.location.reload()" value="delete">Delete</button></a>
+                                </td>
 
                             </tr>
                         <?php
