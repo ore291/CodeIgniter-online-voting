@@ -4,24 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SponsorModel extends Model
+class StageModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'sponsors';
+    protected $table            = 'stages';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Sponsor::class;
+    protected $returnType       = \App\Entities\Stage::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'name',
-        'company_name',
-        'brand',
-        'email',
-        'phone',
-        'description'
-    ];
+    protected $allowedFields    = [];
 
     // Dates
     protected $useTimestamps = false;

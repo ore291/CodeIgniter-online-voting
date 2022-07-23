@@ -12,13 +12,67 @@
 <main class="main-banner">
 
     <section>
-        <div class="mt- p-5 bg-transparent text-white text-center rounded">
+        <div class="mt- p-2 bg-transparent text-white text-center rounded">
             <h1 class="text-warning text-center"> Current Contests</h1>
-            <p class="col-lg-6 mx-auto" style="font-size: 25px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit harum nulla quaerat maiores similique, est placeat omnis modi esse voluptatem adipisci deleniti saepe perspiciatis quam ea perferendis neque aut exercitationem.
+            <p class="col-lg-6 mx-auto" style="font-size: 25px;">
+                Here, you can find all of the contests listed in one easy location.
+                If you see a contest you'd like to enter here, click on the link for more information.
             </p>
+            <div class="row">
+                <form method='get' action="contests" id="searchForm" class="col-md-6 col-12 offset-md-3">
+                    <div class="form-outline d-flex">
+                        <input type='text' name='search' value='<?= $search ?>' class="form-control" placeholder="Enter contest name">
+                        <div class="ms-1">
+                            <button class="btn btn-warning btn-lg btn-block" type="submit">Search</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+
         </div>
 
 
+    </section>
+    <section style="margin-top: 20px">
+        <div class="row  g-4 px-2">
+
+            <?php
+            foreach ($contests
+                as $contest) : ?>
+                <div class="col-12 col-md-4">
+                    <div class="card contest-card" style="min-height: auto; ">
+                        <img src="/images/<?= $contest->picture ?>" class="card-img-top contest-card-img" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase" style="font-size: 18px"><?= esc(
+                                                                        $contest->title
+                                                                    ) ?></h5>
+                            <div class="card-text">
+                                <p></p>
+                              <span style="color: green;">STARTS</span> :
+                                <?= date('h:i A, D d M, Y', strtotime($contest->start_date)) ?> <p></p>
+                                <p class=""><span style="color: red;">ENDS</span>:  <?= date('h:i A, D d M, Y', strtotime($contest->end_date)) ?></p>
+                            </div>
+                            <a href="<?php echo base_url('contest/title/'.$contest->slug) ?>" class="btn btn-outline-success">View Contest</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            <?php endforeach; ?>
+
+
+
+
+
+
+        </div>
+        <div style='margin-top: 10px;'>
+
+            <?= $pager->links() ?>
+
+        </div>
     </section>
 
 
@@ -26,159 +80,8 @@
 
 
 </main>
-<h1 class="text-center text-warning text-capitalize my-5 my-lg-1">view contest by categories</h1>
-<section class="mt-lg-5">
-    <div class="m-4">
-        <ul class="nav nav-tabs text-white d-flex justify-content-evenly text-capitalize tab-list" id="myTab">
-            <li class="nav-item">
-                <a href="#most-handsome" class="nav-link active text-secondary" data-bs-toggle="tab">Most Handsome</a>
-            </li>
-            <li class="nav-item">
-                <a href="#most-beautiful" class="nav-link  text-secondary" data-bs-toggle="tab">Most Beautiful</a>
-            </li>
-            <li class="nav-item">
-                <a href="#most-funny" class="nav-link  text-secondary" data-bs-toggle="tab">comedy</a>
-            </li>
-            <li class="nav-item">
-                <a href="#most-creative" class="nav-link  text-secondary" data-bs-toggle="tab">Most creative visual artist</a>
-            </li>
-            <li class="nav-item">
-                <a href="#music" class="nav-link text-secondary" data-bs-toggle="tab">music</a>
-            </li>
-            <!-- <li class="nav-item">
-                <a href="#most-artistic" class="nav-link text-secondary" data-bs-toggle="tab">most artistic</a>
-            </li> -->
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="most-handsome">
-                <?php $posts = ['title 1', 'title 2', 'title 3', 'title 4', 'title 5', 'title 6', 'title7']; ?>
-
-                <div class="grid">
-                    <?php foreach ($posts as $post) : ?>
-                        <div class="w-100 ">
-                            <div class="card mb-3 bg-dark  mx-auto mb-lg-1 mt-2" style="width: 25rem;">
-                                <img src="<?php echo base_url('assets/images/image-3.jpg') ?>" class="card-img-top p-2" alt="...">
-                                <div class="card-body p-">
-                                    <h5 class="card-title"><?= $post ?></h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <p>11th july - 12th august</p>
-                                    <a href="contests/<?= $post ?>" class="btn btn-warning">View contest</a>
-                                </div>
-                            </div>
-                        </div>
 
 
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="most-beautiful">
-                <?php $posts = ['title 1', 'title 2', 'title 3', 'title 4', 'title 5', 'title 6', 'title7']; ?>
-
-                <div class="grid">
-                    <?php foreach ($posts as $post) : ?>
-                        <div class="w-100 ">
-                            <div class="card mb-3 bg-dark  mx-auto mb-lg-1 mt-2" style="width: 25rem;">
-                                <img src="<?php echo base_url('assets/images/image-3.jpg') ?>" class="card-img-top p-2" alt="...">
-                                <div class="card-body p-">
-                                    <h5 class="card-title"><?= $post ?></h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <p>11th july - 12th august</p>
-                                    <a href="contests/<?= $post ?>" class="btn btn-warning">View contest</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="most-funny">
-                <?php $posts = ['title 1', 'title 2', 'title 3', 'title 4', 'title 5', 'title 6', 'title7']; ?>
-
-                <div class="grid">
-                    <?php foreach ($posts as $post) : ?>
-                        <div class="w-100 ">
-                            <div class="card mb-3 bg-dark  mx-auto mb-lg-1 mt-2" style="width: 25rem;">
-                                <img src="<?php echo base_url('assets/images/image-3.jpg') ?>" class="card-img-top p-2" alt="...">
-                                <div class="card-body p-">
-                                    <h5 class="card-title"><?= $post ?></h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <p>11th july - 12th august</p>
-                                    <a href="contests/<?= $post ?>" class="btn btn-warning">View contest</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="most-creative">
-                <?php $posts = ['title 1', 'title 2', 'title 3', 'title 4', 'title 5', 'title 6', 'title7']; ?>
-
-                <div class="grid">
-                    <?php foreach ($posts as $post) : ?>
-                        <div class="w-100 ">
-                            <div class="card mb-3 bg-dark  mx-auto mb-lg-1 mt-2" style="width: 25rem;">
-                                <img src="<?php echo base_url('assets/images/image-3.jpg') ?>" class="card-img-top p-2" alt="...">
-                                <div class="card-body p-">
-                                    <h5 class="card-title"><?= $post ?></h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <p>11th july - 12th august</p>
-                                    <a href="contests/<?= $post ?>" class="btn btn-warning">View contest</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="music">
-                <?php $posts = ['title 1', 'title 2', 'title 3', 'title 4', 'title 5', 'title 6', 'title7']; ?>
-
-                <div class="grid">
-                    <?php foreach ($posts as $post) : ?>
-                        <div class="w-100 ">
-                            <div class="card mb-3 bg-dark  mx-auto mb-lg-1 mt-2" style="width: 25rem;">
-                                <img src="<?php echo base_url('assets/images/image-3.jpg') ?>" class="card-img-top p-2" alt="...">
-                                <div class="card-body p-">
-                                    <h5 class="card-title"><?= $post ?></h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <p>11th july - 12th august</p>
-                                    <a href="contests/<?= $post ?>" class="btn btn-warning">View contest</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <!-- <div class="tab-pane fade" id="most-artistic">
-                <?php $posts = ['title 1', 'title 2', 'title 3', 'title 4', 'title 5', 'title 6', 'title7']; ?>
-
-                <div class="grid">
-                    <?php foreach ($posts as $post) : ?>
-                        <div class="w-100 ">
-                            <div class="card mb-3 bg-dark  mx-auto mb-lg-1 mt-2" style="width: 25rem;">
-                                <img src="<?php echo base_url('assets/images/image-3.jpg') ?>" class="card-img-top p-2" alt="...">
-                                <div class="card-body p-">
-                                    <h5 class="card-title"><?= $post ?></h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <p>11th july - 12th august</p>
-                                    <a href="contests/<?= $post ?>" class="btn btn-warning">View contest</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    <?php endforeach; ?>
-                </div>
-            </div> -->
-        </div>
-    </div>
-</section>
 
 
 

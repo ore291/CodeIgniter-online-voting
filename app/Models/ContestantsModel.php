@@ -11,10 +11,12 @@ class ContestantsModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = 'array';
+    protected $returnType       = \App\Entities\Contestant::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'user_id', 'contest_id', 'slug', 'share_url', 'votes', 'stage', 'is_disqualified', 'image', 'full_name'
+    ];
 
     // Dates
     protected $useTimestamps = false;
