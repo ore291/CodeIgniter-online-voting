@@ -23,6 +23,7 @@ class Admin extends BaseController
         return view('admin/dashboard', $data);
        
     }
+
     public function uploadImage($image)
     {
         $config['upload_path'] = getcwd() . '/images';
@@ -210,6 +211,7 @@ class Admin extends BaseController
         $categoryModel = new CategoryModel();
 
         $maleCategory= $categoryModel->where('allowed_gender','male')->findAll();
+
         $data['male_categories']=$maleCategory;
 
         $femaleCategory = $categoryModel->where('allowed_gender', 'female')->findAll();
@@ -217,6 +219,9 @@ class Admin extends BaseController
 
         $allCategory = $categoryModel->where('allowed_gender', 'all')->findAll();
         $data['all_categories'] = $allCategory;
+
+
+        
 
 
 

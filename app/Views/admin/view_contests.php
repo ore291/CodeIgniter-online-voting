@@ -55,7 +55,7 @@
                         <th>End Date</th>
                         <th>Action</th>
                         <th>Winner</th>
-                       
+
 
 
                     </tr>
@@ -65,7 +65,7 @@
 
                     <?php $model = new \App\Models\ContestModel();
 
-                 
+
 
 
 
@@ -84,25 +84,25 @@
                     ?>
 
                             <tr class="text-center">
-                                <th scope="row"><?= $contest['id'] ?></th>
-                                <th scope=""> <img class=" rounded- mx-lg-auto p- contest-im " style="width: 135px;height:135px;" src="<?= $contest['picture'] ?>" alt=""></th>
+                                <th scope="row"><?= $contest->id ?></th>
+                                <th scope=""> <img class=" rounded- mx-lg-auto p- contest-im " style="width: 135px;height:135px;" src="<?= $contest->picture ?>" alt=""></th>
 
-                                <td class="text-capitalize " style="white-space:nowrap;  "><?= $contest['title'] ?></td>
-                                <td><?= $contest['category'] ?></td>
-                                <td>&#8358;<?= $contest['price_per_vote'] ?></td>
-                                <td class="truncate"><?= $contest['total_votes'] ?></td>
-                                <td><?= date('d-m-Y', strtotime($contest['start_date'] ))?></td>
-                                <td><?=  date('d-m-Y', strtotime($contest['end_date'])) ?></td>
+                                <td class="text-capitalize " style="white-space:nowrap;  "><?= $contest->title ?></td>
+                                <td><?= $contest->category ?></td>
+                                <td>&#8358;<?= $contest->price_per_vote ?></td>
+                                <td class="truncate"><?= $contest->total_votes ?></td>
+                                <td><?= date('d-m-Y', strtotime($contest['start_date'])) ?></td>
+                                <td><?= date('d-m-Y', strtotime($contest->end_date)) ?></td>
 
                                 <td class="w-50">
                                     <div class="d-flex align-items-center mx-auto col-12 justify-content-center flex-row">
-                                        <a href="/admin/edit-contest/<?= $contest['id'] ?>">
+                                        <a href="/admin/edit-contest/<?= $contest->id ?>">
                                             <button type="button" class="btn btn-  px-4 me-2 btn-block btn-success btn-rounded " data-mdb-ripple-color="dark">
                                                 Edit
                                             </button>
                                         </a>
 
-                                        <a href="<?= base_url('/admin/delete-contest/' . $contest['id']) ?>">
+                                        <a href="<?= base_url('/admin/delete-contest/' . $contest->id) ?>">
 
                                             <button class="btn btn-block btn-danger ms-3">Delete</button>
                                         </a>
@@ -110,10 +110,10 @@
                                 </td>
 
                                 <td>
-                                    <?= $contest['winner']?>
+                                    <?= $contest['winner'] ?>
                                 </td>
 
-                              
+
 
 
 

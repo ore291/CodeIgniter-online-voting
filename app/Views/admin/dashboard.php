@@ -100,24 +100,24 @@
                                 foreach ($contests as $contest) {
                             ?>
                                     <tr>
-                                        <th scope="row"><?= $contest['id'] ?></th>
-                                        <!-- <th scope=""> <img class=" rounded- mx-lg-auto p- contest-im " style="width: 135px;height:135px;" src="<?= $contest['picture'] ?>" alt=""></th> -->
+                                        <th scope="row"><?= $contest->id ?></th>
+                                        <!-- <th scope=""> <img class=" rounded- mx-lg-auto p- contest-im " style="width: 135px;height:135px;" src="<?= $contest->picture ?>" alt=""></th> -->
 
-                                        <td class="text-capitalize " style="white-space:nowrap;  "><?= $contest['title'] ?></td>
-                                        <td><?= $contest['category'] ?></td>
-                                        <td>&#8358;<?= $contest['price_per_vote'] ?></td>
-                                        <td class="truncate"><?= $contest['total_votes'] ?></td>
-                                        <td><?= date('d-m-Y', strtotime($contest['end_date'])) ?></td>
+                                        <td class="text-capitalize " style="white-space:nowrap;  "><?= $contest->title ?></td>
+                                        <td><?= $contest->category ?></td>
+                                        <td>&#8358;<?= $contest->price_per_vote ?></td>
+                                        <td class="truncate"><?= $contest->total_votes ?></td>
+                                        <td><?= date('d-m-Y', strtotime($contest->end_date)) ?></td>
 
                                         <td class="col-2">
                                             <div class="d-flex align-items-center mx-auto col-12 justify-content-center flex-row">
-                                                <a href="/admin/edit-contest/<?= $contest['id'] ?>">
+                                                <a href="/admin/edit-contest/<?= $contest->id ?>">
                                                     <button type="button" class="btn btn-sm  px-4 me-2 btn-block btn-success btn-rounded " data-mdb-ripple-color="dark">
                                                         Edit
                                                     </button>
                                                 </a>
 
-                                                <a href="<?= base_url('/contests/' . $contest['id']) ?>">
+                                                <a href="<?= base_url('/contests/' . $contest->id) ?>">
 
                                                     <button class="btn btn-block btn-primary btn-sm ms-3">View</button>
                                                 </a>

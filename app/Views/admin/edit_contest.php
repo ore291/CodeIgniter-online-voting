@@ -8,20 +8,20 @@
 
 
     <div class="container shadow shadow-lg p-4 col-lg-12">
-        <h2 class="text-capitalize">Edit<br> <?= $contest['title'] ?></h2>
+        <h2 class="text-capitalize">Edit<br> <?= $contest->title ?></h2>
 
         <form class="row gx-3 gy-2 align-items-center text-black">
 
             <div class="col-12 col-md-12 form-outline mb-2 pb-2" id="category-div">
 
                 <label class="form-label text-black" for="contest-title">Contest Title</label>
-                <input class="form-control text-black" id="contest-title" value="<?= $contest['title'] ?>" type="text" placeholder="contest title" aria-label="title">
+                <input class="form-control text-black" id="contest-title" value="<?= $contest->title ?>" type="text" placeholder="contest title" aria-label="title">
 
             </div>
 
             <div class="col-12 col-md-12 form-outline mb-2 pb-2 text-black d-flex gap-4" id="category-div">
                 <select class="form-select text-black text-capitalize w-50" name="category" id="category" placeholder="">
-                    <option value="<?= $contest['title'] ?>" disabled class="text-capitalize" selected="selected">Chose a Category</option>
+                    <option value="<?= $contest->title ?>" disabled class="text-capitalize" selected="selected">Chose a Category</option>
                     <?php foreach ($categories as $category) : ?>
 
                         <option value="<?= $category['id'] ?>" class="text-black">
