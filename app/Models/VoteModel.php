@@ -15,7 +15,9 @@ class VoteModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+
         'email','name','reference','cost','vote_count','contestant_id'
+
     ];
 
     // Dates

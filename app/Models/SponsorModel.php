@@ -14,7 +14,14 @@ class SponsorModel extends Model
     protected $returnType       = \App\Entities\Sponsor::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'name',
+        'company_name',
+        'brand',
+        'email',
+        'phone',
+        'description'
+    ];
 
     // Dates
     protected $useTimestamps = false;
