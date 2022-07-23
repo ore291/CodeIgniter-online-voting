@@ -45,6 +45,8 @@ $RECYCLE.BIN/
 .vagrant
 Vagrantfile
 
+public/images/*
+
 #-------------------------
 # Temporary Files
 #-------------------------
