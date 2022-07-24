@@ -18,7 +18,7 @@
                 Here, you can find all of the contests listed in one easy location.
                 If you see a contest you'd like to enter here, click on the link for more information.
             </p>
-            <div class="row">
+            <div class="row g-0">
                 <form method='get' action="contests" id="searchForm" class="col-md-6 col-12 offset-md-3">
                     <div class="form-outline d-flex">
                         <input type='text' name='search' value='<?= $search ?>' class="form-control" placeholder="Enter contest name">
@@ -36,7 +36,7 @@
 
     </section>
     <section style="margin-top: 20px">
-        <div class="row  g-4 px-2">
+        <div class="row  g-0 gy-4 g-md-4 px-2">
 
             <?php
             foreach ($contests

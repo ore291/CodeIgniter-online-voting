@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,9 +23,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    .header-logged{
+      left: -50px;
+    }
+    @media screen and (min-width: 500px) {
+      .header-logged{
+      right: 0px;
+      left : 0px;
+    }
+    }
+  </style>
 </head>
 
 <body>
+
+  <?php
+
+  $loggedInUser = session()->get("loggedInUser");
+
+  $user = session()->get("user");;
+
+
+  ?>
   <main class="main-banner">
 
 
@@ -36,16 +59,20 @@
           <strong style="color: orange;">online voting</strong>
         </a>
 
+
+  
+
         <!-- Collapse -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- Links -->
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
           <!-- Left -->
-          <ul class="navbar-nav mx-auto ">
+          <ul class="nav navbar-nav mx-auto ">
             <li class="nav-item ">
               <a class="nav-links" href="/">Home
 
@@ -55,7 +82,7 @@
               <a class="nav-links contest" href="<?php echo base_url('contests') ?>" target="">Contests</a>
             </li>
             <li class="nav-item">
-              <a class="nav-links" href="/about-us"  target="">About</a>
+              <a class="nav-links" href="/about-us" target="">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-links" href="/contact-us" target="">Contact Us</a>
@@ -66,15 +93,11 @@
           <?php
 
 
-          $loggedInUser = session()->get("loggedInUser");
-
-          $user = session()->get("user");;
-
 
           if (isset($loggedInUser)) {
           ?>
 
-            <div class="dropdown d-flex align-items-center">
+            <div class="dropdown d-flex align-items-center justify-content-center w-100 mt-1">
 
               <span class="me-1"><?= esc(
                                     $user->first_name
@@ -84,7 +107,7 @@
                           base_url('images/' . $user->picture)
                           ?>" alt="mdo" width="40" height="40" class="rounded-circle">
               </a>
-              <ul class="dropdown-menu  text-small" aria-labelledby="dropdownUser1" style="left: -50px;">
+              <ul class="dropdown-menu  text-small header-logged" aria-labelledby="dropdownUser1" >
                 <li><a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
                 <li>
                   <hr class="dropdown-divider">
@@ -102,22 +125,17 @@
           ?>
 
             <ul class="navbar-nav nav-flex-icons">
+              <li class="nav-item ">
 
+                <a href="<?php echo base_url('login') ?>" class="nav-links">Login</a>
 
-              <li class="nav-item">
-                <div class="navbar-nav pl-5">
-                  <a class="nav-links pt-1 " href="<?php echo base_url('login') ?>">Login</a>
-
-                </div>
               </li>
-              <li class="nav-item me-5">
-                <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="_blank">
-                  Sign Up
+              <li class="nav-item ">
+                <a href="<?php echo base_url('sign-up') ?>" class="nav-links ">
+                  Register
                 </a>
               </li>
-              <li class="nav-item">
 
-              </li>
             </ul>
           <?php
           }
@@ -129,11 +147,7 @@
 
 
           </li>
-          <!-- <li class="nav-item me-">
-              <a href="/sign-up" style='border-radius:50px !important;padding:auto auto !important;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
-                Sign Up
-              </a>
-            </li> -->
+     
 
 
 
@@ -144,48 +158,7 @@
 
 
 
-    <!--    
-        <nav class="navbar navbar-expand-sm navbar-light fixed-top text-white border-1 border-bottom border-opacity-75 border-dark " style="background-color: transparent;padding:10px auto;">
-            <div class="container-fluid py-3">
-                <a class="navbar-brand" href="#">primary</a>
-                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarID">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse container d-flex" id="navbarID">
-                    <div class="row   justify-between justify-self-center d-flex mx-auto" 
-                    style="justify-content: space-between;gap:96px;">
-                    <div class=" d-flex col-6 mx-5 ">
-                        <div class="navbar-nav px-5">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            
-                        </div>
-                        <div class="navbar-nav px-5">
-                            <a class="nav-link active"  href="#">Contests</a>
-                            
-                        </div>
-                        <div class="navbar-nav px-5">
-                            <a class="nav-link active" aria-current="page" href="#">About</a>
-                            
-                        </div>
-                    </div>
-                    <div class="  col-2 d-flex justify-content-end jus " style="justify-self: end;">
-                        
-                        <div class="navbar-nav pl-5">
-                            <a class="nav-link active"  href="#">Login</a>
-                            
-                        </div>
-                        <div class="navbar-nav ">
-                            <a class="nav-link active"  href="#"><button class="btn btn-dark " style="width:max-content">Sign up</button></a>
-                            
-                        </div>
-                      
-                    </div>
-                    
-                    </div>
-                </div>
-            </div>
-        </nav> -->
-
+ 
 
 
 

@@ -146,12 +146,15 @@ class Contest extends BaseController
 
         $contest_model = new ContestModel();
         $contestant_model =  new ContestantsModel();
+        $sponsor_model = new SponsorModel();
 
 
         $contest = $contest_model->find($contest_id);
         $contestants_cl = new GetContestants();
 
         $contestant = $contestants_cl->getContestant($contest_id, $user_id);
+
+        $contest->sponsor = $sponsor_model->find($contest->sponsor_id);
 
         $data = [
             'title' => 'view-profile',

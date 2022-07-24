@@ -16,21 +16,29 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .header-logged {
+            left: -50px;
+        }
+
+        @media screen and (min-width: 500px) {
+            .header-logged {
+                right: 0px;
+                left: 0px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="nrXR9ayZ"></script>
-    <script>
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
+    <?php
+
+    $loggedInUser = session()->get("loggedInUser");
+
+    $user = session()->get("user");;
+
+
+    ?>
 
 
     <nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
@@ -51,7 +59,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <!-- Left -->
-                <ul class="navbar-nav mx-auto">
+                <ul class="nav navbar-nav mx-auto ">
                     <li class="nav-item ">
                         <a class="nav-links" href="/">Home
 
@@ -61,7 +69,7 @@
                         <a class="nav-links contest" href="<?php echo base_url('contests') ?>" target="">Contests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-links" href="/about" target="">About</a>
+                        <a class="nav-links" href="/about-us" target="">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-links" href="/contact-us" target="">Contact Us</a>
@@ -71,16 +79,12 @@
                 <!-- Right -->
                 <?php
 
-                $userModel = new App\Models\UserModel();
-                $loggedInUser = session()->get("loggedInUser");
-
-                $user = $userModel->find($loggedInUser);
 
 
                 if (isset($loggedInUser)) {
                 ?>
 
-                    <div class="dropdown d-flex align-items-center">
+                    <div class="dropdown d-flex align-items-center justify-content-center w-100 mt-1">
 
                         <span class="me-1"><?= esc(
                                                 $user->first_name
@@ -90,7 +94,7 @@
                                         base_url('images/' . $user->picture)
                                         ?>" alt="mdo" width="40" height="40" class="rounded-circle">
                         </a>
-                        <ul class="dropdown-menu  text-small" aria-labelledby="dropdownUser1" style="left: -50px;">
+                        <ul class="dropdown-menu  text-small header-logged" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -108,22 +112,17 @@
                 ?>
 
                     <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item ">
 
+                            <a href="<?php echo base_url('login') ?>" class="nav-links">Login</a>
 
-                        <li class="nav-item">
-                            <div class="navbar-nav pl-5">
-                                <a class="nav-links pt-1 " href="<?php echo base_url('login') ?>">Login</a>
-
-                            </div>
                         </li>
-                        <li class="nav-item me-5">
-                            <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="_blank">
-                                Sign Up
+                        <li class="nav-item ">
+                            <a href="<?php echo base_url('sign-up') ?>" class="nav-links ">
+                                Register
                             </a>
                         </li>
-                        <li class="nav-item">
 
-                        </li>
                     </ul>
                 <?php
                 }
@@ -131,6 +130,12 @@
 
 
                 ?>
+
+
+
+                </li>
+
+
 
 
             </div>
@@ -152,7 +157,7 @@
 
     <footer class="overflow-hidden  bg-black  mt-5 mx-auto pt-5  w-100" style="left:0 ;right:0;">
 
-        <div class="row g-0 bg-black text-white font-weight-bolder text-left">
+        <!-- <div class="row g-0 bg-black text-white font-weight-bolder text-left">
 
 
             <div class="col-lg-4 col-12  mx-auto">
@@ -239,18 +244,20 @@
 
 
 
-            </div>
+            </div> -->
 
-            <div class="d-flex justify-content-center py-1   " style="border-top: 1px solid rgb(33, 28, 34);">
-                <p class="text-muted">&copy; <?= date('Y') ?> Kight Tech, Inc. All rights reserved.</p>
-                <!-- <div class="d-flex col-6 col-lg-5  justify-content-sm-around justify-content-lg-center align-items-center">
+        <div class="d-flex justify-content-center py-1" style="border-top: 1px solid rgb(33, 28, 34);">
+            <p class="text-secondary" style="font-size:smaller"> &copy; <?= date('Y') ?> KightTech, All rights reserved.</p>
+
+        </div>
+        <!-- <div class="d-flex col-6 col-lg-5  justify-content-sm-around justify-content-lg-center align-items-center">
       <a href="#" class="fa fa-facebook">
        </a>
       <a href="#" class="fa fa-twitter"></a>
       <a href="#" class="fa fa-instagram"></a>
     </div> -->
 
-            </div>
+        </div>
 
     </footer>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>

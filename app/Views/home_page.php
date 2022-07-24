@@ -206,10 +206,10 @@
       <?php foreach ($posts as $post) : ?>
 
 
-        <div class="d-flex justify-content-evenly  -circle py-5 text-center text-capitalize " style="height: max-content; border-radius:50%;">
-          <div class=" col-10 bg- py-5 my-5 app">
+        <div class="d-flex justify-content-evenly  -circle text-center text-capitalize " style="height: max-content; border-radius:50%;">
+          <div class=" col-10 app">
 
-            <img src="<?php echo base_url('assets/images/image-2.jpg') ?>" class="card-img-top img-fluid  w-75 mx-auto" alt="...">
+            <img src="<?php echo base_url('assets/images/image-2.jpg') ?>" class="card-img-top img-fluid   mx-auto" alt="...">
 
             <h5 class="text- mb-lg-5"> <?= $post ?> </h5>
 
