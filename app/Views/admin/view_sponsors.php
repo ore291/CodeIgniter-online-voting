@@ -67,13 +67,13 @@
 
 
                             <tr class="">
-                                <th scope="row"><?= $sponsor['id'] ?></th>
-                                <td class="p-3 text-capitalize"><?= $sponsor['name'] ?></td>
-                                <td><?= $sponsor['company_name'] ?></td>
-                                <td><?= $sponsor['brand'] ?></td>
-                                <td><?= $sponsor['email'] ?></td>
-                                <td><?= $sponsor['phone'] ?></td>
-                                <td><a href="<?= base_url('/admin/delete-sponsor/' . $sponsor['id']) ?>"> <button class="btn btn-block btn-danger" onclick="window.location.reload()" value="delete">Delete</button></a>
+                                <th scope="row"><?= $sponsor->id ?></th>
+                                <td class="p-3 text-capitalize"><?= $sponsor->name ?></td>
+                                <td><?= $sponsor->company_name ?></td>
+                                <td><?= $sponsor->brand ?></td>
+                                <td><?= $sponsor->email ?></td>
+                                <td><?= $sponsor->phone ?></td>
+                                <td><a href="<?= base_url('/admin/delete-sponsor/' . $sponsor->id) ?>"> <button class="btn btn-block btn-danger" onclick="window.location.reload()" value="delete">Delete</button></a>
                                 </td>
 
                             </tr>
