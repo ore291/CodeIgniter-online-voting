@@ -110,11 +110,11 @@
 
                 <div class="col-12 col-md-6">
                     <label for="formFile" class="form-label">Upload Cover Image</label>
-                    <input class="form-control" type="file" name="cover" required id="formFileMultiple" multiple>
+                    <input class="form-control" type="file" accept="image/png, image/gif, image/jpeg ,image/webp" name="cover" required id="formFileMultiple" multiple>
                 </div>
                 <div class=" col-12 col-md-6">
                     <label for="formFile" class="form-label">Upload Contest Picture</label>
-                    <input class="form-control" name="picture" required type="file" id="formFileMultiple" multiple>
+                    <input class="form-control" name="picture" accept="image/png, image/gif, image/jpeg, image/webp" required type="file" id="formFileMultiple" multiple>
                 </div>
 
             </div>

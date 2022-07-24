@@ -42,7 +42,7 @@
 
         <div class="table-responsive">
             <table class=" table table-stripe table-light table-bordered table-responsive align-middle">
-                <thead class=" table-light " style="white-space: nowrap;">
+                <thead class="  " style="white-space: nowrap;">
                     <tr class="text-center">
                         <th scope="col">#</th>
                         <th>picture</th>
@@ -60,22 +60,7 @@
 
                     </tr>
                 </thead>
-                <tbody class="table-striped" style="white-space:nowra;  ">
-
-
-                    <?php $model = new \App\Models\ContestModel();
-
-
-
-
-
-
-
-
-
-                    ?>
-
-
+                <tbody class="table-striped" style="white-space:nowrap;  ">
 
 
                     <?php if ($contests) {
@@ -91,7 +76,7 @@
                                 <td><?= $contest->category ?></td>
                                 <td>&#8358;<?= $contest->price_per_vote ?></td>
                                 <td class="truncate"><?= $contest->total_votes ?></td>
-                                <td><?= date('d-m-Y', strtotime($contest['start_date'])) ?></td>
+                                <td><?= date('d-m-Y', strtotime($contest->start_date)) ?></td>
                                 <td><?= date('d-m-Y', strtotime($contest->end_date)) ?></td>
 
                                 <td class="w-50">
@@ -110,7 +95,7 @@
                                 </td>
 
                                 <td>
-                                    <?= $contest['winner'] ?>
+                                   
                                 </td>
 
 

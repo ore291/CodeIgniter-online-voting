@@ -19,19 +19,19 @@
 
 
 <main class="col-md-12 ms-sm-auto mt-lg-2 col-lg-12 ">
-    <section class="shadow shadow-lg p-4 col-lg-12">
+    <section class="shadow shadow-lg p-2 col-lg-12">
 
         <div class="container-fluid pt-4 ">
             <h2>Dashboard</h2>
 
-            <div class="row mt-lg-5 ">
+            <div class="row mt-lg-1 ">
 
                 <div class="col-12 col-xl-3">
                     <div class="bg-light rounded d-flex align-items-center justify-content-lg-between p-4 justify-content-evenly">
                         <i class="bi bi-people fa-3x text-primary"></i>
                         <div class="ms-lg-3 ms-4 ">
                             <h6 class="mb-2">Total Users</h6>
-                            <h6 class="mb-0">50</h6>
+                            <h6 class="mb-0"><?= strval($users) ?></h6>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <i class=" bi bi-trophy fa-3x text-primary"></i>
                         <div class="ms-lg-3 ms-4">
                             <h6 class="mb-2 ">Total Contests</h6>
-                            <h6 class="mb-0">50</h6>
+                            <h6 class="mb-0"><?= strval($total_contests) ?></h6>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <i class="bi bi-wallet-fill fa-3x text-primary"></i>
                         <div class="ms-lg-3 ms-4 ">
                             <h6 class="mb-2">Total Earnings</h6>
-                            <h6 class="mb-0">&#8358;50</h6>
+                            <h6 class="mb-0">&#8358;<?= strval($cost) ?></h6>
                         </div>
                     </div>
                 </div>

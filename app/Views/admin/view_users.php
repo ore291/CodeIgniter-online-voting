@@ -134,13 +134,13 @@
 
 
                             <tr class="">
-                                <th scope="row"><?= $user['id'] ?></th>
+                                <th scope="row"><?= $user->id ?></th>
                                 <td class="w-25">
                                     <div class="d-flex align-items-center">
-                                        <img src="<?= $user['picture'] ?>" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                                        <img src="<?= $user->picture ?>" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1"><?= $user['full_name'] ?></p>
-                                            <p class="text-muted mb-0"><?= $user['email'] ?></p>
+                                            <p class="fw-bold mb-1"><?= $user->full_name ?></p>
+                                            <p class="text-muted mb-0"><?= $user->email?></p>
                                         </div>
                                     </div>
                                 </td>
@@ -148,8 +148,8 @@
                                     <div class="d-flex align-items-center w-25">
 
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1"><?= $user['gender'] ?></p>
-                                            <p class="text-muted mb-0"><?= $user['category'] ?></p>
+                                            <p class="fw-bold mb-1"><?= $user->gender ?></p>
+                                            <p class="text-muted mb-0"><?= $user->category ?></p>
                                         </div>
                                     </div>
                                 </td>
@@ -157,8 +157,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1"><?= $user['occupation'] ?></p>
-                                            <p class="text-muted mb-0"><?= $user['state'] ?></p>
+                                            <p class="fw-bold mb-1"><?= $user->occupation ?></p>
+                                            <p class="text-muted mb-0"><?= $user->state ?></p>
                                         </div>
                                     </div>
                                 </td>
@@ -166,7 +166,7 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1"><?=  date('d-m-Y', strtotime($user['created_at'])) ?></p>
+                                            <p class="fw-bold mb-1"><?=  date('d-m-Y', strtotime($user->created_at)) ?></p>
 
                                         </div>
                                     </div>
@@ -175,7 +175,7 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1"><?= $user['phone'] ?></p>
+                                            <p class="fw-bold mb-1"><?= $user->phone ?></p>
 
                                         </div>
                                     </div>

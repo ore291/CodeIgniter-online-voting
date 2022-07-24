@@ -1,27 +1,41 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Controllers\BaseController;
 use App\Models\ContestModel;
 use App\Models\SponsorModel;
 use App\Models\CategoryModel;
+use App\Models\VoteModel;
+use App\Models\UserModel;
 use Faker\Core\Number;
 
 class Admin extends BaseController
 {
     public function getindex()
-    {   $data['title']= ucfirst('admin');
+    {
+        $data['title'] = ucfirst('admin');
 
-    $contestModel = new ContestModel();
+        $contestModel = new ContestModel();
+        $voteModel = new VoteModel();
+        $userModel= new UserModel();
 
-        $orderData
-        = $contestModel->select('*')->orderBy('id', 'DESC')->paginate(10);
+        $cost = $voteModel->findColumn('cost');
+        $total_cost = array_sum($cost);   
+
+        $orderedData = $contestModel->select('*')->where('status','pending')->orderBy('id', 'DESC')->paginate(10);
+
+        $total_users =$userModel->countAllResults();
+        $total_contests=$contestModel->countAllResults();
 
 
-        $data['contests']=$orderData;
-       
+
+        $data['contests'] = $orderedData;
+        $data['cost'] = $total_cost;
+        $data['users']=$total_users;
+        $data['total_contests']=$total_contests;
+
         return view('admin/dashboard', $data);
-       
     }
 
     public function uploadImage($image)
@@ -44,29 +58,28 @@ class Admin extends BaseController
     {
         $data['title'] = ucfirst('admin');
         $contestModel = new ContestModel();
-       
-        $searchData= $this->request->getGet();
-        $search="";
 
-       
-      
-        if(isset($searchData)&&isset($searchData['search'])){
-            $search=$searchData['search'];
+        $searchData = $this->request->getGet();
+        $search = "";
+
+
+
+        if (isset($searchData) && isset($searchData['search'])) {
+            $search = $searchData['search'];
         }
 
-        if($search==''){
-            $paginatedData= $contestModel->select('*')->orderBy('id', 'DESC')->paginate(10);
-        }else{
-            $paginatedData= $contestModel->select('*')
-            ->orLike('title',$search)
-            ->paginate(10);
-
+        if ($search == '') {
+            $paginatedData = $contestModel->select('*')->orderBy('id', 'DESC')->paginate(10);
+        } else {
+            $paginatedData = $contestModel->select('*')
+                ->orLike('title', $search)
+                ->paginate(10);
         }
-       
-        $data['contests']=$paginatedData;
-        $data['pager']=$contestModel->pager;
-        $data['search']=$search;
-       
+
+        $data['contests'] = $paginatedData;
+        $data['pager'] = $contestModel->pager;
+        $data['search'] = $search;
+
 
         return view('admin/view_contests', $data);
     }
@@ -95,7 +108,7 @@ class Admin extends BaseController
         $sponsor = $sponsorModel->findAll();
         $data['sponsor'] = $sponsor;
 
-      
+
 
 
         return view('admin/add_sponsors', $data);
@@ -111,11 +124,11 @@ class Admin extends BaseController
 
         $data['title'] = ucfirst('admin');
         $sponsorModel = new SponsorModel();
-        
+
 
         $searchData = $this->request->getGet();
         $search = "";
-       
+
         if (isset($searchData) && isset($searchData['search'])) {
             $search = $searchData['search'];
         }
@@ -132,52 +145,46 @@ class Admin extends BaseController
 
         $sponsorModel->delete;
 
-        function delete($id){
+        function delete($id)
+        {
             $sponsorModel = new SponsorModel();
 
-             $sponsorModel->delete($id);
-
-
-
+            $sponsorModel->delete($id);
         }
 
 
         $data['sponsors'] = $paginatedData;
         $data['pager'] = $sponsorModel->pager;
         $data['search'] = $search;
-        
-       
+
+
         return view('admin/view_sponsors', $data);
-
-
-
-
     }
 
     public function postSponsor()
     {
-        $name=$this->request->getPost('sponsorName');
-        $company=$this->request->getPost('company');
+        $name = $this->request->getPost('sponsorName');
+        $company = $this->request->getPost('company');
         $brand = $this->request->getPost('brand');
         $phone = $this->request->getPost('phone');
         $email = $this->request->getPost('email');
         $Description = $this->request->getPost('companyDescription');
 
-        $data=[
-            'name'=>$name,
-            'company_name'=> $company,
-            'brand'=>$brand,
-            'phone'=>$phone,
-            'email'=>$email,
-            'description'=>$Description
+        $data = [
+            'name' => $name,
+            'company_name' => $company,
+            'brand' => $brand,
+            'phone' => $phone,
+            'email' => $email,
+            'description' => $Description
         ];
         $sponsorModel = new SponsorModel();
 
         $check_title =  $sponsorModel->where('name', $name)
             ->first();
-            $check_mail=$sponsorModel->where('email',$email)->first();
+        $check_mail = $sponsorModel->where('email', $email)->first();
 
-        if ($check_title || $check_mail ) {
+        if ($check_title || $check_mail) {
             return redirect()->back()->with('fail', 'Sponsor or Email is already Registered');
         } {
             $query = $sponsorModel->insert($data);
@@ -188,9 +195,6 @@ class Admin extends BaseController
                 return redirect()->to(base_url('/admin/add-sponsors'))->with('success', 'Registration Successful');
             }
         }
-
-
-
     }
 
 
@@ -210,9 +214,9 @@ class Admin extends BaseController
         $data['title'] = ucfirst('admin');
         $categoryModel = new CategoryModel();
 
-        $maleCategory= $categoryModel->where('allowed_gender','male')->findAll();
+        $maleCategory = $categoryModel->where('allowed_gender', 'male')->findAll();
 
-        $data['male_categories']=$maleCategory;
+        $data['male_categories'] = $maleCategory;
 
         $femaleCategory = $categoryModel->where('allowed_gender', 'female')->findAll();
         $data['female_categories'] = $femaleCategory;
@@ -221,7 +225,7 @@ class Admin extends BaseController
         $data['all_categories'] = $allCategory;
 
 
-        
+
 
 
 
@@ -235,15 +239,15 @@ class Admin extends BaseController
     {
         $categoryTitle = $this->request->getPost('category-title');
         $gender = $this->request->getPost('gender');
-        $picture = $this -> uploadImage($this->request->getFile('pictures'));
+        $picture = $this->uploadImage($this->request->getFile('pictures'));
         $categoryDescription = $this->request->getPost('categoryDescription');
 
-        $data=[
-            'title'=>$categoryTitle,
-            'allowed_gender'=>$gender,
-            'picture'=>$picture,
-            'description'=>$categoryDescription,
-            'slug'=>$categoryTitle
+        $data = [
+            'title' => $categoryTitle,
+            'allowed_gender' => $gender,
+            'picture' => $picture,
+            'description' => $categoryDescription,
+            'slug' => $categoryTitle
         ];
         $categoryModel = new \App\Models\CategoryModel();
 
@@ -261,14 +265,12 @@ class Admin extends BaseController
                 return redirect()->to('/admin/add-category')->with('success', 'Registration Successful');
             }
         }
-
-
-   
     }
 
 
 
-    public function getview_votes(){
+    public function getview_votes()
+    {
         $data['title'] = ucfirst('admin');
         $voteModel = new \App\Models\VoteModel();
 
@@ -297,7 +299,6 @@ class Admin extends BaseController
         $data['search'] = $search;
 
         return view('admin/view_votes', $data);
-
     }
 
 
@@ -324,7 +325,7 @@ class Admin extends BaseController
                 ->orLike('last_name', $search)
                 ->orLike('email', $search)
                 ->orLike('phone', $search)
-               
+
 
                 ->paginate(10);
         }
@@ -348,7 +349,7 @@ class Admin extends BaseController
         $data['title'] = ucfirst('admin');
         $contestModel = new \App\Models\ContestModel();
         $contest = $contestModel->find($title);
-        $data['contest']=$contest;
+        $data['contest'] = $contest;
         $categoryModel = new \App\Models\CategoryModel();
         $categories = $categoryModel->findAll();
         $data['categories'] = $categories;
@@ -362,7 +363,6 @@ class Admin extends BaseController
         $category = $categoryModel->find($title);
         $data['category'] = $category;
         return view('admin/edit_category', $data);
- 
     }
 
     public function postedit_category(int $title)
@@ -370,7 +370,7 @@ class Admin extends BaseController
         $data['title'] = ucfirst('admin');
         $categoryModel = new \App\Models\CategoryModel();
         $category = $categoryModel->find($title);
-        $data['category']=$category;
+        $data['category'] = $category;
 
         $categoryTitle = $this->request->getPost('category-title');
         $gender = $this->request->getPost('gender');
@@ -391,7 +391,7 @@ class Admin extends BaseController
         if ($check_title) {
             return redirect()->back()->with('fail', 'Category is already Registered');
         } {
-            $query = $categoryModel->update($title,$data);
+            $query = $categoryModel->update($title, $data);
 
             if (!$query) {
                 return redirect()->back()->with('fail', 'Registration Failed');
@@ -399,14 +399,6 @@ class Admin extends BaseController
                 return redirect()->to('/admin/add-category')->with('success', 'Registration Successful');
             }
         }
-
-
-
-       
-
-
-
-
     }
 
 
@@ -414,7 +406,7 @@ class Admin extends BaseController
     {
 
         $contestModel = new \App\Models\ContestModel();
-      
+
         ## Check record
         if ($contestModel->find($id)) {
 
@@ -431,7 +423,7 @@ class Admin extends BaseController
         // return redirect()->route(base_url('/admin/view-contest'));
         return redirect()->to('/admin/view-contest')->with('success', 'Deleted Successfuly!');
     }
-    public function getdelete_sponsor (int $id)
+    public function getdelete_sponsor(int $id)
     {
         $sponsorModel = new SponsorModel();
 
@@ -450,11 +442,6 @@ class Admin extends BaseController
 
         // return redirect()->route(base_url('/admin/view-contest'));
         return redirect()->to(base_url('/admin/sponsors'))->with('success', 'Deleted Successfuly!');
-
-
-
-
-
     }
     public function getdelete_category(int $id)
     {
@@ -476,6 +463,4 @@ class Admin extends BaseController
         // return redirect()->route(base_url('/admin/view-contest'));
         return redirect()->to(base_url('/admin/categories'))->with('success', 'Deleted Successfuly!');
     }
-   
-
 }

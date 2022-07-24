@@ -1,6 +1,6 @@
-<footer class="row bg-black  mt-5 mx-auto pt-5  w-100" style="left:0 ;right:0;">
+<footer class="row  bg-black  mt-5 mx-auto pt-5  w-100" style="left:0 ;right:0;">
 
-  <div class="row bg-black text-white font-weight-bolder text-left">
+  <div class="row g-0 bg-black text-white font-weight-bolder text-left">
 
 
 
@@ -54,33 +54,33 @@
     <div class="col-lg-2 col-6 my-5 my-lg-1">
       <h5>Sponsors</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary"></a></li>
+        <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-secondary"></a></li>
+        <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-secondary"></a></li>
+        <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-secondary"></a></li>
+        <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-secondary"></a></li>
+        <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-secondary"></a></li>
       </ul>
     </div>
 
-    <div class="col-lg-2 col-6 text- my-lg-1 ">
+    <div class="col-lg-2 col-6  my-lg-1 ">
       <h5 class="offset-1">Legal</h5>
       <ul class="nav flex-column text-left">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Privacy Policy </a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Terms & Conditions</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-secondary">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-secondary">Privacy Policy </a></li>
+        <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-secondary">Terms & Conditions</a></li>
+        <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-secondary">Pricing</a></li>
 
       </ul>
     </div>
 
 
 
-    <div class="col-lg-2 col-6 my-lg-1 footer-link">
+    <div class="col-lg-2  col-6 my-lg-1 footer-link">
       <h5 class="text-white text-capitalize">contact</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"><span href="#" class="nav-link p-0 text-secondary">Voice Call: <br> +2348057880646</span></li>
-        <li class="nav-item mb-2"><span href="#" class="nav-link p-0 text-secondary">Whatsapp Only: <br>
+        <li class="nav-item mb-2"><span href="" class="nav-link p-0 text-secondary">Voice Call: <br> +2348057880646</span></li>
+        <li class="nav-item mb-2"><span href="" class="nav-link p-0 text-secondary">Whatsapp Only: <br>
             +2348057880646</span></li>
-        <li class="nav-item mb-2"><span href="#" class="nav-link p-0 text-secondary">Email Address: <br>
+        <li class="nav-item mb-2"><span href="" class="nav-link p-0 text-secondary">Email Address: <br>
             onlinevoting@gmail.com</span></li>
 
       </ul>
