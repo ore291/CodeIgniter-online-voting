@@ -16,7 +16,7 @@ class ContestModel extends Model
     protected $protectFields    = true;
 
     protected $allowedFields    = [
-        'title', 'slug', 'cover', 'price_per_vote', 'picture', 'start_date', 'end_date', 'winner', 'status', 'sponsor', 'total_votes', 'category'
+        'title', 'slug', 'cover', 'price_per_vote', 'picture', 'start_date', 'end_date', 'winner', 'status', 'sponsor_id', 'total_votes', 'category'
     ];
 
     // Dates

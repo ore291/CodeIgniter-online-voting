@@ -48,6 +48,7 @@
                         <th>picture</th>
                         <th>Title</th>
                         <th scope="col" class="col-1">Category</th>
+                        <th scope="col" class="col-1">Sponsor</th>
                         <th style="white-space: nowrap;">Price per Vote</th>
                         <th>Total votes</th>
 
@@ -73,7 +74,15 @@
                                 <th scope=""> <img class=" rounded- mx-lg-auto p- contest-im " style="width: 135px;height:135px;" src="<?= $contest->picture ?>" alt=""></th>
 
                                 <td class="text-capitalize " style="white-space:nowrap;  "><?= $contest->title ?></td>
-                                <td><?= $contest->category ?></td>
+                                <td><?= $contest->category_d['title'] ?></td>
+                                <td>
+                                    <?php if(count($contest->sponsor) > 0){
+                                        echo $contest->sponsor[0]->name;
+                                }else{
+                                    echo '<p>No Sponsor</p>';
+                                } ?>
+                                
+                                </td>
                                 <td>&#8358;<?= $contest->price_per_vote ?></td>
                                 <td class="truncate"><?= $contest->total_votes ?></td>
                                 <td><?= date('d-m-Y', strtotime($contest->start_date)) ?></td>
@@ -95,7 +104,7 @@
                                 </td>
 
                                 <td>
-                                   
+
                                 </td>
 
 

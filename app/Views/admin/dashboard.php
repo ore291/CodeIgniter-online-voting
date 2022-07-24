@@ -51,7 +51,7 @@
                         <i class="bi bi-award fa-3x text-primary"></i>
                         <div class="ms-lg-3 ms-4">
                             <h6 class="mb-2">Active Contests</h6>
-                            <h6 class="mb-0">50</h6>
+                            <h6 class="mb-0"><?= $active_contest?></h6>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                                         <!-- <th scope=""> <img class=" rounded- mx-lg-auto p- contest-im " style="width: 135px;height:135px;" src="<?= $contest->picture ?>" alt=""></th> -->
 
                                         <td class="text-capitalize " style="white-space:nowrap;  "><?= $contest->title ?></td>
-                                        <td><?= $contest->category ?></td>
+                                        <td><?= $contest->category_d['title']?></td>
                                         <td>&#8358;<?= $contest->price_per_vote ?></td>
                                         <td class="truncate"><?= $contest->total_votes ?></td>
                                         <td><?= date('d-m-Y', strtotime($contest->end_date)) ?></td>

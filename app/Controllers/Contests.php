@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Libraries\Utils;
 use App\Models\ContestModel;
 use App\Models\CategoryModel;
+use App\Models\SponsorModel;
 
 class Contests extends BaseController
 {
@@ -31,6 +32,8 @@ class Contests extends BaseController
 
         $categoryModel = new CategoryModel();
         $categories = $categoryModel->findAll();
+
+       
 
        
 
@@ -76,7 +79,8 @@ class Contests extends BaseController
     {
         $title = $this->request->getPost('title');
         $category = $this->request->getPost('category');
-        if ($this->request->getPost('sponsor') != 0) {
+        $sponsor='';
+        if ($this->request->getPost('sponsor') != 0)  {
             $sponsor = $this->request->getPost('sponsor');
         } else {
             $sponsor = null;
@@ -87,13 +91,14 @@ class Contests extends BaseController
         $slug = Utils::slugify($title);
         $start_date = $this->request->getPost('startDate');
         $end_date = $this->request->getPost('endDate');
+       
 
 
 
         $data = [
             'title' => strtoupper($title),
             'category' => $category,
-            'sponsor' => $sponsor,
+            'sponsor_id' => $sponsor,
             'price_per_vote' => $price_per_vote,
             'cover' => $cover,
             'picture' => $picture,
@@ -110,7 +115,7 @@ class Contests extends BaseController
         if (!$query) {
             return redirect()->back()->with('fail', 'Contest Creation Failed');
         } else {
-            return redirect()->to('/admin')->with('success', 'Registration Successful');
+            return redirect()->to('/admin/view-contest')->with('success', 'Registration Successful');
         }
     }
 }
