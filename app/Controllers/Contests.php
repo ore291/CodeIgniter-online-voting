@@ -93,7 +93,7 @@ class Contests extends BaseController
         $data = [
             'title' => strtoupper($title),
             'category' => $category,
-            'sponsor' => $sponsor,
+            'sponsor_id' => $sponsor,
             'price_per_vote' => $price_per_vote,
             'cover' => $cover,
             'picture' => $picture,

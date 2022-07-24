@@ -72,8 +72,8 @@ $routes->get('home', 'Home::index');
 // $routes->add('contests/(:any)', 'Contests::contest/$1');
 $routes->add('login', 'Home::login');
 $routes->add('sign-up', 'Home::signUp');
-$routes->add('about', 'Home::about');
-$routes->add('contact', 'Home::contact');
+$routes->add('about-us', 'Home::about');
+$routes->add('contact-us', 'Home::contact');
 $routes->add('user/(:any)', 'User::index/$1');
 $routes->add('about/faqs', 'Home::faqs');
 

@@ -144,7 +144,7 @@
         <?php
 
         $user = session()->get("user");
-        if ($user->role == "admin") {
+        if (isset($user) and $user->role == "admin") {
         ?>
             <h1 class="text-center text-warning text-uppercase">Disqualify Stages</h1>
             <p class="text-center">Disqualify contestants in the following stages,please confirm before you proceed!</p>
@@ -240,31 +240,31 @@
                 </div>
             </div>
             <div class="row g-0 overflow-hidden mt-2">
- <?php
-            if (!empty(session()->getFlashdata("success"))) {
-            ?>
+                <?php
+                if (!empty(session()->getFlashdata("success"))) {
+                ?>
 
-                <div class="col-6 offset-3 alert alert-success">
-                    <?= session()->getFlashdata("success") ?>
-                </div>
-            <?php
-            }
+                    <div class="col-6 offset-3 alert alert-success">
+                        <?= session()->getFlashdata("success") ?>
+                    </div>
+                <?php
+                }
 
-            ?>
+                ?>
 
-            <?php
-            if (!empty(session()->getFlashdata("fail"))) {
-            ?>
+                <?php
+                if (!empty(session()->getFlashdata("fail"))) {
+                ?>
 
-                <div class="col-6 offset-3  alert alert-danger">
-                    <?= session()->getFlashdata("fail") ?>
-                </div>
-            <?php
-            }
+                    <div class="col-6 offset-3  alert alert-danger">
+                        <?= session()->getFlashdata("fail") ?>
+                    </div>
+                <?php
+                }
 
-            ?>
+                ?>
             </div>
-           
+
 
         <?php
         }
@@ -295,7 +295,7 @@
                     <?php foreach ($contestants as $contestant) : ?>
                         <div class="mt-1 col-md-6 col-lg-4">
                             <div class="card">
-                                <div class="card-img-top card-click  " style="background-image: url(/images/<?= $contestant->image ?>); background-repeat: no-repeat; background-position:top center;">
+                                <div class="card-img-top card-click " style="background-image: url(/images/<?= $contestant->image ?>); background-repeat: no-repeat; background-position:top center;">
                                     <img src="/images/<?= $contestant->image ?>" alt="card-img" class="w-100 contest-card-hero" loading="lazy">
                                     <div class="px-2 badge dropdown " id="badge">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="color: white; transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20" class="iconify dropdown-toggle" id="badge" data-icon="dashicons:share" data-inline="false" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -324,17 +324,51 @@
                                         CANDIDATE NUMBER:<span class="font-weight-bold">001</span>
                                     </p> -->
                                         <div class="my-3 d-flex align-items-center justify-content-between">
-                                            <p>
-                                                Vote Results: <span class="font-weight-bold"><?= number_format(($contestant->votes / $contest->total_votes) * 100, 2); ?>%</span>
-                                            </p>
+                                            <?php
+                                            if ($contestant->votes > 0) {
+                                            ?>
+                                                <p>Voting Percent: <?= number_format(($contestant->votes / $contest->total_votes) * 100, 2) ?>%</p>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <p>Voting Percent: 0%</p>
+                                            <?php
+                                            }
+
+                                            ?>
+
+
                                             <p>
                                                 No of Votes: <span class="font-weight-bold"><?= $contestant->votes ?></span>
                                             </p>
                                         </div>
-                                        <div class="progress my-3 rounded-pill">
-                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="<?= ($contestant->votes / $contest->total_votes) * 100 ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= ($contestant->votes / $contest->total_votes) * 100 ?>%">
+                                        <?php
+                                        if ($contestant->votes > 0) {
+                                        ?>
+
+                                            <div class="progress my-3 rounded-pill">
+                                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="<?= ($contestant->votes / $contest->total_votes) * 100 ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= ($contestant->votes / $contest->total_votes) * 100 ?>%">
+                                                </div>
                                             </div>
-                                        </div>
+
+
+                                        <?php
+                                        } else {
+                                        ?>
+
+                                            <div class="progress my-3 rounded-pill">
+                                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                                </div>
+                                            </div>
+
+
+                                        <?php
+                                        }
+
+
+
+                                        ?>
+
                                     </div>
                                     <div class="mt-3 d-grid gap-2">
                                         <a href="<?= $contestant->share_url ?>">

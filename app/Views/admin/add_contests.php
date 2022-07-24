@@ -123,11 +123,11 @@
 
                 <div class="col-12 col-md-6">
                     <label for="startDate" class="form-label">Contest Start Date</label>
-                    <input type="datetime-local" id="startDate" required name="startDate" class="form-control">
+                    <input type="date" id="startDate" required name="startDate" class="form-control">
                 </div>
                 <div class="col-12 col-md-6">
                     <label for="endDate" class="form-label">Contest End Date</label>
-                    <input type="datetime-local" id="endDate" required name="endDate" class="form-control">
+                    <input type="date" id="endDate" required name="endDate" class="form-control">
                 </div>
             </div>
             <div class="row my-5">

@@ -42,16 +42,16 @@ class GetContestants
         return $contestants;
     }
 
-    function filterArray($needle, $haystack)
-    {
-        $user_model = new UserModel();
-        foreach ($haystack as $v) {
-            $user = $user_model->find($v->user_id);
+    // function filterArray($needle, $haystack)
+    // {
+    //     $user_model = new UserModel();
+    //     foreach ($haystack as $v) {
+    //         $user = $user_model->find($v->user_id);
            
-            if (stripos('john', "john test") !== false) return true;
-        };
-        return false;
-    }
+    //         if (stripos('john', "john test") !== false) return true;
+    //     };
+    //     return false;
+    // }
 
     public function findContestants(int $contest_id, string $search)
     {
@@ -103,9 +103,29 @@ class GetContestants
         $contestants = $contestants_model->where(['contest_id' => $contest_id, 'stage' => $stage])->set(['is_disqualified' => 1])
         ->update();
 
-
         return $contestants;
 
+    }
+
+    public function getUserContests(string $user_id)
+    {
+        $contestant_model = new ContestantsModel();
+        $user_model = new UserModel();
+        $stage_model = new StageModel();
+        $contest_model = new ContestModel();
+
+        $contestants = $contestant_model->where("user_id", $user_id)->findAll();
+
+        foreach ($contestants as &$contestant) {
+            $contestant->user = $user_model
+                ->where(['id' => $contestant->user_id])
+                ->first();
+            $contestant->stage_data = $stage_model->find($contestant->stage);
+            $contestant->contest = $contest_model->find($contestant->contest_id);
+        }
+        unset($contestant);
+
+        return $contestants;
 
     }
 }

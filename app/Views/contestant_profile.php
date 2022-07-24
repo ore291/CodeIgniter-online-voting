@@ -49,7 +49,7 @@
                         <a class="nav-links" href="/about" target="">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-links" href="/contact" target="">Contact Us</a>
+                        <a class="nav-links" href="/contact-us" target="">Contact Us</a>
                     </li>
                 </ul>
 
@@ -190,7 +190,19 @@
 
                 <h3>Contestant's Name : <span class="text-capitalize"><?= esc($contestant->user->full_name) ?></span></h3>
                 <h3>Contestant's ID : <?= sprintf('%03d', $contestant->id) ?></h3>
-                <h4>Voting Percent: <?= number_format(($contestant->votes / $contest->total_votes) * 100, 2) ?>%</h4>
+                <?php
+                if ($contestant->votes > 0) {
+                ?>
+                    <h4>Voting Percent: <?= number_format(($contestant->votes / $contest->total_votes) * 100, 2) ?>%</h4>
+                <?php
+                } else {
+                ?>
+                    <h4>Voting Percent: 0%</h4>
+                <?php
+                }
+
+                ?>
+
 
             </div>
             <div class="col-md-6 col-12 ">
@@ -201,8 +213,8 @@
                 if ($id == $contestant->user_id) {
                 ?>
                     <form enctype="multipart/form-data" action="<?= base_url(
-                                        'contest/update-profile/' . $contestant->id
-                                    ) ?>" method="post">
+                                                                    'contest/update-profile/' . $contestant->id
+                                                                ) ?>" method="post">
 
                         <div class="d-flex mt-2">
 
@@ -329,7 +341,7 @@
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-secondary">Home</a></li>
                     <li class="nav-item mb-2"><a href="/contests" class="nav-link p-0 text-secondary">Contests</a></li>
-                    <li class="nav-item mb-2"><a href="/contact" class="nav-link p-0 text-secondary">Contact Us</a></li>
+                    <li class="nav-item mb-2"><a href="/contact-us" class="nav-link p-0 text-secondary">Contact Us</a></li>
                     <li class="nav-item mb-2"><a href="about/faqs" class="nav-link p-0 text-secondary">FAQs</a></li>
                     <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-secondary">About</a></li>
                 </ul>

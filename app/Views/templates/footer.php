@@ -46,7 +46,7 @@
       <ul class="nav flex-column">
         <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-secondary">Home</a></li>
         <li class="nav-item mb-2"><a href="/contests" class="nav-link p-0 text-secondary">Contests</a></li>
-        <li class="nav-item mb-2"><a href="/contact" class="nav-link p-0 text-secondary">Contact Us</a></li>
+        <li class="nav-item mb-2"><a href="/contact-us" class="nav-link p-0 text-secondary">Contact Us</a></li>
         <li class="nav-item mb-2"><a href="about/faqs" class="nav-link p-0 text-secondary">FAQs</a></li>
         <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-secondary">About</a></li>
       </ul>
