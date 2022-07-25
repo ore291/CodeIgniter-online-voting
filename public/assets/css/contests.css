@@ -1,6 +1,10 @@
+
+
+
 body {
   background-color: black;
   color: white;
+  font-family: 'Poppins', sans-serif;
 }
 section {
   max-width: 1100px;
@@ -188,9 +192,12 @@ html {
   position: relative;
 }
 
+
+
+
  .card .card-img-top .badge {
   position: absolute;
-  top: 5px;
+  top: 7px;
   right: 10px;
   background: #c2803a;
   border-radius: 5px;
@@ -201,16 +208,14 @@ html {
 }
 
 
-.card .card-img-top {
-  border-radius: 8px
-}
+
 
 .contest-card-hero {
   object-fit: contain;
   height: 200px;
   width: 100%;
   backdrop-filter: blur(8px);
-  border-radius: 8px
+
 }
 
 .contestants-container .card .badge {

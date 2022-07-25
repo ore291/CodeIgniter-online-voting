@@ -5,7 +5,7 @@
 
 
 <main>
-    <section class="col-lg-8 bg-dar p-5">
+    <section class="col-12  p-2 text-justify">
         <p style="line-height: 35px;font-size:1.4em">
             <span class="text-warning">online voting </span> is an original online voting site with an impressive prize pool and a special bonus for voters. Every year, the most elegant and charming people from all over Nigeria contend for the main prize of our popular online contests.
         </p>

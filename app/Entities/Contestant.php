@@ -7,7 +7,8 @@ use CodeIgniter\Entity\Entity;
 class Contestant extends Entity
 {
     public $user;
-    public $stage_data;
+    public $stage_data; 
+    public $contest;
 
     public function __construct ( $data = null)
     {
@@ -16,6 +17,7 @@ class Contestant extends Entity
         // Set the ingredient list to an empty array
         $this->user = [];
         $this->stage_data = [];
+        $this->contest = [];
     }
  
 }

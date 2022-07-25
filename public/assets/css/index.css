@@ -1,6 +1,7 @@
 body {
   background-color: black;
   color: white;
+  font-family: 'Poppins', sans-serif;
 }
 section {
   max-width: 95vw;
@@ -27,18 +28,27 @@ a {
 
 /* current contest on homepage */
 .current-cont {
-  background-image: linear-gradient(
-      to right,
-      rgb(56, 12, 58),
-      rgba(132, 60, 143, 0.5)
-    ),
-    url("./image-2.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.712),rgba(0, 0, 0, 0.5));
   width: 100%;
-  height: max-content;
+  height: 350px;
   object-fit: cover;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
+}
+
+@media screen and (max-width: 500px) {
+  .current-cont {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.712),rgba(0, 0, 0, 0.5));
+    width: 100%;
+    height: max-content;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  
+  }
 }
 
 .sponsor {

@@ -1,6 +1,6 @@
 <footer class="row  bg-black  mt-5 mx-auto pt-5  w-100" style="left:0 ;right:0;">
 
-  <div class="row g-0 bg-black text-white font-weight-bolder text-left">
+  <!-- <div class="row g-0 bg-black text-white font-weight-bolder text-left">
 
 
 
@@ -46,7 +46,7 @@
       <ul class="nav flex-column">
         <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-secondary">Home</a></li>
         <li class="nav-item mb-2"><a href="/contests" class="nav-link p-0 text-secondary">Contests</a></li>
-        <li class="nav-item mb-2"><a href="/contact" class="nav-link p-0 text-secondary">Contact Us</a></li>
+        <li class="nav-item mb-2"><a href="/contact-us" class="nav-link p-0 text-secondary">Contact Us</a></li>
         <li class="nav-item mb-2"><a href="about/faqs" class="nav-link p-0 text-secondary">FAQs</a></li>
         <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-secondary">About</a></li>
       </ul>
@@ -88,16 +88,10 @@
 
 
 
-  </div>
+  </div> -->
 
-  <div class="d-flex justify-content-center py-1   " style="border-top: 1px solid rgb(33, 28, 34);">
-    <p class="text-muted">&copy; <?= date('Y') ?> Kight Tech, Inc. All rights reserved.</p>
-    <!-- <div class="d-flex col-6 col-lg-5  justify-content-sm-around justify-content-lg-center align-items-center">
-      <a href="#" class="fa fa-facebook">
-       </a>
-      <a href="#" class="fa fa-twitter"></a>
-      <a href="#" class="fa fa-instagram"></a>
-    </div> -->
+  <div class="d-flex justify-content-center py-1" style="border-top: 1px solid rgb(33, 28, 34);">
+    <p class="text-secondary" style="font-size:smaller"> &copy; <?= date('Y') ?> KightTech, All rights reserved.</p>
 
   </div>
 

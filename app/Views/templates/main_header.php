@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,13 +20,39 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    .header-logged{
+      left: -50px;
+    }
+    @media screen and (min-width: 500px) {
+      .header-logged{
+      right: 0px;
+      left : 0px;
+    }
+    }
+  </style>
 </head>
 
 <body>
+
   <main class="main-banner">
 
+  <?php
 
-    <nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
+$loggedInUser = session()->get("loggedInUser");
+
+$user = session()->get("user");;
+
+
+?>
+
+
+
+<nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
       <div class="container my-lg-2">
 
         <!-- Brand -->
@@ -138,51 +166,7 @@
 
       </div>
     </nav>
-
-
-
-    <!--    
-        <nav class="navbar navbar-expand-sm navbar-light fixed-top text-white border-1 border-bottom border-opacity-75 border-dark " style="background-color: transparent;padding:10px auto;">
-            <div class="container-fluid py-3">
-                <a class="navbar-brand" href="#">primary</a>
-                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarID">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse container d-flex" id="navbarID">
-                    <div class="row   justify-between justify-self-center d-flex mx-auto" 
-                    style="justify-content: space-between;gap:96px;">
-                    <div class=" d-flex col-6 mx-5 ">
-                        <div class="navbar-nav px-5">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            
-                        </div>
-                        <div class="navbar-nav px-5">
-                            <a class="nav-link active"  href="#">Contests</a>
-                            
-                        </div>
-                        <div class="navbar-nav px-5">
-                            <a class="nav-link active" aria-current="page" href="#">About</a>
-                            
-                        </div>
-                    </div>
-                    <div class="  col-2 d-flex justify-content-end jus " style="justify-self: end;">
-                        
-                        <div class="navbar-nav pl-5">
-                            <a class="nav-link active"  href="#">Login</a>
-                            
-                        </div>
-                        <div class="navbar-nav ">
-                            <a class="nav-link active"  href="#"><button class="btn btn-dark " style="width:max-content">Sign up</button></a>
-                            
-                        </div>
-                      
-                    </div>
-                    
-                    </div>
-                </div>
-            </div>
-        </nav> -->
-
+ 
 
 
 
