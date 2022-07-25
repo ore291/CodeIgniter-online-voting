@@ -4,20 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ContestModel extends Model
+class SettingsModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'contests';
+    protected $table            = 'settings';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Contest::class;
+    protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-
-    protected $allowedFields    = [
-        'title', 'slug', 'cover', 'price_per_vote', 'picture', 'start_date', 'end_date', 'winner', 'status', 'sponsor_id', 'total_votes', 'category','is_active'
-    ];
+    protected $allowedFields    = ['paystack_api_key','logo'];
 
     // Dates
     protected $useTimestamps = false;

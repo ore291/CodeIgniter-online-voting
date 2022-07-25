@@ -14,7 +14,7 @@ class Utils
         }
 
         if (!$image->hasMoved()) {
-            $image->move($config['upload_path'], $image_name);
+            $image->move($config['upload_path'], $image_name.'');
         }
 
         return $image_name;

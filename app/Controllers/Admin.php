@@ -31,10 +31,11 @@ class Admin extends BaseController
        
 
         $orderedData = $contestModel->select('*')->where('status','pending')->orderBy('id', 'DESC')->paginate(10);
+        $active_contests = $contestModel->select('*')->where('status', 'pending')->orderBy('id', 'DESC');
 
         $total_users =$userModel->countAllResults();
         $total_contests=$contestModel->countAllResults();
-        $active_contest=count($orderedData);
+        $active_contest=$active_contests->countAllResults();
 
         foreach ($orderedData as $contest) {
             $contest->category_d = $category_model->find($contest->category);
@@ -73,7 +74,7 @@ class Admin extends BaseController
         }
 
         if ($search == '') {
-            $paginatedData = $contestModel->select('*')->orderBy('id', 'DESC')->paginate(10);
+            $paginatedData = $contestModel->select('*')->where('is_active','active')->orderBy('id', 'DESC')->paginate(10);
         } else {
             $paginatedData = $contestModel->select('*')
                 ->orLike('title', $search)
@@ -283,7 +284,7 @@ class Admin extends BaseController
             if (!$query) {
                 return redirect()->back()->with('fail', 'Registration Failed');
             } else {
-                return redirect()->to('/admin/add-category')->with('success', 'Registration Successful');
+                return redirect()->to(base_url('/admin/add-category'))->with('success', 'Registration Successful');
             }
         }
     }
@@ -294,6 +295,7 @@ class Admin extends BaseController
     {
         $data['title'] = ucfirst('admin');
         $voteModel = new \App\Models\VoteModel();
+        $contestantModel=new \App\Models\ContestantsModel();
 
 
         $searchData = $this->request->getGet();
@@ -314,12 +316,21 @@ class Admin extends BaseController
 
                 ->paginate(10);
         }
+      
 
         $data['votes'] = $paginatedData;
         $data['pager'] = $voteModel->pager;
         $data['search'] = $search;
+       
 
         return view('admin/view_votes', $data);
+    }
+
+    public function getSettings()
+    {
+        $data['title'] = ucfirst('admin');
+        return view('admin/settings', $data);
+
     }
 
 
@@ -381,6 +392,8 @@ class Admin extends BaseController
 
        
             $contest->sponsor = $sponsorModel->where('id', $contest->sponsor_id)->find();
+        $contest->category_d = $categoryModel->find($contest->category);
+            $data['contest->sponsor']= $contest->sponsor;
         
 
         unset($contest);
@@ -431,7 +444,7 @@ class Admin extends BaseController
             if (!$query) {
                 return redirect()->back()->with('fail', 'Registration Failed');
             } else {
-                return redirect()->to('/admin/view-contest')->with('success', 'Contest Edited Successful');
+                return redirect()->to( base_url('/admin/view-contest'))->with('success', 'Contest Edited Successful');
             }
         }
 
@@ -476,7 +489,7 @@ class Admin extends BaseController
             if (!$query) {
                 return redirect()->back()->with('fail', 'Registration Failed');
             } else {
-                return redirect()->to('/admin/view-category')->with('success', 'Category Edited Successful');
+                return redirect()->to(base_url('/admin/view-category'))->with('success', 'Category Edited Successful');
             }
         }
     }
@@ -486,12 +499,20 @@ class Admin extends BaseController
     {
 
         $contestModel = new \App\Models\ContestModel();
-
+        $contestantModel = new \App\Models\ContestantsModel();
+        $status='inactive';
         ## Check record
         if ($contestModel->find($id)) {
 
             ## Delete record
-            $contestModel->delete($id);
+            // $contestantModel->where('contest_id',$id)->delete();
+            // $contestModel->delete(['id'=>$id],true);
+            $data=[
+                'is_active' => $status,
+                'price_per_vote' => '5',
+            ];
+           $query= $contestModel->update($id,$data);
+           
 
             session()->setFlashdata('message', 'Deleted Successfully!');
             session()->setFlashdata('alert-class', 'alert-success');
@@ -499,9 +520,9 @@ class Admin extends BaseController
             session()->setFlashdata('message', 'Record not found!');
             session()->setFlashdata('alert-class', 'alert-danger');
         }
-
+$query;
         // return redirect()->route(base_url('/admin/view-contest'));
-        return redirect()->to('/admin/view-contest')->with('success', 'Deleted Successfuly!');
+        return redirect()->to(base_url('/admin/view-contest'))->with('success', 'Deleted Successfuly!');
     }
     public function getdelete_sponsor(int $id)
     {

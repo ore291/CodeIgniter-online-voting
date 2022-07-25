@@ -35,50 +35,52 @@
 
     $loggedInUser = session()->get("loggedInUser");
 
-    $user = session()->get("user");;
+    $user = session()->get("user");
+    $settings_model = new App\Models\SettingsModel();
+    $logo = $settings_model->find(1);
 
 
     ?>
 
 
-    
-<nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
-      <div class="container my-lg-2">
 
-        <!-- Brand -->
-        <a class="navbar-brand h-25" href="/" target="">
-          <!-- <img src="https://picsum.photos/id/684/600/400" class="nav-img " alt=""> -->
-          <strong style="color: orange;">online voting</strong>
-        </a>
+    <nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
+        <div class="container my-lg-2">
 
-        <!-- Collapse -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+            <!-- Brand -->
+            <a class="navbar-brand h-25" href="/" target="">
+                <img src="/images/<?= $logo['logo'] ?>" width="40" height="40" class="rounded-circle" alt="">
+                <strong style="color: orange;">online voting</strong>
+            </a>
 
-        <!-- Links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <!-- Left -->
-          <ul class="navbar-nav mx-auto ">
-            <li class="nav-item ">
-              <a class="nav-links" href="/">Home
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-links contest" href="<?php echo base_url('contests') ?>" target="">Contests</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-links" href="about" target="">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-links" href="/contact" target="">Contact Us</a>
-            </li>
-          </ul>
+                <!-- Left -->
+                <ul class="navbar-nav mx-auto ">
+                    <li class="nav-item ">
+                        <a class="nav-links" href="/">Home
 
-          <!-- Right -->
-          <?php
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-links contest" href="<?php echo base_url('contests') ?>" target="">Contests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-links" href="about" target="">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-links" href="/contact" target="">Contact Us</a>
+                    </li>
+                </ul>
+
+                <!-- Right -->
+                <?php
 
                 $userModel = new App\Models\UserModel();
                 $loggedInUser = session()->get("loggedInUser");
@@ -92,11 +94,11 @@
                     <div class="dropdown d-flex align-items-center">
 
                         <span class="me-1"><?= esc(
-                                               $user->first_name
+                                                $user->first_name
                                             ) ?></span>
                         <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="<?=
-                                        base_url('images/'.$user->picture)
+                                        base_url('images/' . $user->picture)
                                         ?>" alt="mdo" width="40" height="40" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu  text-small" aria-labelledby="dropdownUser1" style="left: -50px;">
@@ -126,7 +128,7 @@
                             </div>
                         </li>
                         <li class="nav-item me-5">
-                            <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="_blank">
+                            <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
                                 Sign Up
                             </a>
                         </li>
@@ -143,8 +145,8 @@
 
 
 
-            </li>
-            <!-- <li class="nav-item me-">
+                </li>
+                <!-- <li class="nav-item me-">
               <a href="/sign-up" style='border-radius:50px !important;padding:auto auto !important;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
                 Sign Up
               </a>
@@ -152,9 +154,9 @@
 
 
 
-        </div>
+            </div>
 
-      </div>
+        </div>
     </nav>
 
 

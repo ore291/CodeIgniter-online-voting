@@ -5,7 +5,9 @@
 <section>
 
     <div class="container shadow shadow-sm p-4 col-lg-10">
-        <h2 class="mb-5">Edit<br> <?= $contest->title ?></h2>
+        <h4 class="mb-">Edit <br>
+            <h1 class="mb-3"><?= $contest->title ?></h1>
+        </h4>
         <?php
         if (!empty(session()->getFlashdata("success"))) {
         ?>
@@ -29,7 +31,7 @@
         }
 
         ?>
-        <form class="row gx-3 gy-2 align-items-center text-black" enctype="multipart/form-data" action="<?= base_url('admin/edit-contest/'.$contest->id)?>" method="post">
+        <form class="row gx-3 gy-2 align-items-center text-black" enctype="multipart/form-data" action="<?= base_url('admin/edit-contest/' . $contest->id) ?>" method="post">
 
             <div class="row">
                 <div class="col-12 col-md-12 form-outline mb-2 pb-2" id="category-div">
@@ -42,9 +44,13 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-12 form-outline text-black  " id="category-div">
-                    <label class="form-label text-capitalize" for="typeNumber">Contest Sponsor/Organizer</label>
-                    <select required class="form-select text-black text-capitalize " name="sponsor" id="sponsor" value='Change Sponsor' placeholder="">
-                        <option value=0 selected="selected" disabled aria-required="" class="text-capitalize"><?= $contest->sponsor[0]->name ?></option>
+                    <label class="form-label text-capitalize" for="typeNumber">Change Contest Sponsor/Organizer</label>
+                    <select required class="form-select text-black text-capitalize " name="sponsor" id="sponsor" value='Change Sponsor' placeholder="mmm">
+                        <option value=0 selected="selected" disabled aria-required="" class="text-capitalize"><?php if (isset($contest->sponsor[0]->name)) {
+                                                                                                                    echo $contest->sponsor[0]->name;
+                                                                                                                } else {
+                                                                                                                    echo 'No Sponsor';
+                                                                                                                } ?></option>
 
                         <?php foreach ($sponsors as $sponsor) : ?>
 
@@ -73,7 +79,7 @@
                 <div class="col-12 col-md-6 form-outline text-black  " id="category-div">
                     <label class="form-label text-capitalize" for="typeNumber">Contest Category</label>
                     <select class="form-select text-black text-capitalize " required name="category" id="category" placeholder="">
-                        <option value="" disabled selected="selected">Change category</option>
+                        <option value="" disabled selected="selected"><?= $contest->category_d['title'] ?></option>
                         <?php foreach ($categories as $category) : ?>
 
                             <option value="<?= $category['id'] ?>" class="text-black">
@@ -108,11 +114,11 @@
 
                 <div class="col-12 col-md-6">
                     <label for="formFile" class="form-label">Upload Cover Image</label>
-                    <input class="form-control" type="file" accept="image/png, image/gif, image/jpeg ,image/webp" name="cover" required id="formFileMultiple" >
+                    <input class="form-control" type="file" accept="image/png, image/gif, image/jpeg ,image/webp" name="cover" required id="formFileMultiple" multiple>
                 </div>
                 <div class=" col-12 col-md-6">
                     <label for="formFile" class="form-label">Upload Contest Picture</label>
-                    <input class="form-control" name="picture" accept="image/png, image/gif, image/jpeg, image/webp" required type="file" id="formFileMultiple">
+                    <input class="form-control" name="picture" accept="image/png, image/gif, image/jpeg, image/webp" required type="file" id="formFileMultiple" multiple>
                 </div>
 
             </div>

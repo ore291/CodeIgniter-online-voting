@@ -117,7 +117,7 @@
                                                     </button>
                                                 </a>
 
-                                                <a href="<?= base_url('/contests/' . $contest->id) ?>">
+                                                <a href="<?= base_url('/contest/title/'.$contest->slug) ?>">
 
                                                     <button class="btn btn-block btn-primary btn-sm ms-3">View</button>
                                                 </a>
@@ -186,7 +186,7 @@
 <!-- Footer End -->
 
 <!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-dark btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+<a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
 

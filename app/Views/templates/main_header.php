@@ -25,14 +25,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
 
   <style>
-    .header-logged{
+    .header-logged {
       left: -50px;
     }
+
     @media screen and (min-width: 500px) {
-      .header-logged{
-      right: 0px;
-      left : 0px;
-    }
+      .header-logged {
+        right: 0px;
+        left: 0px;
+      }
     }
   </style>
 </head>
@@ -41,23 +42,25 @@
 
   <main class="main-banner">
 
-  <?php
+    <?php
 
-$loggedInUser = session()->get("loggedInUser");
+    $loggedInUser = session()->get("loggedInUser");
 
-$user = session()->get("user");;
-
-
-?>
-
+    $user = session()->get("user");
+    $settings_model = new App\Models\SettingsModel();
+    $logo = $settings_model->find(1);
 
 
-<nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
+    ?>
+
+
+
+    <nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
       <div class="container my-lg-2">
 
         <!-- Brand -->
         <a class="navbar-brand h-25" href="/" target="">
-          <!-- <img src="https://picsum.photos/id/684/600/400" class="nav-img " alt=""> -->
+          <img src="/images/<?= $logo['logo'] ?>" width="40" height="40" class="rounded-circle" alt="">
           <strong style="color: orange;">online voting</strong>
         </a>
 
@@ -90,71 +93,71 @@ $user = session()->get("user");;
           <!-- Right -->
           <?php
 
-                $userModel = new App\Models\UserModel();
-                $loggedInUser = session()->get("loggedInUser");
+          $userModel = new App\Models\UserModel();
+          $loggedInUser = session()->get("loggedInUser");
 
-                $user = $userModel->find($loggedInUser);
-
-
-                if (isset($loggedInUser)) {
-                ?>
-
-                    <div class="dropdown d-flex align-items-center">
-
-                        <span class="me-1"><?= esc(
-                                               $user->first_name
-                                            ) ?></span>
-                        <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="<?=
-                                        base_url('images/'.$user->picture)
-                                        ?>" alt="mdo" width="40" height="40" class="rounded-circle">
-                        </a>
-                        <ul class="dropdown-menu  text-small" aria-labelledby="dropdownUser1" style="left: -50px;">
-                            <li><a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Sign out</a></li>
-                        </ul>
+          $user = $userModel->find($loggedInUser);
 
 
+          if (isset($loggedInUser)) {
+          ?>
 
-                    </div>
+            <div class="dropdown d-flex align-items-center">
 
-                <?php
-                } else {
-
-                ?>
-
-                    <ul class="navbar-nav nav-flex-icons">
-
-
-                        <li class="nav-item">
-                            <div class="navbar-nav pl-5">
-                                <a class="nav-links pt-1 " href="<?php echo base_url('login') ?>">Login</a>
-
-                            </div>
-                        </li>
-                        <li class="nav-item me-5">
-                            <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="_blank">
-                                Sign Up
-                            </a>
-                        </li>
-                        <li class="nav-item">
-
-                        </li>
-                    </ul>
-                <?php
-                }
+              <span class="me-1"><?= esc(
+                                    $user->first_name
+                                  ) ?></span>
+              <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="<?=
+                          base_url('images/' . $user->picture)
+                          ?>" alt="mdo" width="40" height="40" class="rounded-circle">
+              </a>
+              <ul class="dropdown-menu  text-small" aria-labelledby="dropdownUser1" style="left: -50px;">
+                <li><a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Sign out</a></li>
+              </ul>
 
 
 
-                ?>
+            </div>
+
+          <?php
+          } else {
+
+          ?>
+
+            <ul class="navbar-nav nav-flex-icons">
+
+
+              <li class="nav-item">
+                <div class="navbar-nav pl-5">
+                  <a class="nav-links pt-1 " href="<?php echo base_url('login') ?>">Login</a>
+
+                </div>
+              </li>
+              <li class="nav-item me-5">
+                <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
+                  Sign Up
+                </a>
+              </li>
+              <li class="nav-item">
+
+              </li>
+            </ul>
+          <?php
+          }
 
 
 
-            </li>
-            <!-- <li class="nav-item me-">
+          ?>
+
+
+
+          </li>
+          <!-- <li class="nav-item me-">
               <a href="/sign-up" style='border-radius:50px !important;padding:auto auto !important;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
                 Sign Up
               </a>
@@ -166,7 +169,7 @@ $user = session()->get("user");;
 
       </div>
     </nav>
- 
+
 
 
 
