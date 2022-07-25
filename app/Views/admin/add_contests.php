@@ -48,10 +48,10 @@
                     <select class="form-select text-black text-capitalize " name="sponsor" id="sponsor" placeholder="">
                         <option value=0 selected="selected">No Sponsor</option>
 
-                        <?php foreach ($categories as $category) : ?>
+                        <?php foreach ($sponsors as $sponsor) : ?>
 
-                            <option value="<?= $category['id'] ?>" class="text-black">
-                                <?= esc($category['title']) ?>
+                            <option value="<?= $sponsor->id ?>" class="text-black">
+                                <?= esc($sponsor->name) ?>
                             </option>
 
 
@@ -123,8 +123,9 @@
 
                 <div class="col-12 col-md-6">
                     <label for="startDate" class="form-label">Contest Start Date</label>
-                    <input type="date" id="startDate" required name="startDate" class="form-control">
+                    <input type="datetime-local" id="startDate" require name="startDate" class="form-control">
                 </div>
+                
                 <div class="col-12 col-md-6">
                     <label for="endDate" class="form-label">Contest End Date</label>
                     <input type="date" id="endDate" required name="endDate" class="form-control">

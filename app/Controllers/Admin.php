@@ -8,6 +8,7 @@ use App\Models\SponsorModel;
 use App\Models\CategoryModel;
 use App\Models\VoteModel;
 use App\Models\UserModel;
+use App\Libraries\Utils;
 use Faker\Core\Number;
 
 class Admin extends BaseController
@@ -19,14 +20,28 @@ class Admin extends BaseController
         $contestModel = new ContestModel();
         $voteModel = new VoteModel();
         $userModel= new UserModel();
+        $category_model = new CategoryModel();
+        $sponsor_model = new SponsorModel();
 
         $cost = $voteModel->findColumn('cost');
-        $total_cost = array_sum($cost);   
+        $total_cost = 0;
+        if (!empty($cost)) {
+            $total_cost = array_sum($cost);
+        }
+       
 
         $orderedData = $contestModel->select('*')->where('status','pending')->orderBy('id', 'DESC')->paginate(10);
 
         $total_users =$userModel->countAllResults();
         $total_contests=$contestModel->countAllResults();
+        $active_contest=count($orderedData);
+
+        foreach ($orderedData as $contest) {
+            $contest->category_d = $category_model->find($contest->category);
+            $contest->sponsor = $sponsor_model->where('id', $contest->sponsor_id)->find();
+        }
+
+        unset($contest);
 
 
 
@@ -34,30 +49,19 @@ class Admin extends BaseController
         $data['cost'] = $total_cost;
         $data['users']=$total_users;
         $data['total_contests']=$total_contests;
+        $data['active_contest']= $active_contest;
 
         return view('admin/dashboard', $data);
     }
 
-    public function uploadImage($image)
-    {
-        $config['upload_path'] = getcwd() . '/images';
-        $image_name = $image->getName();
-
-        if (!is_dir($config['upload_path'])) {
-            mkdir($config['upload_path'], 077);
-        }
-
-        if (!$image->hasMoved()) {
-            $image->move($config['upload_path'], $image_name);
-        }
-
-        return $image_name;
-    }
+   
 
     public function getview_contest()
     {
         $data['title'] = ucfirst('admin');
         $contestModel = new ContestModel();
+        $category_model = new CategoryModel();
+        $sponsor_model = new SponsorModel();
 
         $searchData = $this->request->getGet();
         $search = "";
@@ -76,6 +80,14 @@ class Admin extends BaseController
                 ->paginate(10);
         }
 
+        // For each contestant, SELECT its user
+        foreach ($paginatedData as $contest) {
+            $contest->category_d = $category_model->find($contest->category);
+            $contest->sponsor = $sponsor_model->where('id', $contest->sponsor_id)->find();
+        }
+
+        unset($contest);
+
         $data['contests'] = $paginatedData;
         $data['pager'] = $contestModel->pager;
         $data['search'] = $search;
@@ -90,9 +102,18 @@ class Admin extends BaseController
     public function getadd_Contest()
     {
         $data['title'] = ucfirst('admin');
+
         $categoryModel = new CategoryModel();
         $categories = $categoryModel->findAll();
+
+        $sponsorModel = new SponsorModel();
+        $sponsors = $sponsorModel->findAll();
+
+
+        $data['sponsors'] = $sponsors;
         $data['categories'] = $categories;
+
+
 
 
         return view('admin/add_contests', $data);
@@ -239,7 +260,7 @@ class Admin extends BaseController
     {
         $categoryTitle = $this->request->getPost('category-title');
         $gender = $this->request->getPost('gender');
-        $picture = $this->uploadImage($this->request->getFile('pictures'));
+        $picture = Utils::uploadImage($this->request->getFile('pictures'));
         $categoryDescription = $this->request->getPost('categoryDescription');
 
         $data = [
@@ -354,7 +375,66 @@ class Admin extends BaseController
         $categories = $categoryModel->findAll();
         $data['categories'] = $categories;
 
+        $sponsorModel = new SponsorModel();
+        $sponsors = $sponsorModel->findAll();
+        $data['sponsors'] = $sponsors;
+
+       
+            $contest->sponsor = $sponsorModel->where('id', $contest->sponsor_id)->find();
+        
+
+        unset($contest);
+
+
+        
+           
+
         return view('admin/edit_contest', $data);
+    }
+    public function postEdit_contest(int $title)
+    {
+        $data['title'] = ucfirst('admin');
+        $contestModel = new ContestModel();
+        $contest = $contestModel->find($title);
+        $data['contest'] = $contest;
+
+        $contestTitle = $this->request->getPost('title');
+        $sponsor = $this->request->getPost('sponsor');
+        $category = $this->request->getPost('category');
+        $price = $this->request->getPost('price');
+        $cover =  Utils::uploadImage($this->request->getFile('cover'));
+        $picture = Utils::uploadImage($this->request->getFile('picture'));
+        $slug = Utils::slugify($contestTitle);
+        $start_date = $this->request->getPost('startDate');
+        $end_date = $this->request->getPost('endDate');
+
+        $data = [
+            'title' => strtoupper($contestTitle),
+            'category' => $category,
+            'sponsor_id' => $sponsor,
+            'price_per_vote' => $price,
+            'cover' => $cover,
+            'picture' => $picture,
+            'slug' => $slug,
+            'start_date' => $start_date,
+            'end_date' => $end_date
+
+        ];
+        $check_title =  $contestModel->where('id', $contestTitle)
+            ->first();
+
+        if ($check_title) {
+            return redirect()->back()->with('fail', 'Contest is already Registered');
+        } {
+            $query = $contestModel->update($title, $data);
+
+            if (!$query) {
+                return redirect()->back()->with('fail', 'Registration Failed');
+            } else {
+                return redirect()->to('/admin/view-contest')->with('success', 'Contest Edited Successful');
+            }
+        }
+
     }
     public function getedit_category(int $title)
     {
@@ -362,7 +442,7 @@ class Admin extends BaseController
         $categoryModel = new \App\Models\CategoryModel();
         $category = $categoryModel->find($title);
         $data['category'] = $category;
-        return view('admin/edit_category', $data);
+        return view('admin/edit-category', $data);
     }
 
     public function postedit_category(int $title)
@@ -374,7 +454,7 @@ class Admin extends BaseController
 
         $categoryTitle = $this->request->getPost('category-title');
         $gender = $this->request->getPost('gender');
-        $picture = $this->uploadImage($this->request->getFile('pictures'));
+        $picture = Utils::uploadImage($this->request->getFile('pictures'));
         $categoryDescription = $this->request->getPost('categoryDescription');
 
         $data = [
@@ -396,7 +476,7 @@ class Admin extends BaseController
             if (!$query) {
                 return redirect()->back()->with('fail', 'Registration Failed');
             } else {
-                return redirect()->to('/admin/add-category')->with('success', 'Registration Successful');
+                return redirect()->to('/admin/view-category')->with('success', 'Category Edited Successful');
             }
         }
     }
