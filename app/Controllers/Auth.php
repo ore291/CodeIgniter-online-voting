@@ -39,7 +39,10 @@ class Auth extends BaseController
             $userId = $user->id;
             session()->set('loggedInUser', $userId);
             session()->set('user', $user);
-            return redirect()->to("dashboard");
+            if($user->role == 'admin'){
+                return redirect()->to(base_url("admin"));
+            }else{
+            return redirect()->to("dashboard");}
         }
     }
 
@@ -111,4 +114,5 @@ class Auth extends BaseController
         session()->destroy();
         return redirect()->to("/");
     }
+   
 }

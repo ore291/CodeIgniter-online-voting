@@ -42,7 +42,7 @@
         ?>
 
         <div class="table-responsive">
-            <table class=" table table-striped table-bordered table-responsive  align-middle">
+            <table class=" table table-light table-bordered table-responsive  align-middle">
                 <thead class="text-center table-light ">
                     <tr>
                         <th scope="col">#</th>

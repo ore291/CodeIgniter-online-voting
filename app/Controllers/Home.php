@@ -78,5 +78,11 @@ class Home extends BaseController
         return view('faqs', $data);
         return view('about', $data);
     }
+    public function forgot_password()
+    {
+        $data['title'] = ucfirst('Forgot Password');
+
+        return view('forgot_password', $data); 
+    }
     
 }

@@ -44,4 +44,14 @@ class Utils
         // Return result
         return $text;
     }
+
+    public static function adminCheck()
+    {
+        $user = session()->get('user');
+        if (!session()->has('loggedInUser') or isset($user) and $user->role != 'admin') {
+            return true;
+        };
+        return false;
+
+    }
 }

@@ -9,12 +9,28 @@ use App\Models\CategoryModel;
 use App\Models\VoteModel;
 use App\Models\UserModel;
 use App\Libraries\Utils;
-use Faker\Core\Number;
 
-class Admin extends BaseController
+
+
+class Admin extends BaseController  
 {
+   
+        
+
+
+    
     public function getindex()
     {
+
+   
+
+    if(Utils::adminCheck())
+    {
+        return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+    }
+            
+
+
         $data['title'] = ucfirst('admin');
 
         $contestModel = new ContestModel();
@@ -59,6 +75,10 @@ class Admin extends BaseController
 
     public function getview_contest()
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
+
         $data['title'] = ucfirst('admin');
         $contestModel = new ContestModel();
         $category_model = new CategoryModel();
@@ -102,6 +122,9 @@ class Admin extends BaseController
 
     public function getadd_Contest()
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
         $data['title'] = ucfirst('admin');
 
         $categoryModel = new CategoryModel();
@@ -125,6 +148,9 @@ class Admin extends BaseController
 
     public function getadd_sponsors()
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
         $data['title'] = ucfirst('admin');
         $sponsorModel = new SponsorModel();
         $sponsor = $sponsorModel->findAll();
@@ -143,6 +169,9 @@ class Admin extends BaseController
 
     public function getSponsors()
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
 
         $data['title'] = ucfirst('admin');
         $sponsorModel = new SponsorModel();
@@ -186,6 +215,7 @@ class Admin extends BaseController
         $phone = $this->request->getPost('phone');
         $email = $this->request->getPost('email');
         $Description = $this->request->getPost('companyDescription');
+        $picture = Utils::uploadImage($this->request->getFile('picture'));
 
         $data = [
             'name' => $name,
@@ -193,7 +223,8 @@ class Admin extends BaseController
             'brand' => $brand,
             'phone' => $phone,
             'email' => $email,
-            'description' => $Description
+            'description' => $Description,
+            'picture'=> $picture
         ];
         $sponsorModel = new SponsorModel();
 
@@ -218,6 +249,9 @@ class Admin extends BaseController
 
     public function getadd_category()
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
         $data['title'] = ucfirst('admin');
 
 
@@ -228,6 +262,9 @@ class Admin extends BaseController
 
     public function getCategories()
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
         $data['title'] = ucfirst('admin');
         $categoryModel = new CategoryModel();
 
@@ -288,6 +325,9 @@ class Admin extends BaseController
 
     public function getview_votes()
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
         $data['title'] = ucfirst('admin');
         $voteModel = new \App\Models\VoteModel();
         $contestantModel=new \App\Models\ContestantsModel();
@@ -332,6 +372,9 @@ class Admin extends BaseController
 
     public function getSettings()
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
         $data['title'] = ucfirst('admin');
         return view('admin/settings', $data);
 
@@ -343,6 +386,9 @@ class Admin extends BaseController
 
     public function getUsers()
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
         $data['title'] = ucfirst('admin');
         $userModel = new \App\Models\UserModel();
         $searchData = $this->request->getGet();
@@ -381,6 +427,9 @@ class Admin extends BaseController
 
     public function getedit_contest(int $title)
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
 
         $data['title'] = ucfirst('admin');
         $contestModel = new \App\Models\ContestModel();
@@ -478,6 +527,9 @@ class Admin extends BaseController
     }
     public function getedit_category(int $title)
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
         $data['title'] = ucfirst('admin');
         $categoryModel = new \App\Models\CategoryModel();
         $category = $categoryModel->find($title);
@@ -524,6 +576,9 @@ class Admin extends BaseController
 
     public function getdelete_contest(int $id)
     {
+        if (Utils::adminCheck()) {
+            return redirect()->to(base_url('login'))->with('fail', 'You are not an Admin');
+        }
 
         $contestModel = new \App\Models\ContestModel();
         $contestantModel = new \App\Models\ContestantsModel();

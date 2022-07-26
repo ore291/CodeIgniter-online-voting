@@ -52,7 +52,7 @@
             <div class="col-12 col-md-6 form-outline mb-2 pb-2" id="category-div">
 
                 <label class="form-label text-black" for="brand-title">Brand</label>
-                <input class="form-control text-black" name="brand" id="brand-title" type="text" placeholder="Brand name" aria-label="name">
+                <input class="form-control text-black" name="brand" id="brand-title" type="text" placeholder="Brand name (optional)" aria-label="name">
 
             </div>
 
@@ -67,6 +67,10 @@
                 </div>
 
 
+            </div>
+            <div class=" col-12 col-md-12 mb-2">
+                <label for="formFile" class="form-label">Upload Sponsor Picture</label>
+                <input class="form-control" name="picture" accept="image/png, image/gif, image/jpeg, image/webp" required type="file" id="formFileMultiple" >
             </div>
 
             <div class="col-12 col-md-12   form-outline mb-2 pb-2" id="category-div">
