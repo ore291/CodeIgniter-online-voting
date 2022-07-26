@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,139 +9,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo base_url('bootstrap/css/bootstrap.css') ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/contests.css') ?>" type="text/css">
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" /> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-</head>
-
-<body>
-
-
-
-<?php
-
-$loggedInUser = session()->get("loggedInUser");
-
-$user = session()->get("user");;
-
-
-?>
-<main class="main-banner">
-
-
-  <nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
-    <div class="container my-lg-2">
-
-      <!-- Brand -->
-      <a class="navbar-brand h-25" href="/" target="">
-        <!-- <img src="https://picsum.photos/id/684/600/400" class="nav-img " alt=""> -->
-        <strong style="color: orange;">online voting</strong>
-      </a>
+</head> -->
 
 
 
 
-      <!-- Collapse -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <?= $this->extend('Layout/main') ?>
 
-      <!-- Links -->
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <?= $this->section('content') ?>
 
-        <!-- Left -->
-        <ul class="nav navbar-nav mx-auto ">
-          <li class="nav-item ">
-            <a class="nav-links" href="/">Home
+    <?php
 
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-links contest" href="<?php echo base_url('contests') ?>" target="">Contests</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-links" href="/about-us" target="">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-links" href="/contact-us" target="">Contact Us</a>
-          </li>
-        </ul>
+    use App\Models\SettingsModel;
 
-        <!-- Right -->
-        <?php
+    $loggedInUser = session()->get("loggedInUser");
+
+    $user = session()->get("user");
+
+    $settings_model = new SettingsModel();
+
+    $settings = $settings_model->find(1);
+    $api_key=$settings['paystack_api_key'];
+
+
+    ?>
+    <!-- <main class="main-banne">
+
+
+       
 
 
 
-        if (isset($loggedInUser)) {
-        ?>
-
-          <div class="dropdown d-flex align-items-center justify-content-center w-100 mt-1">
-
-            <span class="me-1"><?= esc(
-                                  $user->first_name
-                                ) ?></span>
-            <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="<?=
-                        base_url('images/' . $user->picture)
-                        ?>" alt="mdo" width="40" height="40" class="rounded-circle">
-            </a>
-            <ul class="dropdown-menu  text-small header-logged" aria-labelledby="dropdownUser1" >
-              <li><a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Sign out</a></li>
-            </ul>
+    </main> -->
 
 
-
-          </div>
-
-        <?php
-        } else {
-
-        ?>
-
-          <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item ">
-
-              <a href="<?php echo base_url('login') ?>" class="nav-links">Login</a>
-
-            </li>
-            <li class="nav-item ">
-              <a href="<?php echo base_url('sign-up') ?>" class="nav-links ">
-                Register
-              </a>
-            </li>
-
-          </ul>
-        <?php
-        }
-
-
-
-        ?>
-
-
-
-        </li>
-   
-
-
-
-      </div>
-
-    </div>
-  </nav>
-
-
-
-
-
-
-
-    </main>
+    
 
     <main>
         <section class="mt-lg-4 bg-dark py-3">
@@ -323,12 +229,12 @@ $user = session()->get("user");;
 
     <footer class="row bg-black  mt-5 mx-auto pt-5  w-100" style="left:0 ;right:0;">
 
-       
 
-    <div class="d-flex justify-content-center py-1" style="border-top: 1px solid rgb(33, 28, 34);">
-    <p class="text-secondary" style="font-size:smaller"> &copy; <?= date('Y') ?> KightTech, All rights reserved.</p>
 
-  </div>
+        <div class="d-flex justify-content-center py-1" style="border-top: 1px solid rgb(33, 28, 34);">
+            <p class="text-secondary" style="font-size:smaller"> &copy; <?= date('Y') ?> KightTech, All rights reserved.</p>
+
+        </div>
 
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -341,7 +247,7 @@ $user = session()->get("user");;
     <script>
         function payWithPaystack() {
             let handler = PaystackPop.setup({
-                key: 'pk_test_9da36d88c1d36b3beaab17754e6a92d2ad64ccaf', // Replace with your public key
+                key: <?= $api_key ?> ,// Replace with your public key
                 email: document.getElementById("email-address").value,
                 amount: document.getElementById("vote_count").value * <?= $contest->price_per_vote ?> * 100,
                 onClose: function() {
@@ -385,10 +291,11 @@ $user = session()->get("user");;
         });
     </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-</body>
+
+    <?= $this->endSection() ?>
 
 
 
 
 
-</html>
+

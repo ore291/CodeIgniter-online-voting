@@ -167,12 +167,7 @@ class Admin extends BaseController
 
         $sponsorModel->delete;
 
-        function delete($id)
-        {
-            $sponsorModel = new SponsorModel();
-
-            $sponsorModel->delete($id);
-        }
+        
 
 
         $data['sponsors'] = $paginatedData;
@@ -296,6 +291,7 @@ class Admin extends BaseController
         $data['title'] = ucfirst('admin');
         $voteModel = new \App\Models\VoteModel();
         $contestantModel=new \App\Models\ContestantsModel();
+        $userModel= new UserModel();
 
 
         $searchData = $this->request->getGet();
@@ -316,6 +312,14 @@ class Admin extends BaseController
 
                 ->paginate(10);
         }
+
+        foreach ($paginatedData as $contestant) {
+            $contestant['user'] = $userModel->where('id',$contestant['contestant_id'])->find();
+            // $contest->sponsor = $sponsor_model->where('id', $contest->sponsor_id)->find();
+        }
+
+        unset($contestant);
+
       
 
         $data['votes'] = $paginatedData;
@@ -413,26 +417,49 @@ class Admin extends BaseController
 
         $contestTitle = $this->request->getPost('title');
         $sponsor = $this->request->getPost('sponsor');
-        $category = $this->request->getPost('category');
+        
         $price = $this->request->getPost('price');
-        $cover =  Utils::uploadImage($this->request->getFile('cover'));
-        $picture = Utils::uploadImage($this->request->getFile('picture'));
+        $cove= $this->request->getFile('cover');
+        $pic
+        = $this->request->getFile('picture');
+        
         $slug = Utils::slugify($contestTitle);
         $start_date = $this->request->getPost('startDate');
         $end_date = $this->request->getPost('endDate');
 
-        $data = [
-            'title' => strtoupper($contestTitle),
-            'category' => $category,
-            'sponsor_id' => $sponsor,
-            'price_per_vote' => $price,
-            'cover' => $cover,
-            'picture' => $picture,
-            'slug' => $slug,
-            'start_date' => $start_date,
-            'end_date' => $end_date
+       
+        if(file_exists($cove) && file_exists($pic) && isset($category)){
+            $cover =  Utils::uploadImage($this->request->getFile('cover'));
+            $picture = Utils::uploadImage($this->request->getFile('picture'));
+            $category = $this->request->getPost('category');
+            $data = [
+                'title' => strtoupper($contestTitle),
+                'category' => $category,
+                'sponsor_id' => $sponsor,
+                'price_per_vote' => $price,
+                'cover'=>$cover,
+                'picture'=> $picture,
+                'slug' => $slug,
+                'start_date' => $start_date,
+                'end_date' => $end_date
 
-        ];
+            ];
+
+        }else{
+            $data = [
+                'title' => strtoupper($contestTitle),
+                // 'category' => $category,
+                'sponsor_id' => $sponsor,
+                'price_per_vote' => $price,
+                'slug' => $slug,
+                'start_date' => $start_date,
+                'end_date' => $end_date
+
+            ];
+
+        }
+
+        
         $check_title =  $contestModel->where('id', $contestTitle)
             ->first();
 

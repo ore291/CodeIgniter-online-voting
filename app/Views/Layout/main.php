@@ -44,12 +44,12 @@
 
 
 
-    <nav class="navbar fixed navbar-expand-lg navbar-dark scrolling-navbar border-1 border-botto">
+    <nav class="navbar fixed navbar-expand-lg w-100 navbar-dark scrolling-navbar border-1 border-botto">
         <div class="container my-lg-2">
 
             <!-- Brand -->
             <a class="navbar-brand h-25" href="/" target="">
-                <img src="/images/<?= $logo['logo'] ?>" width="40" height="40" class="rounded-circle" alt="">
+                <img src="/images/<?= $logo['logo'] ?>" width="60" height="60" class="rounded-circle" alt="">
                 <strong style="color: orange;">online voting</strong>
             </a>
 
@@ -62,7 +62,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <!-- Left -->
-                <ul class="navbar-nav mx-auto ">
+                <ul class="navbar-nav d-flex justify-content-center w-100 text-center ">
                     <li class="nav-item ">
                         <a class="nav-links" href="/">Home
 
@@ -72,10 +72,10 @@
                         <a class="nav-links contest" href="<?php echo base_url('contests') ?>" target="">Contests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-links" href="about" target="">About</a>
+                        <a class="nav-links" href="/about-us" target="">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-links" href="/contact" target="">Contact Us</a>
+                        <a class="nav-links" href="/contact-us" target="">Contact Us</a>
                     </li>
                 </ul>
 
@@ -91,7 +91,7 @@
                 if (isset($loggedInUser)) {
                 ?>
 
-                    <div class="dropdown d-flex align-items-center">
+                    <div class="dropdown d-flex align-items-center  justify-content-center">
 
                         <span class="me-1"><?= esc(
                                                 $user->first_name
@@ -128,7 +128,7 @@
                             </div>
                         </li>
                         <li class="nav-item me-5">
-                            <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
+                            <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 text-nowrap btn-warning border-0 btn text-black rounded " target="">
                                 Sign Up
                             </a>
                         </li>
@@ -145,16 +145,16 @@
 
 
 
-                </li>
-                <!-- <li class="nav-item me-">
+            </div>
+            <!-- <li class="nav-item me-">
               <a href="/sign-up" style='border-radius:50px !important;padding:auto auto !important;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
                 Sign Up
               </a>
             </li> -->
+        </div>
 
 
-
-            </div>
+        </div>
 
         </div>
     </nav>

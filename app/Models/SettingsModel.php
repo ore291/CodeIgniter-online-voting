@@ -14,7 +14,7 @@ class SettingsModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['paystack_api_key','logo'];
+    protected $allowedFields    = ['paystack_api_key','logo','paystack_secret_key'];
 
     // Dates
     protected $useTimestamps = false;

@@ -52,4 +52,26 @@ class Settings extends BaseController
             }
         }
     }
+    public function postSecretKey()
+    {
+        $api_key = $this->request->getPost('secret-key');
+        $data = [
+            'paystack_secret_key' => $api_key,
+        ];
+        $settingsModel = new SettingsModel();
+        $check_title =  $settingsModel->where('paystack_secret_key', 1)
+            ->first();
+
+        if ($check_title) {
+            return redirect()->back()->with('fail', 'old key is same as new ');
+        } {
+            $query = $settingsModel->update('1', $data);
+
+            if (!$query) {
+                return redirect()->back()->with('fail', 'Registration Failed');
+            } else {
+                return redirect()->to(base_url('/admin/settings'))->with('success', 'Api key Registered');
+            }
+        }
+    }
 }

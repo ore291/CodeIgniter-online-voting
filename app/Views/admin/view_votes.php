@@ -49,7 +49,7 @@
                                 <td><?= $vote['reference'] ?></td>
                                 <td>&#8358;<?= $vote['cost'] ?></td>
                                 <td><?= $vote['vote_count'] ?></td>
-                                <td><?= $vote['contestant_id'] ?></td>
+                                <td><?= $vote['contestant_id']?></td>
                                 <td><?= $vote['vote_count'] ?></td>
 
                             </tr>

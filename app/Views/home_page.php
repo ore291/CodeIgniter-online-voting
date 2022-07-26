@@ -31,7 +31,7 @@
                 </h4>
                 <p class="my-4 " style='max-width:fit-content;'>Sign up now to take part in the <span class="text-capitalize"><?= $random_contest->title ?></span> contest </p>
                 <span class="nav-item ms-2 ps-2 w-50">
-                  <a href="<?= base_url('contest/title/' . $random_contest->slug) ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-link  border border-light b px- ms-2 py-2 btn-warning btn btn-outline-light w-50 btn-lg text-black rounded ">
+                  <a href="<?= base_url('contest/title/' . $random_contest->slug) ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-link  border border-0 b px- ms-2 py-2 btn-warning btn btn-outline-light w-50 btn-lg text-black rounded ">
                     Apply Now
                   </a>
                 </span>
@@ -113,7 +113,7 @@
 
 
   
-      <a href="/contact-us" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-link border border-light b px-1 py-2 btn-warning btn btn-outline-light w-50 btn-lg text-black rounded " >
+      <a href="/contact-us" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-link border border-0 b px-1 py-2 btn-warning btn btn-outline-light w-50 btn-lg text-black rounded " >
         Become a Sponsor
       </a>
 
