@@ -4,6 +4,152 @@
 <?= $this->section('content') ?>
 
 <main>
+    <?php
+
+    $userModel = new App\Models\UserModel();
+    $loggedInUser = session()->get("loggedInUser");
+
+    $user = $userModel->find($loggedInUser);
+    ?>
+
+    <div class="container-fluid my-5">
+
+        <div class="dropdown-center">
+            <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Profile Settings
+            </button>
+            <ul class="dropdown-menu  bg-dark">
+                <ul class="nav nav-pills bg-dark text-sm d-flex flex-column ">
+                    <li class="nav-item">
+                        <a class="nav-link active bg-transparent text-warning" data-bs-toggle="pill" href="#msg">Change Profile Picture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning bg-transparent text-warning" data-bs-toggle="pill" href="#pro">Change Password</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link bg-transparent text-warning" data-bs-toggle="pill" href="#set">Setting</a>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+
+        
+        <!-- Tabs navs -->
+
+        <div class="tab-content">
+            <div class="tab-pane container active" id="msg">
+                <div class="col-12 col-md-12 text-center ">
+                    <div>
+                        <img src="<?=
+                                    base_url('images/' . $user->picture)
+                                    ?>" alt="" class="rounded col-lg-6 col-12 mx-auto 
+                            " style="max-width: 100%;height:50vh;object-fit:contain">
+
+                    </div>
+                    <span class="text-warning text-center mx-auto w-100"> </span>
+                    <div class="d-flex col-6 mt-2 mx-auto">
+
+                        <input class="form-control " required name="picture" accept="image/png, image/gif, image/jpeg" id="picture" type="file" />
+                        <button type="submit" class="ms-2 btn btn-success btn-sm">Update</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane container fade" id="pro">
+                <div class="col-12 col-md-6 mx-md-auto">
+                    <div class="card card-outline-dark bg-black">
+                        <div class="card-header">
+                            <h3 class="mb-0">Change Password</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="inputPasswordOld">Current Password</label>
+                                    <input type="password" class="form-control" id="inputPasswordOld" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPasswordNew">New Password</label>
+                                    <input type="password" class="form-control" id="inputPasswordNew" required="">
+                                    <span class="form-text small text-muted">
+                                        The password must be 8-20 characters, and must <em>not</em> contain spaces.
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPasswordNewVerify">Verify</label>
+                                    <input type="password" class="form-control" id="inputPasswordNewVerify" required="">
+                                    <span class="form-text small text-muted">
+                                        To confirm, type the new password again.
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-lg float-right">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane container fade" id="set">This is a setting tab using pill data-toggle attribute.</div>
+        </div>
+
+        <!-- Tabs content -->
+
+        <!-- Tabs content -->
+
+
+
+
+        <!-- <div class="row p-2 borde border- d-flex align-content-center tab-content   justify-content-center align-items-center " id="ex1-content">
+            <div class="col-12 col-md-6 text-center ">
+                <div>
+                    <img src="<?=
+                                base_url('images/' . $user->picture)
+                                ?>" alt="" class="rounded col-lg-12 col-12 mx-auto 
+                            " style="max-width: 100%;height:250px;object-fit:contain">
+
+                </div>
+                <span class="text-warning text-center mx-aut0 w-100"> Change profile picture</span>
+                <div class="d-flex col-8 mt-2 mx-auto">
+
+                    <input class="form-control " required name="picture" accept="image/png, image/gif, image/jpeg" id="picture" type="file" />
+                    <button type="submit" class="ms-2 btn btn-success btn-sm">Update</button>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card card-outline-dark bg-black">
+                    <div class="card-header">
+                        <h3 class="mb-0">Change Password</h3>
+                    </div>
+                    <div class="card-body">
+                        <form class="form" role="form" autocomplete="off">
+                            <div class="form-group">
+                                <label for="inputPasswordOld">Current Password</label>
+                                <input type="password" class="form-control" id="inputPasswordOld" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPasswordNew">New Password</label>
+                                <input type="password" class="form-control" id="inputPasswordNew" required="">
+                                <span class="form-text small text-muted">
+                                    The password must be 8-20 characters, and must <em>not</em> contain spaces.
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPasswordNewVerify">Verify</label>
+                                <input type="password" class="form-control" id="inputPasswordNewVerify" required="">
+                                <span class="form-text small text-muted">
+                                    To confirm, type the new password again.
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-lg float-right">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
     <div class="w-100 my-4">
         <h1 class="text-center text-warning">
             MY CONTESTS
@@ -110,5 +256,6 @@
         </div>
     </div>
 </main>
+
 
 <?= $this->endSection() ?>

@@ -4,7 +4,7 @@
 
 <main>
 
-    <section class="bg-dark">
+    <section class="bg-black">
         <div class="container py-5 h-10 text-white">
             <div class="row d-flex justify-content-center align-items-center h-10 mb-3">
                 <div class="col col-xl-6 mb-3">
