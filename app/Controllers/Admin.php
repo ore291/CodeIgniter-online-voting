@@ -459,7 +459,7 @@ class Admin extends BaseController
     }
     public function postEdit_contest(int $title)
     {
-        $data['title'] = ucfirst('admin');
+       
         $contestModel = new ContestModel();
         $contest = $contestModel->find($title);
         $data['contest'] = $contest;
