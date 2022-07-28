@@ -90,67 +90,69 @@
 
                 if (isset($loggedInUser)) {
                 ?>
-
-                    <div class="dropdown d-flex align-items-center  justify-content-center">
-
-                        <span class="me-1"><?= esc(
-                                                $user->first_name
-                                            ) ?></span>
-                        <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="<?=
-                                        base_url('images/' . $user->picture)
-                                        ?>" alt="mdo" width="40" height="40" class="rounded-circle">
-                        </a>
-                        <ul class="dropdown-menu  text-small" aria-labelledby="dropdownUser1" style="left: -50px;">
-                            <li><a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Sign out</a></li>
-                        </ul>
-
-
-
-                    </div>
-
-                <?php
-                } else {
-
-                ?>
-
                     <ul class="navbar-nav nav-flex-icons">
 
 
                         <li class="nav-item">
-                            <div class="navbar-nav pl-5">
-                                <a class="nav-links pt-1 " href="<?php echo base_url('login') ?>">Login</a>
+
+                            <div class="dropdown d-flex align-items-center  justify-content-center">
+
+                                <span class="me-1"><?= esc(
+                                                        $user->first_name
+                                                    ) ?></span>
+                                <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="<?=
+                                                base_url('images/' . $user->picture)
+                                                ?>" alt="mdo" width="40" height="40" class="rounded-circle">
+                                </a>
+                                <ul class="dropdown-menu  text-small" aria-labelledby="dropdownUser1" style="left: -50px;">
+                                    <li><a class="dropdown-item" href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Sign out</a></li>
+                                </ul>
+
+
 
                             </div>
                         </li>
-                        <li class="nav-item me-5">
-                            <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 text-nowrap btn-warning border-0 btn text-black rounded " target="">
-                                Sign Up
-                            </a>
-                        </li>
-                        <li class="nav-item">
-
-                        </li>
                     </ul>
-                <?php
-                }
+
+                        <?php
+                    } else {
+
+                        ?>
+
+                            <ul class="navbar-nav nav-flex-icons d-flex justify-content-center align-items-center">
+
+
+                                <li class="nav-item">
+                                    <div class="navbar-nav pl-5">
+                                        <a class="nav-links pt-1 " href="<?php echo base_url('login') ?>">Login</a>
+
+                                    </div>
+                                </li>
+                                <li class="nav-item me-lg-5">
+                                    <a href="<?php echo base_url('sign-up') ?>" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-links border border-light b px-3 text-nowrap btn-warning border-0 btn text-black rounded " target="">
+                                        Sign Up
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+
+                                </li>
+                            </ul>
+                        <?php
+                    }
 
 
 
-                ?>
+                        ?>
 
 
 
             </div>
-            <!-- <li class="nav-item me-">
-              <a href="/sign-up" style='border-radius:50px !important;padding:auto auto !important;color:black !important;' class="nav-links border border-light b px-3 btn-warning btn text-black rounded " target="">
-                Sign Up
-              </a>
-            </li> -->
+
         </div>
 
 

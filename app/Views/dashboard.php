@@ -154,6 +154,7 @@
         <div class="container overflow-hidden">
             <div class="row gx-0 gy-2 g-md-2">
                 <?php foreach ($contestants as $contestant) : ?>
+                    <?php $string = str_replace('&AMP;', 'and', htmlspecialchars(urlencode($contestant->contest->title))) ?>
                     <div class="mt-1 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="card-img-top card-click  " style="background-image: url(/images/<?= $contestant->image ?>); background-repeat: no-repeat; background-position:top center;">
@@ -166,12 +167,15 @@
                                         <div re="noopener" target="_blank" class="fb-share-button" data-href="<?= $contestant->share_url ?>" data-layout="button_count">
                                         </div>
 
-                                        <a re="noopener" target="_blank" href="https://twitter.com/intent/tweet?text=Vote for <?= $contestant->user->full_name ?> on the <?= $contestant->contest->title ?> contest&amp;url=<?= $contestant->share_url ?>">
+                                        <a re="noopener" target="_blank" href="https://twitter.com/intent/tweet?text=Vote for <?= $contestant->user->full_name ?> on the <?= $string ?> contest&amp;url=<?= $contestant->share_url ?>">
                                             <img src="https://res.cloudinary.com/ademolamadelewi/image/upload/f_auto,q_auto/v1610570958/farmers/Group_89_wd6035.svg" alt="icon"></a>
-                                        <a re="noopener" target="_blank" href="https://telegram.me/share/url?url=<?= $contestant->share_url ?>&amp;text=Vote%20for%20<?= $contestant->user->full_name ?>%20on%20the%20<?= $contestant->contest->title ?>%20voting%20contest <?= $contestant->share_url ?>">
+                                        <a re="noopener" target="_blank" href="https://telegram.me/share/url?url=<?= $contestant->share_url ?>&amp;text=Vote%20for%20<?= $contestant->user->full_name ?>%20on%20the%20<?= $string ?>%20voting%20contest <?= $contestant->share_url ?>">
                                             <img src="https://res.cloudinary.com/ademolamadelewi/image/upload/f_auto,q_auto/v1610570958/farmers/Group_87_hlxuxz.svg" alt="icon"></a>
-                                        <a re="noopener" target="_blank" href="https://wa.me/?text=Vote%20for%20<?= $contestant->user->full_name ?>%20on%20the%20<?= $contestant->contest->title ?>%20voting%20contest <?= $contestant->share_url ?>" data-action="share/whatsapp/share">
+                                        <a re="noopener" target="_blank" href="https://wa.me/?text=Vote%20for%20<?= $contestant->user->full_name ?>%20on%20the%20<?= $string ?>%20voting%20contest <?= $contestant->share_url ?>" data-action="share/whatsapp/share">
                                             <img src="https://res.cloudinary.com/ademolamadelewi/image/upload/f_auto,q_auto/v1610570958/farmers/Group_90_ovpara.svg" alt="icon"></a>
+
+                                        <a href=" <?= base_url('images/' . $contestant->image) ?>" download><i class="bi bi-cloud-arrow-down-fill m-auto position-absolute ps-1 text-black py-auto" style="font-size: 1.3em;"></i></a>
+
 
 
                                     </div>

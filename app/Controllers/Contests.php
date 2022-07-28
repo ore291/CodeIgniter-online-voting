@@ -23,10 +23,11 @@ class Contests extends BaseController
         }
 
         if ($search == '') {
-            $paginateData = $contest_model->paginate(12);
+            $paginateData = $contest_model->orderBy('created_at','DESC')->paginate(12);
         } else {
             $paginateData = $contest_model->select('*')
                 ->orLike('title', $search)
+               
                 ->paginate(8);
         }
 
