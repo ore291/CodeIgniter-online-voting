@@ -4,7 +4,7 @@
 
 <main>
 
-    <section class="bg-dark">
+    <section class="bg-black">
         <div class="container py-5 h-10 text-white">
             <div class="row d-flex justify-content-center align-items-center h-10 mb-3">
                 <div class="col col-xl-6 mb-3">
@@ -86,7 +86,7 @@
                                             <button class="btn btn-warning btn-lg btn-block" type="submit">Login</button>
                                         </div>
 
-                                        <a class="small text-white mb-lg-2 " href="">Forgot password?</a>
+                                        <a class="small text-white mb-lg-2 " href="<?=base_url('forgot-password')?>">Forgot password?</a>
                                         <p class="mb-5 pb-lg-2" style="color: #fff;">Don't have an account? <a href="sign-up" style="color: #393f81;">Register here</a></p>
                                         <a href="" class="small text-secondary">Terms of use.</a>
                                         <a href="" class="small text-secondary">Privacy policy</a>

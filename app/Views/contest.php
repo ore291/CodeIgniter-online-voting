@@ -139,7 +139,7 @@
 
     </section>
 
-    <section class="mt-5 ">
+    <div class="mt-5 ">
 
         <?php
 
@@ -148,12 +148,16 @@
         ?>
             <h1 class="text-center text-warning text-uppercase">Disqualify Stages</h1>
             <p class="text-center">Disqualify contestants in the following stages,please confirm before you proceed!</p>
-            <div class="d-flex  justify-content-center align-items-center">
+            <div class="d-flex  justify-content-center align-items-center flex-lg-wrap mx-auto">
 
                 <button type="button" data-bs-toggle="modal" data-bs-target="#unstageModal" class="btn btn-danger mx-2">Unstaged</button>
                 <button data-bs-toggle="modal" data-bs-target="#bronzeModal" type="button" class="btn btn-danger mx-2">Bronze</button>
                 <button data-bs-toggle="modal" data-bs-target="#silverModal" type="button" class="btn btn-danger mx-2">Silver</button>
                 <button data-bs-toggle="modal" data-bs-target="#goldModal" type="button" class="btn btn-danger mx-2">Gold</button>
+
+            </div>
+            <div class="mx-auto justify-content-center d-flex align-content-center mt-lg-2 mt-3">
+                <button data-bs-toggle="modal" data-bs-target="#winnerModal" type="button" class="btn col-lg-5 col-10 btn-success mx-2 mt-1 ">Declare Winner</button>
             </div>
             <div class="modal fade" id="unstageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered text-black">
@@ -239,6 +243,29 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="winnerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered text-black">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Declare Winner</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body ">
+                            Do you want to declare <?php if ($contestants) {
+                                                        echo strtoupper($contestants[0]->full_name);
+                                                    } ?> as the winner?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="<?= base_url('contest/declare-winner/' . $contest->id) ?>" method="post">
+                                <input type="number" name="contest_id" id="contest_id" value="<?= $contest->id ?>" style="display: none;" />
+                                <input type="number" name="stage" id="stage" value="99" style="display: none;" />
+                                <button type="submit" class="btn btn-danger">Yes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row g-0 overflow-hidden mt-2">
                 <?php
                 if (!empty(session()->getFlashdata("success"))) {
@@ -273,6 +300,72 @@
 
         ?>
 
+        <?php
+
+        if (isset($contest->winner_id)) {
+        ?>
+
+            <div class="row g-0">
+                <div class="col-12 col-md-4 offset-md-4">
+
+                    <div class="mt-1 col-md-12 col-lg-12 text-black">
+                        <div class="card">
+                            <div class="card-img-top card-click " style="background-image: url(/images/<?= $contest->winner->image ?>); background-repeat: no-repeat; background-position:top center;">
+                                <img src="/images/<?= $contest->winner->image ?>" alt="card-img" class="w-100 contest-card-hero" loading="lazy">
+
+                            </div>
+                            <div class="card-body">
+
+                                <h3 class="mb-0 text-center card-title text-uppercase"><?= $contest->winner->full_name ?></h3>
+                                <div class="text-center card-text">
+                                    <!-- <p>
+                                        CANDIDATE NUMBER:<span class="font-weight-bold">001</span>
+                                    </p> -->
+                                    <div class="my-3 d-flex align-items-center justify-content-between">
+                                        <?php
+                                        if ($contest->winner->votes > 0 and $contest->total_votes > 0) {
+                                        ?>
+                                            <p>Voting Percent: <?= number_format(($contest->winner->votes / $contest->total_votes) * 100, 2) ?>%</p>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <p>Voting Percent: 0%</p>
+                                        <?php
+                                        }
+
+                                        ?>
+
+
+                                        <p>
+                                            No of Votes: <span class="font-weight-bold"><?= $contest->winner->votes ?></span>
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="mt-3 d-grid gap-2">
+                                    <a href="<?= $contest->winner->share_url ?>">
+
+                                        <h2 class="text-center text-warning  text-black text-capitalize " type="link" href="">
+                                            <?= $contest->title ?> Contest Winner
+                                        </h2>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        <?php
+        }
+
+
+        ?>
+
+
 
 
 
@@ -292,7 +385,9 @@
         <div class="contestants-container">
             <div class="container overflow-hidden">
                 <div class="row gx-0 gy-2 g-md-2">
+
                     <?php foreach ($contestants as $contestant) : ?>
+                        <?php $string = str_replace('&AMP;', 'and', htmlspecialchars(urlencode($contest->title))) ?>
                         <div class="mt-1 col-md-6 col-lg-4">
                             <div class="card">
                                 <div class="card-img-top card-click " style="background-image: url(/images/<?= $contestant->image ?>); background-repeat: no-repeat; background-position:top center;">
@@ -305,13 +400,13 @@
                                             <div re="noopener" target="_blank" class="fb-share-button" data-href="<?= $contestant->share_url ?>" data-layout="button_count">
                                             </div>
 
-                                            <a re="noopener" target="_blank" href="https://twitter.com/intent/tweet?text=Vote for <?= $contestant->user->full_name ?> on the <?= $contest->title ?> contest&amp;url=<?= $contestant->share_url ?>">
+                                            <a re="noopener" target="_blank" href="https://twitter.com/intent/tweet?text=Vote for <?= $contestant->user->full_name ?> on the <?= $string ?> contest&amp;url=<?= $contestant->share_url ?>">
                                                 <img src="https://res.cloudinary.com/ademolamadelewi/image/upload/f_auto,q_auto/v1610570958/farmers/Group_89_wd6035.svg" alt="icon"></a>
-                                            <a re="noopener" target="_blank" href="https://telegram.me/share/url?url=<?= $contestant->share_url ?>&amp;text=Vote%20for%20<?= $contestant->user->full_name ?>%20on%20the%20<?= $contest->title ?>%20voting%20contest <?= $contestant->share_url ?>">
+                                            <a re="noopener" target="_blank" href="https://telegram.me/share/url?url=<?= $contestant->share_url ?>&amp;text=Vote%20for%20<?= $contestant->user->full_name ?>%20on%20the%20<?= $string ?>%20voting%20contest <?= $contestant->share_url ?>">
                                                 <img src="https://res.cloudinary.com/ademolamadelewi/image/upload/f_auto,q_auto/v1610570958/farmers/Group_87_hlxuxz.svg" alt="icon"></a>
-                                            <a re="noopener" target="_blank" href="https://wa.me/?text=Vote%20for%20<?= $contestant->user->full_name ?>%20on%20the%20<?= $contest->title ?>%20voting%20contest <?= $contestant->share_url ?>" data-action="share/whatsapp/share">
+                                            <a re="noopener" target="_blank" href="<?php echo 'https://wa.me/?text=Vote%20for%20' . $contestant->user->full_name . '%20on%20the%20' . $string . '%20voting%20contest ' . $contestant->share_url   ?>" data-action="share/whatsapp/share">
                                                 <img src="https://res.cloudinary.com/ademolamadelewi/image/upload/f_auto,q_auto/v1610570958/farmers/Group_90_ovpara.svg" alt="icon"></a>
-
+                                            <a href=" <?= base_url('images/' . $contestant->image) ?>" download><i class="bi bi-cloud-arrow-down-fill m-auto position-absolute ps-1 text-black py-auto" style="font-size: 1.3em;"></i></a>
 
                                         </div>
                                     </div>
@@ -325,7 +420,7 @@
                                     </p> -->
                                         <div class="my-3 d-flex align-items-center justify-content-between">
                                             <?php
-                                            if ($contestant->votes > 0) {
+                                            if ($contestant->votes > 0 and $contest->total_votes > 0) {
                                             ?>
                                                 <p>Voting Percent: <?= number_format(($contestant->votes / $contest->total_votes) * 100, 2) ?>%</p>
                                             <?php
@@ -343,7 +438,7 @@
                                             </p>
                                         </div>
                                         <?php
-                                        if ($contestant->votes > 0) {
+                                        if ($contestant->votes > 0 and $contest->total_votes > 0) {
                                         ?>
 
                                             <div class="progress my-3 rounded-pill">
@@ -373,7 +468,7 @@
                                     <div class="mt-3 d-grid gap-2">
                                         <a href="<?= $contestant->share_url ?>">
 
-                                            <button class="btn btn-block btn-success w-100" type="link" href="">
+                                            <button class="btn btn-block btn-success w-100" id='vote-btn' type="link" href="">
                                                 Vote Now
                                             </button>
                                         </a>
@@ -390,29 +485,29 @@
         </div>
 
 
-    </section>
+        </section>
 
-    <div id="Modal" class="modal  bg-gradient   overflow-hidden col-10" role="dialog">
-        <div class="modal-dialog">
+        <div id="Modal" class="modal  bg-gradient   overflow-hidden col-10" role="dialog">
+            <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content bg-black w-100 overflow-hidden">
-                <div class="modal-header">
+                <!-- Modal content-->
+                <div class="modal-content bg-black w-100 overflow-hidden">
+                    <div class="modal-header">
 
-                    <h2 class="modal-title col-12 text-center">Contestant name</h2>
+                        <h2 class="modal-title col-12 text-center">Contestant name</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>Is this the contestant you will like to vote for ?</p>
+                        <button class="btn-warning text-capitalize btn">vote now</button>
+                        <h2></h2>
+                    </div>
+                    <div class="modal-footer">
+                        <a href=""> <button type="button" id='dismiss' class="btn btn-danger" data-dismiss="modal">Close</button></a>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p>Is this the contestant you will like to vote for ?</p>
-                    <button class="btn-warning text-capitalize btn">vote now</button>
-                    <h2></h2>
-                </div>
-                <div class="modal-footer">
-                    <a href=""> <button type="button" id='dismiss' class="btn btn-danger" data-dismiss="modal">Close</button></a>
-                </div>
+
             </div>
-
         </div>
-    </div>
 </main>
 
 <script>
@@ -431,9 +526,11 @@
     if (diff > 0) {
         document.getElementById("countdown-announce").innerHTML = "Countdown to end of Contest";
         var countDownDate = new Date('<?= $contest->end_date ?>').getTime();
+       
     } else {
         document.getElementById("countdown-announce").innerHTML = "Countdown to contest ";
         var countDownDate = new Date('<?= $contest->start_date ?>').getTime();
+        
     }
 
 

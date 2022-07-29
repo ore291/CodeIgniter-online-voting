@@ -39,19 +39,31 @@
 
 
 
+    <?php
+    $user = session()->get('user');
+    ?>
+
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 bg-black text-white pb-3">
         <nav class="navbar bg-black  navbar-dark">
-            <a href="/admin" class="navbar-brand mx-4 mb-3">
+            <a href="<?= base_url() ?>" class="navbar-brand mx-4 mb-3">
                 <h3 class="text-warning">online voting</h3>
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <img class="rounded-circle border-secondary border" src="<?php echo base_url('assets/images/image-3.jpg') ?>" alt="" style="width: 50px; height: 50px;">
+                    <img class="rounded-circle border-secondary border" src="/images/<?php if (isset($user)) {
+                                                                                            echo $user->picture;
+                                                                                        } else {
+                                                                                            echo null;
+                                                                                        } ?>" alt="" style="width: 50px; height: 50px;">
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
-                    <h6 class="mb-0 text-white">Jhon Doe</h6>
+                    <h6 class="mb-0 text-white text-capitalize"><?php if (isset($user)) {
+                                                                    echo $user->full_name;
+                                                                } else {
+                                                                    echo null;
+                                                                } ?></h6>
                     <span class="text-secondary">Admin</span>
                 </div>
             </div>
@@ -69,7 +81,7 @@
                     <a href="" class="nav-item nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>Users</a>
                     <div class="dropdown-menu bg-transparent border-0 text-sm">
                         <a href="/admin/users" class="dropdown-item">Users</a>
-                        <a href="/admin/sponsors" class="dropdown-item">Contestants</a>
+                        <a href="/admin/sponsors" class="dropdown-item"></a>
 
                     </div>
                 </div>
@@ -92,6 +104,7 @@
 
                     </div>
                 </div>
+                <a href="/admin/settings" class="nav-item nav-link "><i class="fas fa-cog"></i>Settings</a>
             </div>
         </nav>
     </div>
@@ -100,29 +113,24 @@
 
     <div class="content">
         <!-- Navbar Start -->
-        <nav class="navbar navbar-expand bg-black navbar-ligh text-white sticky-top px-4 py-0">
+        <nav class="navbar navbar-expand bg-black navbar-ligh text-white sticky-top px-0 py-2">
 
             <a href="#" class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
             </a>
-            <form class="d-non d-md-flex d-block ms-4">
+            <!-- <form class="d-non d-md-flex d-block ms-4">
                 <input class="form-control border-0" type="search" placeholder="Search">
-            </form>
+            </form> -->
             <div class="navbar-nav align-items-center ms-auto">
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="fa fa-envelope me-lg-2"></i>
-                        <span class="d-none d-lg-inline-flex">Message</span>
-                    </a>
+                    <a href="" class="text-warning me-5"></a>
+
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
 
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="fa fa-bell me-lg-2"></i>
-                        <span class="d-none d-lg-inline-flex">Notification</span>
-                    </a>
+
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
 
                     </div>
@@ -152,10 +160,10 @@
         <?= $this->renderSection('content') ?>
 
 
-      
 
 
-      
+
+
 
         <script src="<?php echo base_url('assets/js/easing.min.js') ?>"></script>
 

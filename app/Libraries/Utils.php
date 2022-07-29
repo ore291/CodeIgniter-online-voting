@@ -7,14 +7,14 @@ class Utils
     public static function uploadImage($image)
     {
         $config['upload_path'] = getcwd() . '/images';
-        $image_name = $image->getName();
+        $image_name = uniqid() . $image->getName();
 
         if (!is_dir($config['upload_path'])) {
             mkdir($config['upload_path'], 077);
         }
 
         if (!$image->hasMoved()) {
-            $image->move($config['upload_path'], $image_name);
+            $image->move($config['upload_path'], $image_name.'');
         }
 
         return $image_name;
@@ -43,5 +43,15 @@ class Utils
         }
         // Return result
         return $text;
+    }
+
+    public static function adminCheck()
+    {
+        $user = session()->get('user');
+        if (!session()->has('loggedInUser') or isset($user) and $user->role != 'admin') {
+            return true;
+        };
+        return false;
+
     }
 }

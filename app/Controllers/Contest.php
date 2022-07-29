@@ -8,10 +8,11 @@ use App\Models\ContestantsModel;
 use App\Models\CategoryModel;
 use App\Models\VoteModel;
 use App\Models\SponsorModel;
+use App\Models\SettingsModel;
 use App\Libraries\GetContestants;
 use App\Libraries\Votes;
 use App\Libraries\Utils;
-
+use App\Models\UserModel;
 
 class Contest extends BaseController
 {
@@ -54,15 +55,26 @@ class Contest extends BaseController
         $sponsor_model = new SponsorModel();
         $contestants_cl = new GetContestants();
         $contestants_model = new ContestantsModel();
+        $user_model = new UserModel();
 
 
         $contest_data = $contest_model->where('contests.slug', $slug)
             ->first();
 
+        
+
         $contest_data->contestants_count = $contestants_model->where('contest_id', $contest_data->id)->countAllResults();
 
         if (isset($contest_data->sponsor_id)) {
             $contest_data->sponsor = $sponsor_model->find($contest_data->sponsor_id);
+        }
+
+        if (isset($contest_data -> winner_id))
+        {
+            $winner = $contestants_model->find($contest_data -> winner_id);
+            $winner->user = $user_model->find($winner->user_id);
+
+            $contest_data->winner = $winner;
         }
 
 
@@ -170,6 +182,10 @@ class Contest extends BaseController
         $data = $this->request->getJSON();
 
         $vote_model = new VoteModel();
+        $settings_model = new SettingsModel();
+
+        $settings = $settings_model->find(1);
+
         $vote_cl = new Votes();
 
 
@@ -186,7 +202,7 @@ class Contest extends BaseController
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "Authorization: Bearer sk_test_5dbaccf801146c4e853762c6d634bbbfb83bcee4",
+                "Authorization: Bearer ".$settings['paystack_secret_key'],
                 "Cache-Control: no-cache",
             ),
         ));
@@ -246,5 +262,12 @@ class Contest extends BaseController
         }
 
 
+    }
+
+    public function postdeclare_winner($contest_id)
+    {
+        $contestants_cl = new GetContestants();
+
+        $winner=$contestants_cl->declareContestWinner($contest_id);
     }
 }

@@ -30,6 +30,11 @@ footer {
   margin: auto 10px;
   font-size: 16px;
 }
+.nav-links {
+  color: white !important;
+  margin: auto 10px;
+  font-size: 16px;
+}
 .footer-link {
   color: white !important;
 }
@@ -170,14 +175,15 @@ html {
   }
 
   .activated {
-    text-decoration-line: underline !important;
+    text-decoration-line:none !important;
     text-decoration-thickness: 1px !important;
     text-decoration-skip-ink: all;
     text-underline-offset: 10px !important;
     color: #bda55d;
     text-decoration-color: #bda55d;
     -moz-text-decoration-color: #bda55d;
-  }
+    -moz-text-decoration-line:none !important;
+}
 }
 
 

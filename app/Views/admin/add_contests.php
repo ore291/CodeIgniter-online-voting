@@ -123,7 +123,7 @@
 
                 <div class="col-12 col-md-6">
                     <label for="startDate" class="form-label">Contest Start Date</label>
-                    <input type="datetime-local" id="startDate" require name="startDate" class="form-control">
+                    <input type="date" id="startDate" require name="startDate" class="form-control">
                 </div>
                 
                 <div class="col-12 col-md-6">
@@ -132,7 +132,7 @@
                 </div>
             </div>
             <div class="row my-5">
-                <button class="btn btn-primary col-12" type="submit">Submit</button>
+                <button class="btn btn-warning col-12" type="submit">Submit</button>
             </div>
         </form>
 

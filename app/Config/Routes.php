@@ -74,8 +74,9 @@ $routes->add('login', 'Home::login');
 $routes->add('sign-up', 'Home::signUp');
 $routes->add('about-us', 'Home::about');
 $routes->add('contact-us', 'Home::contact');
-$routes->add('user/(:any)', 'User::index/$1');
+;
 $routes->add('about/faqs', 'Home::faqs');
+$routes->add('forgot-password', 'Home::forgot_password');
 
 // $routes->get('contestant/(:any)', 'Contests::contestant/$1');
 

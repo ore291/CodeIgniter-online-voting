@@ -27,7 +27,7 @@ class GetContestants
         // SELECT the recipes, order by id
         $contestants = $contestant_model
             ->where('contest_id', $contest_id)
-            ->orderBy("votes", "desc")
+            ->orderBy("votes", "DESC")
             ->findAll();
 
         // For each contestant, SELECT its user
@@ -127,5 +127,24 @@ class GetContestants
 
         return $contestants;
 
+    }
+
+    public function declareContestWinner($contest_id)
+    {
+        $contestant_model = new ContestantsModel();
+        $contest_model = new ContestModel();
+        $user_model = new UserModel();
+
+        $winner = $contestant_model->where('contest_id', $contest_id)
+            ->orderBy("votes", "desc")
+            ->first();
+
+$data= ['winner_id' => $winner->id];
+        
+        $contest = $contest_model->update($contest_id,$data);
+
+        return $contest;
+
+            
     }
 }

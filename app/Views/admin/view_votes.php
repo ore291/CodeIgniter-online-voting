@@ -30,7 +30,7 @@
                         <th>Cost</th>
                         <th>Vote Count </th>
                         <th>Contestant id </th>
-                        <th>Contest</th>
+                        <th>Vote Count</th>
 
                     </tr>
                 </thead>
@@ -44,13 +44,13 @@
 
                             <tr class="">
                                 <th scope="row"><?= $vote['id'] ?></th>
-                                <td class="p-5"><?= $vote['name'] ?></td>
+                                <td class=""><?= $vote['name'] ?></td>
                                 <td class="col-1"><?= $vote['email'] ?></td>
                                 <td><?= $vote['reference'] ?></td>
                                 <td>&#8358;<?= $vote['cost'] ?></td>
                                 <td><?= $vote['vote_count'] ?></td>
-                                <td><?= $vote['contestant_id'] ?></td>
-                                <td><?= $vote['contestant_id'] ?></td>
+                                <td><?= $vote['contestant_id']?></td>
+                                <td><?= $vote['vote_count'] ?></td>
 
                             </tr>
 

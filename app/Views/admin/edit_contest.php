@@ -5,7 +5,9 @@
 <section>
 
     <div class="container shadow shadow-sm p-4 col-lg-10">
-        <h2 class="mb-5">Edit<br> <?= $contest->title ?></h2>
+        <h4 class="mb-">Edit <br>
+            <h1 class="mb-3"><?= $contest->title ?></h1>
+        </h4>
         <?php
         if (!empty(session()->getFlashdata("success"))) {
         ?>
@@ -29,7 +31,7 @@
         }
 
         ?>
-        <form class="row gx-3 gy-2 align-items-center text-black" enctype="multipart/form-data" action="<?= base_url('admin/edit-contest/'.$contest->id)?>" method="post">
+        <form class="row gx-3 gy-2 align-items-center text-black" enctype="multipart/form-data" action="<?= base_url('admin/edit-contest/' . $contest->id) ?>" method="post">
 
             <div class="row">
                 <div class="col-12 col-md-12 form-outline mb-2 pb-2" id="category-div">
@@ -42,9 +44,13 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-12 form-outline text-black  " id="category-div">
-                    <label class="form-label text-capitalize" for="typeNumber">Contest Sponsor/Organizer</label>
-                    <select required class="form-select text-black text-capitalize " name="sponsor" id="sponsor" value='Change Sponsor' placeholder="">
-                        <option value=0 selected="selected" disabled aria-required="" class="text-capitalize"><?= $contest->sponsor[0]->name ?></option>
+                    <label class="form-label text-capitalize" for="typeNumber">Change Contest Sponsor/Organizer</label>
+                    <select class="form-select text-black text-capitalize " name="sponsor" id="sponsor" value='<?= $contest->sponsor[0]->name ?>' placeholder="mmm">
+                        <!-- <option value=0 selected="selected"  aria-required="" class="text-capitalize"><?php if (isset($contest->sponsor[0]->name)) {
+                                                                                                                echo $contest->sponsor[0]->name;
+                                                                                                            } else {
+                                                                                                                echo 'No Sponsor';
+                                                                                                            } ?></option> -->
 
                         <?php foreach ($sponsors as $sponsor) : ?>
 
@@ -72,8 +78,8 @@
 
                 <div class="col-12 col-md-6 form-outline text-black  " id="category-div">
                     <label class="form-label text-capitalize" for="typeNumber">Contest Category</label>
-                    <select class="form-select text-black text-capitalize " required name="category" id="category" placeholder="">
-                        <option value="" disabled selected="selected">Change category</option>
+                    <select class="form-select text-black text-capitalize " value='<?= $contest->category_d['title'] ?>' name="category" id="category" placeholder="">
+                        <option value=""  selected="selected"><?= $contest->category_d['title'] ?></option>
                         <?php foreach ($categories as $category) : ?>
 
                             <option value="<?= $category['id'] ?>" class="text-black">
@@ -95,7 +101,7 @@
                 <div class="col-12 col-md-6">
                     <div class="  form-outline ">
                         <label class="form-label text-capitalize" for="typeNumber">Price per vote (₦)</label>
-                        <input type="number" name="price" id="typeNumber" required class="form-control bg-transparent text-black col-lg-6 mx-auto" min="1" value="<?= $contest->price_per_vote ?>" />
+                        <input type="number" name="price" id="typeNumber" class="form-control bg-transparent text-black col-lg-6 mx-auto" min="1" value="<?= $contest->price_per_vote ?>" />
 
 
                     </div>
@@ -108,11 +114,11 @@
 
                 <div class="col-12 col-md-6">
                     <label for="formFile" class="form-label">Upload Cover Image</label>
-                    <input class="form-control" type="file" accept="image/png, image/gif, image/jpeg ,image/webp" name="cover" required id="formFileMultiple" >
+                    <input class="form-control" type="file" accept="image/png, image/gif, image/jpeg ,image/webp" name="cover" id="formFileMultiple">
                 </div>
                 <div class=" col-12 col-md-6">
                     <label for="formFile" class="form-label">Upload Contest Picture</label>
-                    <input class="form-control" name="picture" accept="image/png, image/gif, image/jpeg, image/webp" required type="file" id="formFileMultiple">
+                    <input class="form-control" name="picture" accept="image/png, image/gif, image/jpeg, image/webp" type="file" id="formFileMultiple">
                 </div>
 
             </div>
@@ -121,15 +127,15 @@
 
                 <div class="col-12 col-md-6">
                     <label for="startDate" class="form-label">Contest Start Date</label>
-                    <input type="datetime-local" id="startDate" required name="startDate" class="form-control" value="<?= $contest->start_date ?>">
+                    <input type="date" id="startDate" name="startDate" class="form-control" placeholder='<?= $contest->start_date ?>' value="<?= $contest->start_date ?>">
                 </div>
                 <div class="col-12 col-md-6">
                     <label for="endDate" class="form-label">Contest End Date</label>
-                    <input type="datetime-local" id="endDate" required name="endDate" class="form-control" value="<?= $contest->end_date ?>">
+                    <input type="date" id="endDate" name="endDate" class="form-control" placeholder='<?= $contest->end_date ?>' value="<?= $contest->end_date ?>">
                 </div>
             </div>
             <div class="row my-5">
-                <button class="btn btn-primary col-12" type="submit">Submit</button>
+                <button class="btn btn-warning col-12" type="submit">Submit</button>
             </div>
         </form>
 

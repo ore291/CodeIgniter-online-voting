@@ -70,8 +70,11 @@ $(document).ready(function () {
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: "40px",
+          centerPadding: "0px",
           slidesToShow: 1,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 4000,
         },
       },
     ],
@@ -103,7 +106,28 @@ const findOverflows = () => {
       }
   });
 };
+ $(" #verifyPassword").on("keyup", function () {
+   if ($("#newPassword").val() == $("#verifyPassword").val()) {
+     $("#errmsg").html("Password match").css("color", "green");
+   } else $("#errmsg").html("Password do not match").css("color", "red");
+ });
 
+function validate() {
+
+  return $("#newPassword").val() === $("#verifyPassword").val();
+   
+ }
+
+  function togglePassword1(id) {
+    var x = document.getElementById(id);
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
+  
 // Execute findOverflows to find overflows on the page.
 findOverflows();
 

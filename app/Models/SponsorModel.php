@@ -20,7 +20,8 @@ class SponsorModel extends Model
         'brand',
         'email',
         'phone',
-        'description'
+        'description',
+        'picture'
     ];
 
     // Dates
