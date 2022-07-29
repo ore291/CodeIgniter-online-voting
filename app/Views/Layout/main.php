@@ -50,7 +50,7 @@
             <!-- Brand -->
             <a class="navbar-brand h-25" href="/" target="">
                 <img src="/images/<?= $logo['logo'] ?>" width="60" height="60" class="rounded-circle" alt="">
-                <strong style="color: orange;">online voting</strong>
+                <strong style="color: orange;">Face of MOA</strong>
             </a>
 
             <!-- Collapse -->

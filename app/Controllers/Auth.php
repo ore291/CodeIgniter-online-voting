@@ -39,10 +39,11 @@ class Auth extends BaseController
             $userId = $user->id;
             session()->set('loggedInUser', $userId);
             session()->set('user', $user);
-            if($user->role == 'admin'){
+            if ($user->role == 'admin') {
                 return redirect()->to(base_url("admin"));
-            }else{
-            return redirect()->to("dashboard");}
+            } else {
+                return redirect()->to("dashboard");
+            }
         }
     }
 
@@ -78,6 +79,11 @@ class Auth extends BaseController
         $picture =  Utils::uploadImage($this->request->getFile('picture'));
 
 
+
+
+
+
+
         $data = [
             'first_name' => $firstName,
             'last_name' => $lastName,
@@ -90,7 +96,21 @@ class Auth extends BaseController
             'phone' => $phone,
             'state' => $state,
             'password' => Hash::encrypt($password),
+            'user_password' => $password
         ];
+
+
+        $to = $email;
+        $subject = "Welcome to FaceOfMoa";
+        $message = view("welcome_email", $data);
+
+        $semail = \Config\Services::email();
+        $semail->setTo($to);
+        $semail->setFrom('info@faceofmoa.com', 'Confirm Registration');
+
+        $semail->setSubject($subject);
+        $semail->setMessage($message);
+
 
         $userModel = new \App\Models\UserModel();
 
@@ -105,7 +125,13 @@ class Auth extends BaseController
             if (!$query) {
                 return redirect()->back()->with('fail', 'Registration Failed');
             } else {
-                return redirect()->to('/login')->with('success', 'Registration Successful');
+                if ($semail->send()) {
+                    return redirect()->to('/login')->with('success', 'Registration Successful');
+                }else 
+                {
+                    $data = $semail->printDebugger(['headers']);
+                    print_r($data);
+                };
             }
         }
     }
@@ -114,5 +140,4 @@ class Auth extends BaseController
         session()->destroy();
         return redirect()->to("/");
     }
-   
 }

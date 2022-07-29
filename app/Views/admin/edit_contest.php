@@ -45,24 +45,63 @@
             <div class="row">
                 <div class="col-12 col-md-12 form-outline text-black  " id="category-div">
                     <label class="form-label text-capitalize" for="typeNumber">Change Contest Sponsor/Organizer</label>
-                    <select class="form-select text-black text-capitalize " name="sponsor" id="sponsor" value='<?= $contest->sponsor[0]->name ?>' placeholder="mmm">
-                        <!-- <option value=0 selected="selected"  aria-required="" class="text-capitalize"><?php if (isset($contest->sponsor[0]->name)) {
-                                                                                                                echo $contest->sponsor[0]->name;
-                                                                                                            } else {
-                                                                                                                echo 'No Sponsor';
-                                                                                                            } ?></option> -->
+                    <?php
 
-                        <?php foreach ($sponsors as $sponsor) : ?>
+                    if (isset($contest->sponsor[0])) {
+                    ?>
 
-                            <option value="<?= $sponsor->id ?>" class="text-black text-capitalize ">
-                                <?= esc($sponsor->name) ?>
+                        <select class="form-select text-black text-capitalize " name="sponsor" id="sponsor" value='<?= $contest->sponsor[0]->name ?>' placeholder="mmm">
+                            <!-- <option value=0 selected="selected"  aria-required="" class="text-capitalize"><?php if (isset($contest->sponsor[0]->name)) {
+                                                                                                                    echo $contest->sponsor[0]->name;
+                                                                                                                } else {
+                                                                                                                    echo 'No Sponsor';
+                                                                                                                } ?></option> -->
+
+                            <?php foreach ($sponsors as $sponsor) : ?>
+
+                                <option value="<?= $sponsor->id ?>" class="text-black text-capitalize ">
+                                    <?= esc($sponsor->name) ?>
+                                </option>
+
+
+                            <?php endforeach; ?>
+
+
+                        </select>
+
+
+                    <?php
+                    } else {
+                    ?>
+
+                        <select class="form-select text-black text-capitalize " name="sponsor" id="sponsor" placeholder="">
+
+
+                            <option value="<?= null ?>">
+                                No Sponsor
                             </option>
 
+                            <?php foreach ($sponsors as $sponsor) : ?>
 
-                        <?php endforeach; ?>
+                                <option  value="<?= $sponsor->id ?>" class="text-black text-capitalize ">
+                                    <?= esc($sponsor->name) ?>
+                                </option>
 
 
-                    </select>
+                            <?php endforeach; ?>
+
+
+                        </select>
+
+
+
+                    <?php
+                    }
+
+
+
+                    ?>
+
                     <!-- <select class="form-select text-black text-capitalize w-50" name="category" id="category" placeholder="">
                         <option value="" disabled selected="selected">Choose allowed gender </option>
                         <option>male</option>
@@ -79,7 +118,7 @@
                 <div class="col-12 col-md-6 form-outline text-black  " id="category-div">
                     <label class="form-label text-capitalize" for="typeNumber">Contest Category</label>
                     <select class="form-select text-black text-capitalize " value='<?= $contest->category_d['title'] ?>' name="category" id="category" placeholder="">
-                        <option value=""  selected="selected"><?= $contest->category_d['title'] ?></option>
+                        <option value="" selected="selected"><?= $contest->category_d['title'] ?></option>
                         <?php foreach ($categories as $category) : ?>
 
                             <option value="<?= $category['id'] ?>" class="text-black">
@@ -123,17 +162,17 @@
 
             </div>
 
-            <div class="row my-2">
+            <!-- <div class="row my-2">
 
                 <div class="col-12 col-md-6">
                     <label for="startDate" class="form-label">Contest Start Date</label>
-                    <input type="date" id="startDate" name="startDate" class="form-control" placeholder='<?= $contest->start_date ?>' value="<?= $contest->start_date ?>">
+                    <input type="date" id="startDate" name="startDate" class="form-control"  value="<?= $contest->start_date ?>">
                 </div>
                 <div class="col-12 col-md-6">
                     <label for="endDate" class="form-label">Contest End Date</label>
-                    <input type="date" id="endDate" name="endDate" class="form-control" placeholder='<?= $contest->end_date ?>' value="<?= $contest->end_date ?>">
+                    <input type="date" id="endDate" name="endDate" class="form-control"  value="<?= $contest->end_date ?>">
                 </div>
-            </div>
+            </div> -->
             <div class="row my-5">
                 <button class="btn btn-warning col-12" type="submit">Submit</button>
             </div>

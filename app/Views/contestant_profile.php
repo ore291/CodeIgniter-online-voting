@@ -95,7 +95,7 @@ $api_key = $settings['paystack_api_key'];
                         }
                     </script>
 
-                    <a href="<?= base_url('images/' . $contestant->image) ?>" class="btn btn-lin text-decoration-none text-white m-0 btn-sm col-8 text-nowrap btn-warning" download> Share contestant  image</a>
+                    <a href="<?= base_url('images/' . $contestant->image) ?>" class="btn btn-lin text-decoration-none text-white m-0 btn-sm col-8 text-nowrap btn-warning" download> Share contestant image</a>
 
 
 
@@ -129,7 +129,7 @@ $api_key = $settings['paystack_api_key'];
             <h3>Contestant's Name : <span class="text-capitalize"><?= esc($contestant->user->full_name) ?></span></h3>
             <h3>Contestant's ID : <?= sprintf('%03d', $contestant->id) ?></h3>
             <?php
-if ($contestant->votes > 0 and $contest->total_votes > 0) {
+            if ($contestant->votes > 0 and $contest->total_votes > 0) {
             ?>
                 <h4>Voting Percent: <?= number_format(($contestant->votes / $contest->total_votes) * 100, 2) ?>%</h4>
             <?php
@@ -182,48 +182,64 @@ if ($contestant->votes > 0 and $contest->total_votes > 0) {
     </section>
 
 
+    <?php
+    $today = strtotime(date("Y-m-d H:i:s"));
+
+    $startDate = strtotime($contest->start_date);
+
+    if ($today > $startDate) {
+    ?>
+
+        <section class="border-1 border border-dark py-3 mx-auto">
+            <h2 class="text-warning text-center mx-auto text-uppercase "> vote for <?= esc($contestant->user->full_name) ?></h2>
+            <p class="text-center">Ensure the contestant is who you actually want to vote. There would be no refund or reversal of vote if you choose a wrong contestant.</p>
+
+            <div class="container row g-0 p-2 ">
+                <form class="col-12 col-md-4 offset-md-4 mt-3 p-2" id="voteUser">
+                    <div class=" mb-3 form-outline ">
+                        <input type="number" name="vote_count" id="vote_count" required class="form-control bg-transparent text-white col-lg-12 " min="1" placeholder="0" />
+                        <label class="form-label" for="vote_count">Select the number of votes you want</label>
+
+                    </div>
+                    <div class=" form-outline my-4   ">
+                        <input type="text" required id="voter-name" name="name" class="form-control bg-transparent text-white " />
+                        <label class="form-label" for="name">Enter your Name</label>
+                    </div>
+                    <div class=" form-outline my-4   ">
+                        <input type="email" required id="email-address" name="email-address" class="form-control bg-transparent text-white " placeholder="enter a valid email" />
+                        <label class="form-label" for="email-address">Enter your Email</label>
+                    </div>
+                    <div class=" mb-3 ">
+                        <p> Price per vote : <strong>&#8358;<?= $contest->price_per_vote ?></strong></p>
+                    </div>
 
 
 
-    <section class="border-1 border border-dark py-3 mx-auto">
-        <h2 class="text-warning text-center mx-auto text-uppercase "> vote for <?= esc($contestant->user->full_name) ?></h2>
-        <p class="text-center">Ensure the contestant is who you actually want to vote. There would be no refund or reversal of vote if you choose a wrong contestant.</p>
-
-        <div class="container row g-0 p-2">
-            <form class="col-12 col-md-6 offset-md-3 mt-3" id="voteUser">
-                <div class=" mb-3 form-outline ">
-                    <input type="number" name="vote_count" id="vote_count" required class="form-control bg-transparent text-white col-lg-12 " min="1" placeholder="0" />
-                    <label class="form-label" for="vote_count">Select the number of votes you want</label>
-
-                </div>
-                <div class=" form-outline my-4   ">
-                    <input type="text" required id="voter-name" name="name" class="form-control bg-transparent text-white " />
-                    <label class="form-label" for="name">Enter your Name</label>
-                </div>
-                <div class=" form-outline my-4   ">
-                    <input type="email" required id="email-address" name="email-address" class="form-control bg-transparent text-white " placeholder="enter a valid email" />
-                    <label class="form-label" for="email-address">Enter your Email</label>
-                </div>
-                <div class=" mb-3 ">
-                    <p> Price per vote : <strong>&#8358;<?= $contest->price_per_vote ?></strong></p>
-                </div>
-
-                <div class="form-submit row g-0">
-                    <button type="submit" class="btn btn-success col-12 btn-block w-full"> Pay Now </button>
-                </div>
+                    <button type="submit" class="btn btn-success w-100 btn-block "> Pay Now </button>
 
 
-            </form>
+
+                </form>
 
 
 
 
 
-        </div>
+            </div>
 
 
 
-    </section>
+        </section>
+
+
+    <?php
+    }
+
+
+    ?>
+
+
+
 </main>
 
 

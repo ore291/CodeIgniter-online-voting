@@ -23,6 +23,7 @@
                         if (isset($contest->sponsor_id)) {
                         ?>
                             <span>Sponsored by: <?= esc($contest->sponsor->brand) ?></span>
+                            <img src="/images/<?= $contest->sponsor->picture ?>" style="width : 100px; height : 100px; object-fit:contain;" alt="">
 
                         <?php
                         }

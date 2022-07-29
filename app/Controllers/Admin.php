@@ -473,8 +473,9 @@ class Admin extends BaseController
         = $this->request->getFile('picture');
         
         $slug = Utils::slugify($contestTitle);
-        $start_date = $this->request->getPost('startDate');
-        $end_date = $this->request->getPost('endDate');
+
+        // $start_date = $this->request->getPost('startDate');
+        // $end_date = $this->request->getPost('endDate');
 
        
         if(file_exists($cove) && file_exists($pic) && isset($category)){
@@ -489,8 +490,8 @@ class Admin extends BaseController
                 'cover'=>$cover,
                 'picture'=> $picture,
                 'slug' => $slug,
-                'start_date' => $start_date,
-                'end_date' => $end_date
+                // 'start_date' => $start_date,
+                // 'end_date' => $end_date
 
             ];
 
@@ -501,8 +502,8 @@ class Admin extends BaseController
                 'sponsor_id' => $sponsor,
                 'price_per_vote' => $price,
                 'slug' => $slug,
-                'start_date' => $start_date,
-                'end_date' => $end_date
+                // 'start_date' => $start_date,
+                // 'end_date' => $end_date
 
             ];
 
