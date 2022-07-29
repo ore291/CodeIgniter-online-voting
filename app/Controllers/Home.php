@@ -6,6 +6,8 @@ use App\Models\ContestModel;
 use App\Models\SponsorModel;
 use App\Models\SettingsModel;
 
+use App\Models\ContestantsModel;
+
 
 class Home extends BaseController
 {
@@ -18,11 +20,20 @@ class Home extends BaseController
 
         $contest_model = new ContestModel();
         $sponsor_model = new SponsorModel();
-        
+        $user_model = new UserModel();
+        $contestants_model= new ContestantsModel();
 
 
         $query = $contest_model->where("status", "pending")->orderBy('created_at', 'DESC')->findAll();
-       
+        $contests=$contest_model->where('winner_id IS NOT NULL',null,false )->orderBy('created_at','DESC')->findAll();
+
+        foreach ($contests as &$contest) {
+            $winner = $contestants_model->find($contest->winner_id);
+            $winner->user = $user_model->find($winner->user_id);
+            $contest->winner=$winner;
+        }
+        
+       $data['contests_winners']=$contests;
 
         foreach ($query as &$contest) {
             $contest->sponsor = $sponsor_model

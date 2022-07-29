@@ -112,10 +112,10 @@
   <div class="d-flex align-items-center justify-content-center w-100 my-4">
 
 
-  
-      <a href="/contact-us" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-link border border-0 b px-1 py-2 btn-warning btn btn-outline-light w-50 btn-lg text-black rounded " >
-        Become a Sponsor
-      </a>
+
+    <a href="/contact-us" style='border-radius:50px !important;padding:auto 15px;color:black !important;' class="nav-link border border-0 b px-1 py-2 btn-warning btn btn-outline-light w-50 btn-lg text-black rounded ">
+      Become a Sponsor
+    </a>
 
 
 
@@ -189,29 +189,37 @@
   </section> -->
 
 
+  <div class="text-center my-2 my-md-5">
+
+    <h1 class=" text-uppercase">Recent Winners of our Contests</h1>
+  </div>
   <section class="d-flex">
-    <button class="prev page-link mx-2 py-lg-2 btn bg-black " aria-label="Next" style="border-radius: 50px;">
+    <button class="prev page-link mx-2 py-lg-2 btn bg-black vi " aria-label="Next" style="border-radius: 50px;">
       <span aria-hidden="true">&laquo;</span>
 
     </button>
+
+
 
 
     <div class="carousel slick-slider center col-10 mx-auto slick-slider">
 
 
 
-      <?php $posts = ['title 1', 'title 2', 'title 3', 'title 4', 'title 5', 'title 6']; ?>
 
 
-      <?php foreach ($posts as $post) : ?>
 
 
-        <div class="d-flex justify-content-evenly  -circle text-center text-capitalize " style="height: max-content; border-radius:50%;">
-          <div class=" col-10 app">
+      <?php foreach ($contests_winners as $contests_winner) : ?>
 
-            <img src="<?php echo base_url('assets/images/image-2.jpg') ?>" class="card-img-top img-fluid   mx-auto" alt="...">
 
-            <h5 class="text- mb-lg-5"> <?= $post ?> </h5>
+        <div class="d-flex justify-content-evenly  -circle text-center text-capitalize " style="height: max-content; ">
+          <div class=" col-md-10 col-11 app">
+
+            <img src="<?php echo base_url('images/' . $contests_winner->winner->user->picture) ?>" class="card-img-top img-fluid mb-lg-2  mx-auto" alt="..." style="max-height: 250px;object-fit:contain;">
+
+            <h5 class="text- mb-lg-"> <?= $contests_winner->winner->full_name ?> </h5>
+            <h5 class="text-nowrap text-truncate mx-lg-auto scrolle" style="overflow:;"><?= $contests_winner->title ?></h5>
 
           </div>
 
@@ -236,7 +244,7 @@
 
 
     </div>
-    <button class="next page-link mx-2 py-lg-2 btn bg-black " aria-label="Next" style="border-radius: 50px;">
+    <button class="next page-link mx-2 py-lg-2 btn bg-black vi" aria-label="Next" style="border-radius: 50px;">
       <span aria-hidden="true">&raquo;</span>
 
     </button>

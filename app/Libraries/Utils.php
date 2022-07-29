@@ -7,7 +7,7 @@ class Utils
     public static function uploadImage($image)
     {
         $config['upload_path'] = getcwd() . '/images';
-        $image_name = $image->getName();
+        $image_name = uniqid() . $image->getName();
 
         if (!is_dir($config['upload_path'])) {
             mkdir($config['upload_path'], 077);

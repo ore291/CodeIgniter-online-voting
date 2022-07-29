@@ -7,6 +7,8 @@ use App\Libraries\Utils;
 use App\Models\ContestModel;
 use App\Models\CategoryModel;
 use App\Models\SponsorModel;
+use App\Models\ContestantsModel;
+use App\Libraries\GetContestants;
 
 class Contests extends BaseController
 {
@@ -51,31 +53,6 @@ class Contests extends BaseController
         return view('contests',  $data);
     }
 
-    // public function getcontest($id)
-    // {
-
-    //     $data['title'] = ucfirst('Contests');
-    //     $data['contest'] = $id;
-
-    //     return view('templates/header', $data)
-    //         . view('contest', $data)
-    //         . view('templates/footer');
-    // }
-
-    // public function contestant($title,$name)
-    // {
-
-    //     $data['title'] = ucfirst('Contests');
-    //     $data['contest'] = $title;
-    //     $data['name'] = $name;
-
-
-
-    //     return view('templates/header', $data)
-    //         . view('contestant_profile', $data)
-    //         . view('templates/footer');
-    // }
-
     public function postcreate()
     {
         $title = $this->request->getPost('title');
@@ -118,5 +95,11 @@ class Contests extends BaseController
         } else {
             return redirect()->to('/admin/view-contest')->with('success', 'Registration Successful');
         }
+    }
+    public function postdeclare_winner()
+    {
+        $contest_model = new ContestModel();
+        $contestant_model= new ContestantsModel();
+
     }
 }

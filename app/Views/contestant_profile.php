@@ -95,7 +95,7 @@ $api_key = $settings['paystack_api_key'];
                         }
                     </script>
 
-                    <a href="<?= base_url('images/' . $contestant->image) ?>" class="btn btn-lin text-decoration-none text-black m-0 btn-sm col-8 text-nowrap btn-warning" download> Share contestant  image</a>
+                    <a href="<?= base_url('images/' . $contestant->image) ?>" class="btn btn-lin text-decoration-none text-white m-0 btn-sm col-8 text-nowrap btn-warning" download> Share contestant  image</a>
 
 
 
@@ -129,7 +129,7 @@ $api_key = $settings['paystack_api_key'];
             <h3>Contestant's Name : <span class="text-capitalize"><?= esc($contestant->user->full_name) ?></span></h3>
             <h3>Contestant's ID : <?= sprintf('%03d', $contestant->id) ?></h3>
             <?php
-            if ($contestant->votes > 0) {
+if ($contestant->votes > 0 and $contest->total_votes > 0) {
             ?>
                 <h4>Voting Percent: <?= number_format(($contestant->votes / $contest->total_votes) * 100, 2) ?>%</h4>
             <?php

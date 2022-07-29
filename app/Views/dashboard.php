@@ -191,7 +191,7 @@
                                     <!-- <p class="text-info text-uppercase">Contest : <?= $contestant->contest->title ?></p> -->
                                     <div class="my-3 d-flex align-items-center justify-content-between">
                                         <?php
-                                        if ($contestant->votes > 0) {
+                    if ($contestant->votes > 0 and $contestant->contest->total_votes > 0) {
                                         ?>
                                             <p>Voting Percent: <?= number_format(($contestant->votes / $contestant->contest->total_votes) * 100, 2) ?>%</p>
                                         <?php
@@ -209,7 +209,7 @@
                                         </p>
                                     </div>
                                     <?php
-                                    if ($contestant->votes > 0) {
+                    if ($contestant->votes > 0 and $contestant->contest->total_votes > 0) {
                                     ?>
 
                                         <div class="progress my-3 rounded-pill">
